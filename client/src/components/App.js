@@ -1,6 +1,6 @@
 import React from 'react';
-import BalanceHeader from "./infoBlocks/BalanceHeader";
-import ExpensesHistory from "./infoBlocks/ExpensesHistory";
+import BalanceHeader from "./BalanceHeader";
+import Expenses from "./infoBlocks/Expenses";
 import BottomBar from "./BottomBar";
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
         <div className="ui container"
              style={{marginTop: '10px'}}>
             <BalanceHeader/>
-            <ExpensesHistory/>
+            <Expenses/>
             <BottomBar style={{marginBottom: '10px'}}/>
         </div>
     );
