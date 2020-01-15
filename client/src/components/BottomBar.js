@@ -1,6 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const BottomBar = () => {
+const BottomBar = (props) => {
+    const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
+
+    const renderButtons = () => {
+        const buttons = ["One", "Two", "Three"];
+        return buttons.map((buttonName, i) => {
+            return <button key={i} className={selectedButtonIndex === i ? "ui active button" : "ui button"}
+                           onClick={(e) => onButtonClicked(e, i)}>{buttonName}</button>;
+        });
+
+    };
+
+    const onButtonClicked = (e, selectedButtonIndex) => {
+        setSelectedButtonIndex(selectedButtonIndex);
+        props.onButtonClicked(selectedButtonIndex);
+    };
 
     return (
         <div className="ui container"
@@ -8,26 +23,9 @@ const BottomBar = () => {
             <div className="ui three buttons">
                 {renderButtons()}
             </div>
-
-
         </div>
-
     );
-
 };
 
-const renderButtons = () => {
-    const buttons = ["One", "Two", "Three"];
-    return buttons.map((buttonName, i) => {
-        return (
-            <button key={i} className="ui button" onClick={onButtonClicked}>{buttonName}</button>
-        )
-    })
-
-};
-
-const onButtonClicked = (e) => {
-    e.currentTarget.className = "ui active button";
-};
 
 export default BottomBar;
