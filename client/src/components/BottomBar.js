@@ -1,26 +1,38 @@
 import React from 'react';
 
 const BottomBar = (props) => {
+    const INFO_BLOCK_TYPE = "infoBlock";
+    const ADD_TRANSACTION_TYPE = "addTransaction";
+    const buttons = [
+        {name: "Balance", type: INFO_BLOCK_TYPE},
+        {name: "Expenses", type: INFO_BLOCK_TYPE},
+        {name: "+", type: ADD_TRANSACTION_TYPE},
+        {name: "History", type: INFO_BLOCK_TYPE},
+        {name: "Settings", type: INFO_BLOCK_TYPE}
+    ];
 
     const renderButtons = () => {
-        return props.buttons.map((buttonName, i) => {
-            return <button key={i} className={getButtonStyle(i)}
-                           onClick={(e) => onButtonClicked(e, i)}>{buttonName} </button>;
+        return buttons.map((button, i) => {
+            return <button key={i} className={getButtonStyle(button.type, i)}
+                           onMouseDown={(e) => onButtonClicked(e, button.type, i)}>{button.name}</button>;
         });
 
     };
 
-    const getButtonStyle = (buttonIndex) => {
+    const getButtonStyle = (buttonType, buttonIndex) => {
 
-        if (buttonIndex === 2) {
+        if (buttonType === ADD_TRANSACTION_TYPE) {
             return "big ui primary button "
         }
         return props.selectedButtonIndex === buttonIndex ? "ui active button" : "ui button"
     };
 
-    const onButtonClicked = (e, selectedIndex) => {
-        if (selectedIndex === 2)
+    const onButtonClicked = (e, buttonType, selectedIndex) => {
+
+        if (buttonType === ADD_TRANSACTION_TYPE) {
+            e.preventDefault();
             return;
+        }
 
         props.onButtonClicked(selectedIndex);
     };
