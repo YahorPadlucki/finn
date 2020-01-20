@@ -20,19 +20,19 @@ const BottomBar = (props) => {
     };
 
     const getButtonStyle = (buttonType, buttonIndex) => {
-
-        if (buttonType === ADD_TRANSACTION_TYPE) {
-            return "big ui primary button "
-        }
+        //
+        // if (buttonType === ADD_TRANSACTION_TYPE) {
+        //     return "big ui primary button "
+        // }
         return props.selectedButtonIndex === buttonIndex ? "ui active button" : "ui button"
     };
 
     const onButtonClicked = (e, buttonType, selectedIndex) => {
 
-        if (buttonType === ADD_TRANSACTION_TYPE) {
-            e.preventDefault();
-            return;
-        }
+        // if (buttonType === ADD_TRANSACTION_TYPE) {
+        //     e.preventDefault();
+        //     return;
+        // }
 
         props.onButtonClicked(selectedIndex);
     };

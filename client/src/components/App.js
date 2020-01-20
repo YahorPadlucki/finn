@@ -4,11 +4,11 @@ import Expenses from "./infoBlocks/Expenses";
 import BottomBar from "./BottomBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
-import AddTransactionPopup from "./AddTransactionPopup";
+import AddTransaction from "./infoBlocks/AddTransaction";
 
 const App = () => {
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(1);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
 
     const onButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
@@ -21,6 +21,8 @@ const App = () => {
                 return <Balance/>;
             case 1:
                 return <Expenses/>;
+            case 2:
+                return <AddTransaction/>;
             case 3:
                 return <History/>;
             default:
@@ -35,7 +37,6 @@ const App = () => {
              style={{marginTop: '10px'}}>
             <BalanceHeader/>
             {renderInfoBlock()}
-            <AddTransactionPopup/>
             <BottomBar
                 selectedButtonIndex={selectedInfoBlock}
                 onButtonClicked={onButtonClicked}/>
