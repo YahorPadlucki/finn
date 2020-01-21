@@ -9,6 +9,7 @@ const AddTransaction = () => {
 
         // this.setState({term: e.target.value})
         // props.onSubmit(this.state.term)
+        console.log( e.target.value)
     };
 
     useEffect(() => {
@@ -32,20 +33,35 @@ const AddTransaction = () => {
     const renderCategory = function () {
         return (
             <select className="ui search dropdown">
-                <option value="">State</option>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
+                <option value="">Category</option>
+                <option value="AL">Food</option>
+                <option value="AK">Flat</option>
+            </select>
+        );
+    };
+
+    const renderAccount = function () {
+        return (
+            <select className="ui search dropdown">
+                <option value="">Account</option>
+                <option value="AL">Card</option>
+                <option value="AK">Cash</option>
             </select>
         );
     };
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
-            <div className="ui segment">
+            <div className="ui segment" style={{textAlign: "center"}}>
                 <form className="ui form" onSubmit={() => onSubmit()}>
                     {renderInputForm()}
                     {renderCategory()}
+                    {renderAccount()}
+                    <input type="date" id="start" name="trip-start"
+                           value="2018-07-22">
+                    </input>
                 </form>
+                <button className="big ui primary button ">Save</button>
             </div>
         </div>
     )
