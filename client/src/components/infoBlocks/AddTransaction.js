@@ -4,21 +4,31 @@ const AddTransaction = () => {
     const [amount, setAmount] = useState('');
     const [account, setAccount] = useState('');
     const [category, setCategory] = useState('');
+    const [date, setDate] = useState('');
 
     let nameInput;
 
     const onSaveClicked = (e) => {
-        console.log(amount)
-        console.log(category)
-        console.log(account)
+        console.log(amount);
+        console.log(category);
+        console.log(account);
     };
 
 
     useEffect(() => {
-// component did mount
+        // component did mount
         console.log("effect")
         nameInput.focus();
+        setCurrentDate();
+
     }, []);
+
+    const setCurrentDate = function () {
+        const date = new Date();
+        const currentDate = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
+            '-' + date.getDate().toString().padStart(2, 0);
+        setDate(currentDate);
+    };
 
     const renderInputField = function () {
         return (
@@ -54,6 +64,15 @@ const AddTransaction = () => {
             </select>
         );
     };
+
+    const renderCalendar = function () {
+        return (
+            <input type="date" id="start" name="trip-start"
+                   value={date}
+                   onChange={e => setDate(e.target.value)}>
+            </input>
+        );
+    };
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
@@ -62,9 +81,7 @@ const AddTransaction = () => {
                     {renderInputField()}
                     {renderCategory()}
                     {renderAccount()}
-                    {/*<input type="date" id="start" name="trip-start"*/}
-                    {/*value="2018-07-22">*/}
-                    {/*</input>*/}
+                    {renderCalendar()}
                 </form>
                 <button className="big ui primary button " onClick={onSaveClicked}>Save</button>
             </div>

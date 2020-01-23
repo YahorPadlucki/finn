@@ -1,5 +1,5 @@
 + form submit data
-- calendar set to state
++ calendar set to state
 - default values selected - use enum or const strings?
 - build list from vo array
 - validate input
