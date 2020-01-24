@@ -1,17 +1,30 @@
 import React, {useEffect, useState} from 'react';
 
 const AddTransaction = () => {
+
+    //TODO: from server
+    const categoryTypes = ["Food", "Flat"];
+    const accountTypes = ["Card", "Cash"];
+
     const [amount, setAmount] = useState('');
-    const [account, setAccount] = useState('');
-    const [category, setCategory] = useState('');
+    const [account, setAccount] = useState(accountTypes[0]);
+    const [category, setCategory] = useState(categoryTypes[0]);
     const [date, setDate] = useState('');
+    const [isInputValid, setIsInputValid] = useState(true);
 
     let nameInput;
 
     const onSaveClicked = (e) => {
-        console.log(amount);
-        console.log(category);
-        console.log(account);
+        if (amount.length === 0 || isNaN(amount) || amount <= 0) {
+            setIsInputValid(false);
+        } else {
+            if (!isInputValid)
+                setIsInputValid(true);
+            console.log(amount);
+            console.log(account);
+            console.log(category);
+            console.log(date);
+        }
     };
 
 
@@ -31,8 +44,9 @@ const AddTransaction = () => {
     };
 
     const renderInputField = function () {
+        const className = `field ${isInputValid ? '' : 'error'}`;
         return (
-            <div className="field">
+            <div className={className}>
                 <label>Add Transaction</label>
                 <input type="text"
                        ref={(input) => {
@@ -43,24 +57,16 @@ const AddTransaction = () => {
             </div>
         );
     };
-    const renderCategory = function () {
-        return (
-            <select className="ui search dropdown"
-                    onChange={e => setCategory(e.target.value)}>
-                <option value="">Category</option>
-                <option value="Food">Food</option>
-                <option value="Flat">Flat</option>
-            </select>
-        );
-    };
 
-    const renderAccount = function () {
+    const renderCategory = () => renderOptionsList(categoryTypes, setCategory);
+
+    const renderAccount = () => renderOptionsList(accountTypes, setAccount);
+
+    const renderOptionsList = function (optionsArray, setStateFunction) {
         return (
             <select className="ui search dropdown"
-                    onChange={e => setAccount(e.target.value)}>
-                <option value="">Account</option>
-                <option value="Card">Card</option>
-                <option value="Cash">Cash</option>
+                    onChange={e => setStateFunction(e.target.value)}>
+                {optionsArray.map((option, i) => <option key={i} value={option}>{option}</option>)}
             </select>
         );
     };
@@ -79,8 +85,8 @@ const AddTransaction = () => {
             <div className="ui segment" style={{textAlign: "center"}}>
                 <form className="ui form" onSubmit={e => e.preventDefault()}>
                     {renderInputField()}
-                    {renderCategory()}
                     {renderAccount()}
+                    {renderCategory()}
                     {renderCalendar()}
                 </form>
                 <button className="big ui primary button " onClick={onSaveClicked}>Save</button>
