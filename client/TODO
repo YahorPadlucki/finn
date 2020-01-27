@@ -1,8 +1,11 @@
 + form submit data
 + calendar set to state
-- default values selected - use enum or const strings?
-- build list from vo array
-- validate input
++ default values selected - use enum or const strings?
++ validate input
++ on enter move to next not filled filed
++ date picker
 
-- on enter move to next not filled filed
-- date picker
+- prepare json with acc and category data
+- server
+
+- build list from vo array

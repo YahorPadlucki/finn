@@ -14,7 +14,13 @@ const AddTransaction = () => {
 
     let nameInput;
 
-    const onSaveClicked = (e) => {
+    const onKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onSaveClicked();
+        }
+    };
+
+    const onSaveClicked = () => {
         if (amount.length === 0 || isNaN(amount) || amount <= 0) {
             setIsInputValid(false);
         } else {
@@ -31,6 +37,8 @@ const AddTransaction = () => {
     useEffect(() => {
         // component did mount
         console.log("effect")
+
+       fetch("http://localhost:3009/accounts").then((a)=>console.log(a.json()))
         nameInput.focus();
         setCurrentDate();
 
@@ -53,7 +61,8 @@ const AddTransaction = () => {
                            nameInput = input;
                        }}
                        value={amount}
-                       onChange={e => setAmount(e.target.value)}/>
+                       onChange={e => setAmount(e.target.value)}
+                       onKeyPress={onKeyPress}/>
             </div>
         );
     };
@@ -89,7 +98,10 @@ const AddTransaction = () => {
                     {renderCategory()}
                     {renderCalendar()}
                 </form>
-                <button className="big ui primary button " onClick={onSaveClicked}>Save</button>
+                <button className="big ui primary button "
+                        onClick={onSaveClicked}>
+                    Save
+                </button>
             </div>
         </div>
     )
