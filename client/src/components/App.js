@@ -10,7 +10,7 @@ const App = () => {
 
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
 
-    const onButtonClicked = (selectedButtonIndex) => {
+    const onTabButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
         console.log(selectedButtonIndex)
     };
@@ -39,7 +39,7 @@ const App = () => {
             {renderInfoBlock()}
             <BottomBar
                 selectedButtonIndex={selectedInfoBlock}
-                onButtonClicked={onButtonClicked}/>
+                onButtonClicked={onTabButtonClicked}/>
         </div>
     );
 

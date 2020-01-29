@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import fetchData from "../api/serverApi";
 
 const AddTransaction = () => {
 
-    //TODO: from server
-    const categoryTypes = ["Food", "Flat"];
-
-    const [accountTypes, setAccountTypes] = useState([]);
+    const [accountNames, setAccountNames] = useState([]);
+    const [categoryNames, setCategoryNames] = useState([]);
 
     const [amount, setAmount] = useState('');
-    const [account, setAccount] = useState('');
-    const [category, setCategory] = useState(categoryTypes[0]);
+    const [selectedAccountName, setAccountSelectedName] = useState('');
+    const [selectedCategoryName, setCategorySelectedName] = useState('');
+
     const [date, setDate] = useState('');
     const [isInputValid, setIsInputValid] = useState(true);
 
@@ -28,8 +28,8 @@ const AddTransaction = () => {
             if (!isInputValid)
                 setIsInputValid(true);
             console.log(amount);
-            console.log(account);
-            console.log(category);
+            console.log(selectedAccountName);
+            console.log(selectedCategoryName);
             console.log(date);
         }
     };
@@ -38,22 +38,20 @@ const AddTransaction = () => {
     useEffect(() => {
         // component did mount
         console.log("did mount")
-
-        const fetchData = async () => {
-            const response = await fetch("http://localhost:3009/accounts")
-            const result = await response.json();
-            //
-
-            const accounts = result.map(el => el.name);
-            setAccountTypes(accounts);
-            setAccount(accounts[1])
-
-        };
-        fetchData();
+        initData("accounts", setAccountNames, setAccountSelectedName);
+        initData("categories", setCategoryNames, setCategorySelectedName);
         nameInput.focus();
         setCurrentDate();
 
     }, []);
+
+    const initData = async (url, setNamesFunction, setSelectedNameFunction) => {
+        const result = await fetchData(url);
+        const names = result.map(el => el.name);
+
+        setNamesFunction(names);
+        setSelectedNameFunction(names[0]);
+    };
 
     const setCurrentDate = function () {
         const date = new Date();
@@ -79,9 +77,9 @@ const AddTransaction = () => {
         );
     };
 
-    const renderCategory = () => renderOptionsList(categoryTypes, setCategory, category);
+    const renderCategory = () => renderOptionsList(categoryNames, setCategorySelectedName, selectedCategoryName);
 
-    const renderAccount = () => renderOptionsList(accountTypes, setAccount, account);
+    const renderAccount = () => renderOptionsList(accountNames, setAccountSelectedName, selectedAccountName);
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (

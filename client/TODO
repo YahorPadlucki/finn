@@ -1,11 +1,15 @@
+
+- display account balance ( ${selected account} balance: 1000;
+- second server for transactions data
+- save transactions
+- transactions history
+
 + form submit data
 + calendar set to state
 + default values selected - use enum or const strings?
 + validate input
 + on enter move to next not filled filed
 + date picker
-
-- prepare json with acc and category data
-- server
-
-- build list from vo array
++ prepare json with acc and category data
++ server
++ build list from vo array
