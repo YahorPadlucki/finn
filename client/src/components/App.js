@@ -9,10 +9,16 @@ import AddTransaction from "./infoBlocks/AddTransaction";
 const App = () => {
 
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
+    const [selectedAccountName, setSelectedAccountName] = useState('');
+
 
     const onTabButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
         console.log(selectedButtonIndex)
+    };
+
+    const onAccountSelected = (selectedAccountName) => {
+        setSelectedAccountName(selectedAccountName);
     };
 
     const renderInfoBlock = () => {
@@ -22,7 +28,7 @@ const App = () => {
             case 1:
                 return <Expenses/>;
             case 2:
-                return <AddTransaction/>;
+                return <AddTransaction onAccountSelected={onAccountSelected}/>;
             case 3:
                 return <History/>;
             default:
@@ -35,7 +41,7 @@ const App = () => {
     return (
         <div className="ui container"
              style={{marginTop: '10px'}}>
-            <BalanceHeader/>
+            <BalanceHeader selectedAccountName={selectedAccountName}/>
             {renderInfoBlock()}
             <BottomBar
                 selectedButtonIndex={selectedInfoBlock}

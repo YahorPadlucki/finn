@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import fetchData from "../api/serverApi";
+import {ACCOUNTS, CATEGORIES} from "../utils/types";
 
-const AddTransaction = () => {
+const AddTransaction = (props) => {
 
     const [accountNames, setAccountNames] = useState([]);
     const [categoryNames, setCategoryNames] = useState([]);
@@ -38,8 +39,8 @@ const AddTransaction = () => {
     useEffect(() => {
         // component did mount
         console.log("did mount")
-        initData("accounts", setAccountNames, setAccountSelectedName);
-        initData("categories", setCategoryNames, setCategorySelectedName);
+        initData(ACCOUNTS, setAccountNames, selectAccountName);
+        initData(CATEGORIES, setCategoryNames, setCategorySelectedName);
         nameInput.focus();
         setCurrentDate();
 
@@ -77,9 +78,14 @@ const AddTransaction = () => {
         );
     };
 
+    const selectAccountName = (accountName)=>{
+        setAccountSelectedName(accountName);
+        props.onAccountSelected(accountName);
+    };
+
     const renderCategory = () => renderOptionsList(categoryNames, setCategorySelectedName, selectedCategoryName);
 
-    const renderAccount = () => renderOptionsList(accountNames, setAccountSelectedName, selectedAccountName);
+    const renderAccount = () => renderOptionsList(accountNames, selectAccountName, selectedAccountName);
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
