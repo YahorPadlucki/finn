@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import fetchData from "../api/serverApi";
-import {ACCOUNTS, CATEGORIES} from "../utils/types";
 
 const AddTransaction = (props) => {
-
-    const [accountNames, setAccountNames] = useState([]);
-    const [categoryNames, setCategoryNames] = useState([]);
 
     const [amount, setAmount] = useState('');
     const [selectedAccountName, setAccountSelectedName] = useState('');
@@ -39,20 +34,11 @@ const AddTransaction = (props) => {
     useEffect(() => {
         // component did mount
         console.log("did mount")
-        initData(ACCOUNTS, setAccountNames, selectAccountName);
-        initData(CATEGORIES, setCategoryNames, setCategorySelectedName);
         nameInput.focus();
         setCurrentDate();
 
     }, []);
 
-    const initData = async (url, setNamesFunction, setSelectedNameFunction) => {
-        const result = await fetchData(url);
-        const names = result.map(el => el.name);
-
-        setNamesFunction(names);
-        setSelectedNameFunction(names[0]);
-    };
 
     const setCurrentDate = function () {
         const date = new Date();
@@ -78,14 +64,14 @@ const AddTransaction = (props) => {
         );
     };
 
-    const selectAccountName = (accountName)=>{
+    const selectAccountName = (accountName) => {
         setAccountSelectedName(accountName);
-        props.onAccountSelected(accountName);
+        props.onAccountChanged(accountName);
     };
 
-    const renderCategory = () => renderOptionsList(categoryNames, setCategorySelectedName, selectedCategoryName);
+    const renderCategory = () => renderOptionsList(props.categories, setCategorySelectedName, props.categories[0]);
 
-    const renderAccount = () => renderOptionsList(accountNames, selectAccountName, selectedAccountName);
+    const renderAccount = () => renderOptionsList(props.accounts, selectAccountName, props.selectedAccount);
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
