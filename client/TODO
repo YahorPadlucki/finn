@@ -1,9 +1,8 @@
-
-- display account balance ( ${selected account} balance: 1000;
 - second server for transactions data
 - save transactions
 - transactions history
 
++ display account balance ( ${selected account} balance: 1000;
 + form submit data
 + calendar set to state
 + default values selected - use enum or const strings?

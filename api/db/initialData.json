@@ -1,0 +1,21 @@
+{
+  "accounts": [
+    {
+      "name":"Card",
+      "balance":2000
+    },
+    {
+      "name":"Cash",
+      "balance":100
+    }
+
+  ],
+  "categories": [
+    {
+      "name":"Food"
+    },
+    {
+      "name":"Flat"
+    }
+  ]
+}
