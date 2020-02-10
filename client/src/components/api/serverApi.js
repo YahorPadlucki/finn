@@ -3,4 +3,5 @@ const fetchData = async (dataUrl) => {
     return await response.json();
 };
 
+
 export default fetchData;

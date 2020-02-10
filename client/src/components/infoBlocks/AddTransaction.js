@@ -23,10 +23,20 @@ const AddTransaction = (props) => {
         } else {
             if (!isInputValid)
                 setIsInputValid(true);
+
             console.log(amount);
             console.log(selectedAccountName);
             console.log(selectedCategoryName);
             console.log(date);
+
+            fetch(`http://localhost:3002/transactions`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({"id": 2, "amount": 100})
+            });
         }
     };
 

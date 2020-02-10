@@ -1,7 +1,7 @@
-- second server for transactions data
 - save transactions
 - transactions history
 
++ second server for transactions data
 + display account balance ( ${selected account} balance: 1000;
 + form submit data
 + calendar set to state
