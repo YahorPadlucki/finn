@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon --watch test/mock json-server.js"
+
+    "start": "json-server -p 3002 -w db/initialData.json"
   },
   "author": "",
   "license": "ISC",

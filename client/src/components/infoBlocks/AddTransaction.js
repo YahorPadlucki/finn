@@ -32,10 +32,9 @@ const AddTransaction = (props) => {
             fetch(`http://localhost:3002/transactions`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({"id": 2, "amount": 100})
+                body: JSON.stringify({"id": amount, "amount": 100})
             });
         }
     };

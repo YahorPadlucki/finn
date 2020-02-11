@@ -12,3 +12,6 @@
 + prepare json with acc and category data
 + server
 + build list from vo array
+//    "start":"nodemon --watch test/mock json-server.js"
+make multiple
+https://github.com/typicode/json-server/issues/367

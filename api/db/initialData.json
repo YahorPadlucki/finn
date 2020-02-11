@@ -1,21 +1,26 @@
 {
   "accounts": [
     {
-      "name":"Card",
-      "balance":2000
+      "name": "Card",
+      "balance": 2000
     },
     {
-      "name":"Cash",
-      "balance":100
+      "name": "Cash",
+      "balance": 100
     }
-
   ],
   "categories": [
     {
-      "name":"Food"
+      "name": "Food"
     },
     {
-      "name":"Flat"
+      "name": "Flat"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "214",
+      "amount": 100
     }
   ]
 }
