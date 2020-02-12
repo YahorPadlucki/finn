@@ -34,7 +34,12 @@ const AddTransaction = (props) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({"id": amount, "amount": 100})
+                body: JSON.stringify({
+                    "amount": amount,
+                    "account": selectedAccountName,
+                    "category": selectedCategoryName,
+                    "date": date
+                })
             });
         }
     };
