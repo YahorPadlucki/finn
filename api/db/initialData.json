@@ -35,6 +35,27 @@
       "category": "",
       "date": "2020-02-12",
       "id": "Jm9cXen"
+    },
+    {
+      "amount": "213",
+      "account": "",
+      "category": "",
+      "date": "2020-02-13",
+      "id": "-VdnFdq"
+    },
+    {
+      "amount": "21",
+      "account": "Card",
+      "category": "",
+      "date": "2020-02-13",
+      "id": "iCmh99R"
+    },
+    {
+      "amount": "21",
+      "account": "Cash",
+      "category": "",
+      "date": "2020-02-13",
+      "id": "DAVbUZG"
     }
   ]
 }

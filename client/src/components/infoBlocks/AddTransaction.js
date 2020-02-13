@@ -25,7 +25,7 @@ const AddTransaction = (props) => {
                 setIsInputValid(true);
 
             console.log(amount);
-            console.log(selectedAccountName);
+            console.log(props.selectedAccount);
             console.log(selectedCategoryName);
             console.log(date);
 
@@ -36,7 +36,7 @@ const AddTransaction = (props) => {
                 },
                 body: JSON.stringify({
                     "amount": amount,
-                    "account": selectedAccountName,
+                    "account": props.selectedAccount,
                     "category": selectedCategoryName,
                     "date": date
                 })
@@ -79,7 +79,7 @@ const AddTransaction = (props) => {
     };
 
     const selectAccountName = (accountName) => {
-        setAccountSelectedName(accountName);
+        // setAccountSelectedName(accountName);
         props.onAccountChanged(accountName);
     };
 
