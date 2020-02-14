@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import {postTransaction} from '../api/serverApi'
 
 const AddTransaction = (props) => {
 
     const [amount, setAmount] = useState('');
-    const [selectedAccountName, setAccountSelectedName] = useState('');
-    const [selectedCategoryName, setCategorySelectedName] = useState('');
 
     const [date, setDate] = useState('');
     const [isInputValid, setIsInputValid] = useState(true);
+    const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
 
     let nameInput;
 
@@ -17,7 +17,7 @@ const AddTransaction = (props) => {
         }
     };
 
-    const onSaveClicked = () => {
+    const onSaveClicked = async () => {
         if (amount.length === 0 || isNaN(amount) || amount <= 0) {
             setIsInputValid(false);
         } else {
@@ -26,21 +26,16 @@ const AddTransaction = (props) => {
 
             console.log(amount);
             console.log(props.selectedAccount);
-            console.log(selectedCategoryName);
+            console.log(props.selectedCategory);
             console.log(date);
 
-            fetch(`http://localhost:3002/transactions`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "amount": amount,
-                    "account": props.selectedAccount,
-                    "category": selectedCategoryName,
-                    "date": date
-                })
+            await postTransaction({
+                "amount": amount,
+                "account": props.selectedAccount,
+                "category": props.selectedCategory,
+                "date": date
             });
+            setTransactionStatusMessage("DOne");
         }
     };
 
@@ -78,14 +73,9 @@ const AddTransaction = (props) => {
         );
     };
 
-    const selectAccountName = (accountName) => {
-        // setAccountSelectedName(accountName);
-        props.onAccountChanged(accountName);
-    };
+    const renderCategory = () => renderOptionsList(props.categories, (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategory);
 
-    const renderCategory = () => renderOptionsList(props.categories, setCategorySelectedName, props.categories[0]);
-
-    const renderAccount = () => renderOptionsList(props.accounts, selectAccountName, props.selectedAccount);
+    const renderAccount = () => renderOptionsList(props.accounts, (accountName) => props.onAccountChanged(accountName), props.selectedAccount);
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
@@ -118,6 +108,7 @@ const AddTransaction = (props) => {
                         onClick={onSaveClicked}>
                     Save
                 </button>
+                <div>{transactionStatusMessage}</div>
             </div>
         </div>
     )

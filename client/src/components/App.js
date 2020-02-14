@@ -6,7 +6,7 @@ import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES} from "./utils/types";
-import fetchData from "./api/serverApi";
+import {fetchData} from "./api/serverApi";
 
 const App = () => {
 
@@ -14,6 +14,8 @@ const App = () => {
     const [categories, setCategories] = useState([]);
 
     const [selectedAccount, setSelectedAccount] = useState('');
+    const [selectedCategoryName, setSelectedCategoryName] = useState('');
+
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
 
 
@@ -34,7 +36,8 @@ const App = () => {
         const accounts = await fetchDataType(ACCOUNTS, setAccounts);
         setSelectedAccount(accounts[0]);
 
-        fetchDataType(CATEGORIES, setCategories);
+        const categories = await fetchDataType(CATEGORIES, setCategories);
+        setSelectedCategoryName(categories[0]);
     }
 
     async function fetchDataType(type, setFunction) {
@@ -47,6 +50,10 @@ const App = () => {
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
     };
 
+    const onCategoryChanged = (selectedCategoryName) => {
+        setSelectedCategoryName(selectedCategoryName);
+    };
+
     const renderInfoBlock = () => {
         switch (selectedInfoBlock) {
             case 0:
@@ -57,7 +64,10 @@ const App = () => {
                 return <AddTransaction accounts={accounts.map(account => account.name)}
                                        categories={categories.map(category => category.name)}
                                        selectedAccount={selectedAccount.name}
-                                       onAccountChanged={onAccountChanged}/>;
+                                       selectedCategory={selectedCategoryName.name}
+                                       onAccountChanged={onAccountChanged}
+                                       onCategoryChanged={onCategoryChanged}
+                />;
             case 3:
                 return <History/>;
             default:

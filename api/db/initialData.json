@@ -56,6 +56,71 @@
       "category": "",
       "date": "2020-02-13",
       "id": "DAVbUZG"
+    },
+    {
+      "amount": "1421",
+      "account": "Card",
+      "category": {
+        "name": "Food"
+      },
+      "date": "2020-02-14",
+      "id": "Jwt_BVN"
+    },
+    {
+      "amount": "151231",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "Jcd9QTM"
+    },
+    {
+      "amount": "2141",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "LZFKz8p"
+    },
+    {
+      "amount": "2141",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "6kV0_tR"
+    },
+    {
+      "amount": "555",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "JM6Ic2N"
+    },
+    {
+      "amount": "1111",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "H9eWIOX"
+    },
+    {
+      "amount": "1111",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "rDbrZeG"
+    },
+    {
+      "amount": "2412",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "fC41yLP"
+    },
+    {
+      "amount": "125",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-14",
+      "id": "A5MKpNR"
     }
   ]
 }

@@ -1,8 +1,12 @@
-- acc and category through props
-- save transactions
+- success save feedback
+- disable from while transaction in process
+
 - transactions history
+- edit transaction
 
 
++ save transactions
++ acc and category through props
 + second server for transactions data
 + display account balance ( ${selected account} balance: 1000;
 + form submit data
