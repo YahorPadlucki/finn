@@ -61,7 +61,7 @@ const AddTransaction = (props) => {
         const className = `field ${isInputValid ? '' : 'error'}`;
         return (
             <div className={className}>
-                {/*<label>Add Transaction</label>*/}
+                <label>Add Transaction</label>
                 <input type="text"
                        ref={(input) => {
                            nameInput = input;
@@ -99,14 +99,10 @@ const AddTransaction = (props) => {
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
             <div className="ui segment" style={{textAlign: "center"}}>
                 <form className="ui form" onSubmit={e => e.preventDefault()}>
-                    <div className="ui padded grid">
-                        <div className="two wide column">Account</div>
-                        <div className="six wide column">{renderAccount()}</div>
-                        <div className="eight wide column">{renderInputField()}</div>
-                        <div className="two wide column">Category</div>
-                        <div className="six wide column">{renderCategory()}</div>
-                        <div className="eight wide column">{renderCalendar()}</div>
-                    </div>
+                    {renderInputField()}
+                    {renderAccount()}
+                    {renderCategory()}
+                    {renderCalendar()}
                 </form>
                 <button className="big ui primary button "
                         onClick={onSaveClicked}>

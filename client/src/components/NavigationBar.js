@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BottomBar = (props) => {
+const NavigationBar = (props) => {
     const INFO_BLOCK_TYPE = "infoBlock";
     const ADD_TRANSACTION_TYPE = "addTransaction";
     const buttons = [
@@ -48,4 +48,4 @@ const BottomBar = (props) => {
 };
 
 
-export default BottomBar;
+export default NavigationBar;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import BalanceHeader from "./BalanceHeader";
 import Expenses from "./infoBlocks/Expenses";
-import BottomBar from "./BottomBar";
+import NavigationBar from "./NavigationBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
@@ -80,12 +80,13 @@ const App = () => {
     return (
         <div className="ui container"
              style={{marginTop: '10px'}}>
+            <NavigationBar
+                selectedButtonIndex={selectedInfoBlock}
+                onButtonClicked={onTabButtonClicked}/>
             <BalanceHeader account={selectedAccount.name}
                            balance={selectedAccount.balance}/>
             {renderInfoBlock()}
-            <BottomBar
-                selectedButtonIndex={selectedInfoBlock}
-                onButtonClicked={onTabButtonClicked}/>
+
         </div>
     );
 
