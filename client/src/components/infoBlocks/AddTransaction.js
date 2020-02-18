@@ -97,22 +97,40 @@ const AddTransaction = (props) => {
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
-            <div className="ui segment" style={{textAlign: "center"}}>
-                <form className="ui form" onSubmit={e => e.preventDefault()}>
-                    <div className="ui padded grid">
-                        <div className="two wide column">Account</div>
-                        <div className="six wide column">{renderAccount()}</div>
-                        <div className="eight wide column">{renderInputField()}</div>
-                        <div className="two wide column">Category</div>
-                        <div className="six wide column">{renderCategory()}</div>
-                        <div className="eight wide column">{renderCalendar()}</div>
+
+            <div className="ui centered grid" style={{padding: '10px'}}>
+
+                <div className="four wide column">
+                    <div>Balance</div>
+                    <div>Cash:1000</div>
+                    <div>Card:3000</div>
+                </div>
+                <div className="eight wide column">
+                    <form className="ui form" onSubmit={e => e.preventDefault()}>
+                        <div className="field">
+                            <label>Account</label>
+                            <div className="fields">
+                                <div className="nine wide field">{renderAccount()}</div>
+                                <div className="seven wide field">{renderInputField()}</div>
+                            </div>
+                        </div>
+                        <div className="field">
+                            <label>Category</label>
+                            <div className="fields">
+                                <div className="nine wide field">{renderCategory()}</div>
+                                <div className="seven wide field">{renderCalendar()}</div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div style={{textAlign:'right'}}>
+                        <button className="big ui primary button "
+                                onClick={onSaveClicked}>
+                            Save
+                        </button>
                     </div>
-                </form>
-                <button className="big ui primary button "
-                        onClick={onSaveClicked}>
-                    Save
-                </button>
-                <div>{transactionStatusMessage}</div>
+                    <div>{transactionStatusMessage}</div>
+                </div>
             </div>
         </div>
     )
