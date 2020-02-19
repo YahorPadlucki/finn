@@ -61,9 +61,9 @@ const App = () => {
             case 1:
                 return <Expenses/>;
             case 2:
-                return <AddTransaction accounts={accounts.map(account => account.name)}
-                                       categories={categories.map(category => category.name)}
-                                       selectedAccount={selectedAccount.name}
+                return <AddTransaction accounts={accounts}
+                                       categories={categories}
+                                       selectedAccountName={selectedAccount.name}
                                        selectedCategory={selectedCategoryName.name}
                                        onAccountChanged={onAccountChanged}
                                        onCategoryChanged={onCategoryChanged}

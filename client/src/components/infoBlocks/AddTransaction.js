@@ -25,13 +25,13 @@ const AddTransaction = (props) => {
                 setIsInputValid(true);
 
             console.log(amount);
-            console.log(props.selectedAccount);
+            console.log(props.selectedAccountName);
             console.log(props.selectedCategory);
             console.log(date);
 
             await postTransaction({
                 "amount": amount,
-                "account": props.selectedAccount,
+                "account": props.selectedAccountName,
                 "category": props.selectedCategory,
                 "date": date
             });
@@ -73,9 +73,9 @@ const AddTransaction = (props) => {
         );
     };
 
-    const renderCategory = () => renderOptionsList(props.categories, (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategory);
+    const renderCategory = () => renderOptionsList(props.categories.map(category => category.name), (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategory);
 
-    const renderAccount = () => renderOptionsList(props.accounts, (accountName) => props.onAccountChanged(accountName), props.selectedAccount);
+    const renderAccount = () => renderOptionsList(props.accounts.map(account => account.name), (accountName) => props.onAccountChanged(accountName), props.selectedAccountName);
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
@@ -94,16 +94,26 @@ const AddTransaction = (props) => {
             </input>
         );
     };
+
+    const renderAccounts = () => props.accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
+
+    const renderBalanceBlock = function () {
+        return (
+            <div className="ui segment">
+                <h3 className="header">Balance</h3>
+                {renderAccounts()}
+            </div>
+        );
+    };
+
+
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
 
             <div className="ui centered grid" style={{padding: '10px'}}>
-
                 <div className="four wide column">
-                    <div>Balance</div>
-                    <div>Cash:1000</div>
-                    <div>Card:3000</div>
+                    {renderBalanceBlock()}
                 </div>
                 <div className="eight wide column">
                     <form className="ui form" onSubmit={e => e.preventDefault()}>
@@ -123,7 +133,7 @@ const AddTransaction = (props) => {
                         </div>
 
                     </form>
-                    <div style={{textAlign:'right'}}>
+                    <div style={{textAlign: 'right'}}>
                         <button className="big ui primary button "
                                 onClick={onSaveClicked}>
                             Save

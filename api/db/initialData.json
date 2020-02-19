@@ -121,6 +121,13 @@
       "category": "Food",
       "date": "2020-02-14",
       "id": "A5MKpNR"
+    },
+    {
+      "amount": "22",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-19",
+      "id": "TNfw9qw"
     }
   ]
 }
