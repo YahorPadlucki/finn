@@ -1,13 +1,14 @@
-- desktop version
- - improve layout
- - note field
-- success save feedback
-- disable from while transaction in process
+- disable when loading initial data
 
 - transactions history
 - edit transaction
 
 
++ success save feedback and clear fields
++ disable from while transaction in process
++ note field
++ improve layout
++ desktop version
 + save transactions
 + acc and category through props
 + second server for transactions data

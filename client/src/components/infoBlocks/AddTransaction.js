@@ -4,9 +4,11 @@ import {postTransaction} from '../api/serverApi'
 const AddTransaction = (props) => {
 
     const [amount, setAmount] = useState('');
+    const [note, setNote] = useState('');
 
     const [date, setDate] = useState('');
     const [isInputValid, setIsInputValid] = useState(true);
+    const [isTransactionInProcesss, setIsTransactionInProcesss] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
 
     let nameInput;
@@ -28,15 +30,40 @@ const AddTransaction = (props) => {
             console.log(props.selectedAccountName);
             console.log(props.selectedCategory);
             console.log(date);
+            console.log(note);
 
-            await postTransaction({
+            setIsTransactionInProcesss(true);
+            const postResponse = await postTransaction({
                 "amount": amount,
                 "account": props.selectedAccountName,
                 "category": props.selectedCategory,
-                "date": date
+                "date": date,
+                "note": note
             });
-            setTransactionStatusMessage("DOne");
+
+            if (postResponse)
+                onSaveSuccess();
+            else
+                onFail();
+
+            setIsTransactionInProcesss(false);
         }
+    };
+
+    const clearFields = () => {
+        setAmount('');
+        setNote('');
+    };
+
+    const onSaveSuccess = () => {
+        setTransactionStatusMessage("Transaction Saved");
+        clearFields();
+
+    };
+
+    const onFail = () => {
+        setTransactionStatusMessage("Failed to Save");
+
     };
 
 
@@ -57,7 +84,7 @@ const AddTransaction = (props) => {
         setDate(currentDate);
     };
 
-    const renderInputField = function () {
+    const renderAmountInputField = function () {
         const className = `field ${isInputValid ? '' : 'error'}`;
         return (
             <div className={className}>
@@ -68,7 +95,20 @@ const AddTransaction = (props) => {
                        }}
                        value={amount}
                        onChange={e => setAmount(e.target.value)}
-                       onKeyPress={onKeyPress}/>
+                       onKeyPress={onKeyPress}
+                       placeholder="Amount"/>
+            </div>
+        );
+    };
+
+    const renderNoteField = function () {
+        return (
+            <div className="field">
+                <input type="text"
+                       value={note}
+                       onChange={e => setNote(e.target.value)}
+                       onKeyPress={onKeyPress}
+                       placeholder="Note"/>
             </div>
         );
     };
@@ -105,6 +145,7 @@ const AddTransaction = (props) => {
             </div>
         );
     };
+    const formClassName = `ui form ${isTransactionInProcesss ? 'loading' : ''}`;
 
 
     return (
@@ -116,12 +157,12 @@ const AddTransaction = (props) => {
                     {renderBalanceBlock()}
                 </div>
                 <div className="eight wide column">
-                    <form className="ui form" onSubmit={e => e.preventDefault()}>
+                    <form className={formClassName} onSubmit={e => e.preventDefault()}>
                         <div className="field">
                             <label>Account</label>
                             <div className="fields">
                                 <div className="nine wide field">{renderAccount()}</div>
-                                <div className="seven wide field">{renderInputField()}</div>
+                                <div className="seven wide field">{renderAmountInputField()}</div>
                             </div>
                         </div>
                         <div className="field">
@@ -131,14 +172,15 @@ const AddTransaction = (props) => {
                                 <div className="seven wide field">{renderCalendar()}</div>
                             </div>
                         </div>
-
+                        {renderNoteField()}
+                        <div style={{textAlign: 'right'}}>
+                            <button className="big ui primary button "
+                                    onClick={onSaveClicked}>
+                                Save
+                            </button>
+                        </div>
                     </form>
-                    <div style={{textAlign: 'right'}}>
-                        <button className="big ui primary button "
-                                onClick={onSaveClicked}>
-                            Save
-                        </button>
-                    </div>
+
                     <div>{transactionStatusMessage}</div>
                 </div>
             </div>
