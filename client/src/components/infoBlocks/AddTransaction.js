@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {postTransaction} from '../api/serverApi'
+import History from "./History";
 
 const AddTransaction = (props) => {
 
@@ -8,7 +9,7 @@ const AddTransaction = (props) => {
 
     const [date, setDate] = useState('');
     const [isInputValid, setIsInputValid] = useState(true);
-    const [isTransactionInProcesss, setIsTransactionInProcesss] = useState(false);
+    const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
 
     let nameInput;
@@ -32,7 +33,7 @@ const AddTransaction = (props) => {
             console.log(date);
             console.log(note);
 
-            setIsTransactionInProcesss(true);
+            setIsTransactionInProcess(true);
             const postResponse = await postTransaction({
                 "amount": amount,
                 "account": props.selectedAccountName,
@@ -46,7 +47,7 @@ const AddTransaction = (props) => {
             else
                 onFail();
 
-            setIsTransactionInProcesss(false);
+            setIsTransactionInProcess(false);
         }
     };
 
@@ -145,8 +146,7 @@ const AddTransaction = (props) => {
             </div>
         );
     };
-    const formClassName = `ui form ${isTransactionInProcesss ? 'loading' : ''}`;
-
+    const formClassName = `ui form ${isTransactionInProcess||!props.isLoaded ? 'loading' : ''}`;
 
     return (
         <div className="ui container"
@@ -180,11 +180,13 @@ const AddTransaction = (props) => {
                             </button>
                         </div>
                     </form>
-
-                    <div>{transactionStatusMessage}</div>
                 </div>
+
             </div>
+            <div style={{textAlign: 'center'}} >{transactionStatusMessage}</div>
+            <History/>
         </div>
+
     )
 
 };

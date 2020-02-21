@@ -161,6 +161,38 @@
       "date": "2020-02-20",
       "note": "gsdgs",
       "id": 18
+    },
+    {
+      "amount": "241",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-20",
+      "note": "afw",
+      "id": 19
+    },
+    {
+      "amount": "214",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-20",
+      "note": "faf",
+      "id": 20
+    },
+    {
+      "amount": "214",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-21",
+      "note": "gesge",
+      "id": 21
+    },
+    {
+      "amount": "41",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-21",
+      "note": "24124",
+      "id": 22
     }
   ]
 }
