@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import './History.css'
 import TransactionsContext from "../context/TransactionsContext";
 
 const History = (props) => {
@@ -6,18 +7,22 @@ const History = (props) => {
     const transactions = useContext(TransactionsContext);
 
     const renderTransactions = () => {
-        if (!transactions) return <div>Loading</div>
+        if (!transactions) return <div>Loading</div>;
 
         return transactions.map(() => {
             return (
-                <div className="item">
-                    <div className="right floated content">
-                        <div className="ui button">Edit</div>
-                    </div>
+                <div className="item ">
+                    {/*<div className="right floated content">*/}
+                    {/*<div className="ui button">/</div>*/}
+                    {/*<div className="ui button red">X</div>*/}
+                    {/*</div>*/}
                     <div className="content">
-                        Lena
+                        <label> Left </label>
+                        <div>Floated</div>
                     </div>
+
                 </div>
+
             );
         })
 
@@ -30,7 +35,7 @@ const History = (props) => {
             <div className="ui centered grid" style={{padding: '10px'}}>
                 <div className="twelve wide column">
                     <div>History:</div>
-                    <div className="ui middle aligned divided list">
+                    <div className="transaction-item ">
                         {renderTransactions()}
                     </div>
                 </div>
