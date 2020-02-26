@@ -1,5 +1,9 @@
-.transaction-item {
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer;
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    position: relative;
+    flex-wrap: wrap;
 }
