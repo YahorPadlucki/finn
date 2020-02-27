@@ -19,180 +19,34 @@
   ],
   "transactions": [
     {
-      "amount": "412",
+      "total": "15",
       "account": "Card",
       "category": "Food",
-      "date": "2020-02-20",
-      "note": "fasgasarwd",
+      "date": "2020-02-27",
+      "description": "some note",
       "id": 1
     },
     {
-      "amount": "421",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "412",
+      "total": "52",
+      "account": "Cash",
+      "date": "2020-02-27",
+      "description": "",
       "id": 2
     },
     {
-      "amount": "1241",
+      "total": "21",
       "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "41",
+      "date": "2020-02-27",
+      "description": "",
       "id": 3
     },
     {
-      "amount": "412",
+      "total": "12",
       "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "4124",
+      "category": "Flat",
+      "date": "2020-02-27",
+      "description": "sf",
       "id": 4
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 5
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 6
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 7
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 8
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 9
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 10
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 11
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 12
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 13
-    },
-    {
-      "amount": "12",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "212",
-      "id": 14
-    },
-    {
-      "amount": "241",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "124",
-      "id": 15
-    },
-    {
-      "amount": "124",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "afawf",
-      "id": 16
-    },
-    {
-      "amount": "41",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "1242",
-      "id": 17
-    },
-    {
-      "amount": "124",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "gsdgs",
-      "id": 18
-    },
-    {
-      "amount": "241",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "afw",
-      "id": 19
-    },
-    {
-      "amount": "214",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-20",
-      "note": "faf",
-      "id": 20
-    },
-    {
-      "amount": "214",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-21",
-      "note": "gesge",
-      "id": 21
-    },
-    {
-      "amount": "41",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-21",
-      "note": "24124",
-      "id": 22
     }
   ]
 }

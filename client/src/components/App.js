@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
-import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./utils/types";
+import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
 import {fetchData} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
 
@@ -72,13 +72,13 @@ const App = () => {
                 return <AddTransaction accounts={accounts}
                                        categories={categories}
                                        selectedAccountName={selectedAccount.name}
-                                       selectedCategory={selectedCategoryName.name}
+                                       selectedCategory={selectedCategoryName}
                                        onAccountChanged={onAccountChanged}
                                        onCategoryChanged={onCategoryChanged}
                                        isLoaded={isLoaded}
                 />;
             case 3:
-                return <History transactions={accounts}/>;
+                return <History/>;
             default:
                 return null;
         }

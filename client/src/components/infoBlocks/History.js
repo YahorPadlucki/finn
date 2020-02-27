@@ -6,26 +6,34 @@ const History = (props) => {
 
     const transactions = useContext(TransactionsContext);
 
+    const formatDate = (dateStr)=>{
+        const dateArray = dateStr.split('-');
+        const day = dateArray[dateArray.length-1];
+        const month = dateArray[dateArray.length-2];
+
+        return `${day}.${month}`;
+    };
+
     const renderTransactions = () => {
         if (!transactions) return <div>Loading</div>;
 
-        return transactions.map(() => {
+        return transactions.map((transaction) => {
             return (
                 <div className=" divided row">
                     <strong className="one aligned wide column"
                             style={{textAlign: 'left', verticalAlign: 'text-bottom'}}>
-                        22.10
+                        {formatDate(transaction.date)}
                     </strong>
 
                     <div className="seven wide column" style={{textAlign: 'left'}}>
-                        <label>Cash</label>
+                        <label>{transaction.account}</label>
                         <label> -> </label>
-                        <label>Food</label>
-                        <div>ticktets to Dublin</div>
+                        <label>{transaction.category}</label>
+                        <div>{transaction.description}</div>
                     </div>
 
                     <div className="four wide column " style={{textAlign: 'right'}}>
-                        <strong style={{padding: '20px'}}>150 UDS</strong>
+                        <strong style={{padding: '20px'}}>{transaction.total}</strong>
                         <div className="ui button">/</div>
                         <div className="ui button red">X</div>
                     </div>

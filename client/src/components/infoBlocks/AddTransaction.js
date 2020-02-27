@@ -4,8 +4,8 @@ import History from "./History";
 
 const AddTransaction = (props) => {
 
-    const [amount, setAmount] = useState('');
-    const [note, setNote] = useState('');
+    const [total, setTotal] = useState('');
+    const [description, setDescription] = useState('');
 
     const [date, setDate] = useState('');
     const [isInputValid, setIsInputValid] = useState(true);
@@ -21,25 +21,25 @@ const AddTransaction = (props) => {
     };
 
     const onSaveClicked = async () => {
-        if (amount.length === 0 || isNaN(amount) || amount <= 0) {
+        if (total.length === 0 || isNaN(total) || total <= 0) {
             setIsInputValid(false);
         } else {
             if (!isInputValid)
                 setIsInputValid(true);
 
-            console.log(amount);
+            console.log(total);
             console.log(props.selectedAccountName);
             console.log(props.selectedCategory);
             console.log(date);
-            console.log(note);
+            console.log(description);
 
             setIsTransactionInProcess(true);
             const postResponse = await postTransaction({
-                "amount": amount,
+                "total": total,
                 "account": props.selectedAccountName,
                 "category": props.selectedCategory,
                 "date": date,
-                "note": note
+                "description": description
             });
 
             if (postResponse)
@@ -52,8 +52,8 @@ const AddTransaction = (props) => {
     };
 
     const clearFields = () => {
-        setAmount('');
-        setNote('');
+        setTotal('');
+        setDescription('');
     };
 
     const onSaveSuccess = () => {
@@ -94,8 +94,8 @@ const AddTransaction = (props) => {
                        ref={(input) => {
                            nameInput = input;
                        }}
-                       value={amount}
-                       onChange={e => setAmount(e.target.value)}
+                       value={total}
+                       onChange={e => setTotal(e.target.value)}
                        onKeyPress={onKeyPress}
                        placeholder="Amount"/>
             </div>
@@ -106,8 +106,8 @@ const AddTransaction = (props) => {
         return (
             <div className="field">
                 <input type="text"
-                       value={note}
-                       onChange={e => setNote(e.target.value)}
+                       value={description}
+                       onChange={e => setDescription(e.target.value)}
                        onKeyPress={onKeyPress}
                        placeholder="Note"/>
             </div>

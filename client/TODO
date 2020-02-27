@@ -1,9 +1,9 @@
-- disable when loading initial data
-
-- transactions history
+-history update when added new
 - edit transaction
 
 
++ transactions history
++ disable when loading initial data
 + success save feedback and clear fields
 + disable from while transaction in process
 + note field
