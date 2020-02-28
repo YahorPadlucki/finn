@@ -1,7 +1,8 @@
--history update when added new
+- sort transactions - new at top
 - edit transaction
 
 
++ history update when added new
 + transactions history
 + disable when loading initial data
 + success save feedback and clear fields

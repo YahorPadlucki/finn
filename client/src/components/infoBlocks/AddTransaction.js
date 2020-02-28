@@ -29,7 +29,7 @@ const AddTransaction = (props) => {
 
             console.log(total);
             console.log(props.selectedAccountName);
-            console.log(props.selectedCategory);
+            console.log(props.selectedCategoryName);
             console.log(date);
             console.log(description);
 
@@ -37,7 +37,7 @@ const AddTransaction = (props) => {
             const postResponse = await postTransaction({
                 "total": total,
                 "account": props.selectedAccountName,
-                "category": props.selectedCategory,
+                "category": props.selectedCategoryName,
                 "date": date,
                 "description": description
             });
@@ -58,6 +58,7 @@ const AddTransaction = (props) => {
 
     const onSaveSuccess = () => {
         setTransactionStatusMessage("Transaction Saved");
+        props.onSuccessCallBack();
         clearFields();
 
     };
@@ -114,7 +115,7 @@ const AddTransaction = (props) => {
         );
     };
 
-    const renderCategory = () => renderOptionsList(props.categories.map(category => category.name), (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategory);
+    const renderCategory = () => renderOptionsList(props.categories.map(category => category.name), (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategoryName);
 
     const renderAccount = () => renderOptionsList(props.accounts.map(account => account.name), (accountName) => props.onAccountChanged(accountName), props.selectedAccountName);
 

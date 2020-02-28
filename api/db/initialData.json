@@ -47,6 +47,38 @@
       "date": "2020-02-27",
       "description": "sf",
       "id": 4
+    },
+    {
+      "total": "241",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-28",
+      "description": "fsa",
+      "id": 5
+    },
+    {
+      "total": "4124",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-28",
+      "description": "fasf",
+      "id": 6
+    },
+    {
+      "total": "241",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-28",
+      "description": "asa",
+      "id": 7
+    },
+    {
+      "total": "111",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-02-28",
+      "description": "111",
+      "id": 8
     }
   ]
 }

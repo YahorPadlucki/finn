@@ -41,12 +41,16 @@ const App = () => {
         setSelectedAccount(accounts[0]);
 
         const categories = await fetchDataType(CATEGORIES, setCategories);
-        setSelectedCategoryName(categories[0]);
+        setSelectedCategoryName(categories[0].name);
 
-        await fetchDataType(TRANSACTIONS, setTransactions);
-
+        await fetchTransactions();
         setIsLoaded(true);
     }
+
+    const fetchTransactions = async () => {
+        console.log("fetchTransa")
+        await fetchDataType(TRANSACTIONS, setTransactions);
+    };
 
     async function fetchDataType(type, setFunction) {
         const result = await fetchData(type);
@@ -72,10 +76,11 @@ const App = () => {
                 return <AddTransaction accounts={accounts}
                                        categories={categories}
                                        selectedAccountName={selectedAccount.name}
-                                       selectedCategory={selectedCategoryName}
+                                       selectedCategoryName={selectedCategoryName}
                                        onAccountChanged={onAccountChanged}
                                        onCategoryChanged={onCategoryChanged}
                                        isLoaded={isLoaded}
+                                       onSuccessCallBack={fetchTransactions}
                 />;
             case 3:
                 return <History/>;
