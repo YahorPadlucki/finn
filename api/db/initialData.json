@@ -19,66 +19,36 @@
   ],
   "transactions": [
     {
-      "total": "15",
+      "total": "10",
       "account": "Card",
       "category": "Food",
-      "date": "2020-02-27",
-      "description": "some note",
+      "date": "2020-03-02",
+      "description": "10",
       "id": 1
     },
     {
-      "total": "52",
-      "account": "Cash",
-      "date": "2020-02-27",
-      "description": "",
+      "total": "9",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-02",
+      "description": "9",
       "id": 2
     },
     {
-      "total": "21",
+      "total": "8",
       "account": "Card",
-      "date": "2020-02-27",
-      "description": "",
+      "category": "Food",
+      "date": "2020-03-02",
+      "description": "8",
       "id": 3
     },
     {
-      "total": "12",
+      "total": "7",
       "account": "Card",
-      "category": "Flat",
-      "date": "2020-02-27",
-      "description": "sf",
+      "category": "Food",
+      "date": "2020-03-02",
+      "description": "7",
       "id": 4
-    },
-    {
-      "total": "241",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-28",
-      "description": "fsa",
-      "id": 5
-    },
-    {
-      "total": "4124",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-28",
-      "description": "fasf",
-      "id": 6
-    },
-    {
-      "total": "241",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-28",
-      "description": "asa",
-      "id": 7
-    },
-    {
-      "total": "111",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-02-28",
-      "description": "111",
-      "id": 8
     }
   ]
 }

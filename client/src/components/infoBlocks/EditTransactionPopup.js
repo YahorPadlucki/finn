@@ -1,28 +1,30 @@
 import React from 'react';
-import Modal from "./popup/Modal";
+import Modal from "../popup/Modal";
 
-const AddTransactionPopup = () => {
+const EditTransactionPopup = (props) => {
 
     const renderContent = () => {
-        return `Add Transaction`;
+        return `....`;
     };
 
     const renderActions = () => {
         return (
             <React.Fragment>
-                <button className='ui button negative'>Delete</button>
+                <button className='ui button blue'>Save</button>
                 <button className='ui button'>Cancel</button>
             </React.Fragment>
         );
 
     };
 
-    const onCancel = () => {
+    const onCancel = (props) => {
+        console.log("!@31")
+        props.OnCancel();
     };
 
     return (
         <Modal
-            title="Delete stream"
+            title="Edit transaction"
             content={renderContent()}
             actions={renderActions()}
             onDismiss={onCancel}
@@ -31,4 +33,4 @@ const AddTransactionPopup = () => {
 
 };
 
-export default AddTransactionPopup;
+export default EditTransactionPopup;

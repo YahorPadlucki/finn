@@ -37,10 +37,12 @@ const App = () => {
 
     async function fetchInitData() {
 
-        const accounts = await fetchDataType(ACCOUNTS, setAccounts);
+        const accounts = await fetchDataType(ACCOUNTS);
+        setAccounts(accounts);
         setSelectedAccount(accounts[0]);
 
-        const categories = await fetchDataType(CATEGORIES, setCategories);
+        const categories = await fetchDataType(CATEGORIES,);
+        setCategories(categories);
         setSelectedCategoryName(categories[0].name);
 
         await fetchTransactions();
@@ -48,13 +50,13 @@ const App = () => {
     }
 
     const fetchTransactions = async () => {
-        console.log("fetchTransa")
-        await fetchDataType(TRANSACTIONS, setTransactions);
+        const transactions = await fetchDataType(TRANSACTIONS);
+        transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
+        setTransactions(transactions);
     };
 
-    async function fetchDataType(type, setFunction) {
+    async function fetchDataType(type) {
         const result = await fetchData(type);
-        setFunction(result);
         return result;
     }
 

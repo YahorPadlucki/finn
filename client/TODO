@@ -1,7 +1,13 @@
-- sort transactions - new at top
+- edit pop
 - edit transaction
 
+History:
+- show only 5
+- pages - or upload when scrolling
 
+
+
++ sort transactions - new at top
 + history update when added new
 + transactions history
 + disable when loading initial data
