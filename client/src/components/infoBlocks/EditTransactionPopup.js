@@ -9,16 +9,36 @@ const EditTransactionPopup = (props) => {
 
     const renderActions = () => {
         return (
-            <React.Fragment>
-                <button className='ui button blue'>Save</button>
-                <button className='ui button'>Cancel</button>
-            </React.Fragment>
+            <div className="eight wide column">
+                <form className="ui form" onSubmit={e => e.preventDefault()}>
+                    <div className="field">
+                        <label>Account</label>
+                        <div className="fields">
+                            <div className="nine wide field"></div>
+                            <div className="seven wide field"></div>
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label>Category</label>
+                        <div className="fields">
+                            <div className="nine wide field"></div>
+                            <div className="seven wide field"></div>
+                        </div>
+                    </div>
+                    {}
+                    <div style={{textAlign: 'right'}}>
+                        <button className='ui button blue'>Save</button>
+                        <button className='ui button' onClick={props.OnCancel}>Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+
         );
 
     };
 
-    const onCancel = (props) => {
-        console.log("!@31")
+    const onCancel = () => {
         props.OnCancel();
     };
 
