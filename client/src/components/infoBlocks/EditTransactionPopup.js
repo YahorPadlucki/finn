@@ -4,10 +4,6 @@ import Modal from "../popup/Modal";
 const EditTransactionPopup = (props) => {
 
     const renderContent = () => {
-        return `....`;
-    };
-
-    const renderActions = () => {
         return (
             <div className="eight wide column">
                 <form className="ui form" onSubmit={e => e.preventDefault()}>
@@ -25,12 +21,16 @@ const EditTransactionPopup = (props) => {
                             <div className="seven wide field"></div>
                         </div>
                     </div>
-                    {}
-                    <div style={{textAlign: 'right'}}>
-                        <button className='ui button blue'>Save</button>
-                        <button className='ui button' onClick={props.OnCancel}>Cancel</button>
-                    </div>
                 </form>
+            </div>);
+    };
+
+    const renderActions = () => {
+        return (
+
+            <div style={{textAlign: 'right'}}>
+                <button className='ui button blue'>Save</button>
+                <button className='ui button' onClick={props.OnCancel}>Cancel</button>
             </div>
 
 

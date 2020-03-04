@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react';
-import './History.css'
 import TransactionsContext from "../context/TransactionsContext";
 import EditTransactionPopup from "./EditTransactionPopup";
 
@@ -7,6 +6,7 @@ const History = (props) => {
 
     const transactions = useContext(TransactionsContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
+    const [transactionToEdit,setTransactionToEdit] = useState({});
 
     const formatDate = (dateStr) => {
         const dateArray = dateStr.split('-');
@@ -37,7 +37,10 @@ const History = (props) => {
 
                     <div className="four wide column " style={{textAlign: 'right'}}>
                         <label style={{padding: '20px'}}>{transaction.total}</label>
-                        <div className="mini ui button" onClick={() => setEditPopupActive(true)}>/</div>
+                        <div className="mini ui button" onClick={() => {
+                            setTransactionToEdit(transaction);
+                            setEditPopupActive(true)
+                        }}>/</div>
                         <div className="mini ui button red">X</div>
                     </div>
                 </div>
@@ -48,8 +51,12 @@ const History = (props) => {
     };
 
     function renderEditPopup() {
-        if (isEditPopupActive)
+        if (isEditPopupActive){
+
+            console.log(transactionToEdit)
+
             return <EditTransactionPopup OnCancel={() => setEditPopupActive(false)}/>;
+        }
     }
 
     return (

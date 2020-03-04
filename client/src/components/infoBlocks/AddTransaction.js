@@ -1,140 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import {postTransaction} from '../api/serverApi'
 import History from "./History";
+import InputDataForm from "./InputDataForm";
 
 const AddTransaction = (props) => {
 
-    const [total, setTotal] = useState('');
-    const [description, setDescription] = useState('');
-
-    const [date, setDate] = useState('');
-    const [isInputValid, setIsInputValid] = useState(true);
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
 
-    let nameInput;
+    const onSaveClicked = async (transactionData) => {
+        setIsTransactionInProcess(true);
 
-    const onKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            onSaveClicked();
-        }
+        const postResponse = await postTransaction(transactionData);
+
+        if (postResponse)
+            onSaveSuccess();
+        else
+            onFail();
+
+        setIsTransactionInProcess(false);
     };
 
-    const onSaveClicked = async () => {
-        if (total.length === 0 || isNaN(total) || total <= 0) {
-            setIsInputValid(false);
-        } else {
-            if (!isInputValid)
-                setIsInputValid(true);
-
-            console.log(total);
-            console.log(props.selectedAccountName);
-            console.log(props.selectedCategoryName);
-            console.log(date);
-            console.log(description);
-
-            setIsTransactionInProcess(true);
-            const postResponse = await postTransaction({
-                "total": total,
-                "account": props.selectedAccountName,
-                "category": props.selectedCategoryName,
-                "date": date,
-                "description": description
-            });
-
-            if (postResponse)
-                onSaveSuccess();
-            else
-                onFail();
-
-            setIsTransactionInProcess(false);
-        }
-    };
-
-    const clearFields = () => {
-        setTotal('');
-        setDescription('');
-    };
 
     const onSaveSuccess = () => {
         setTransactionStatusMessage("Transaction Saved");
         props.onSuccessCallBack();
-        clearFields();
-
     };
 
     const onFail = () => {
         setTransactionStatusMessage("Failed to Save");
 
-    };
-
-
-    useEffect(() => {
-        // component did mount
-        console.log("did mount")
-        nameInput.focus();
-        setCurrentDate();
-
-    }, []);
-
-
-    const setCurrentDate = function () {
-        const date = new Date();
-        const currentDate = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
-            '-' + date.getDate().toString().padStart(2, 0);
-
-        setDate(currentDate);
-    };
-
-    const renderAmountInputField = function () {
-        const className = `field ${isInputValid ? '' : 'error'}`;
-        return (
-            <div className={className}>
-                {/*<label>Add Transaction</label>*/}
-                <input type="text"
-                       ref={(input) => {
-                           nameInput = input;
-                       }}
-                       value={total}
-                       onChange={e => setTotal(e.target.value)}
-                       onKeyPress={onKeyPress}
-                       placeholder="Amount"/>
-            </div>
-        );
-    };
-
-    const renderNoteField = function () {
-        return (
-            <div className="field">
-                <input type="text"
-                       value={description}
-                       onChange={e => setDescription(e.target.value)}
-                       onKeyPress={onKeyPress}
-                       placeholder="Note"/>
-            </div>
-        );
-    };
-
-    const renderCategory = () => renderOptionsList(props.categories.map(category => category.name), (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategoryName);
-
-    const renderAccount = () => renderOptionsList(props.accounts.map(account => account.name), (accountName) => props.onAccountChanged(accountName), props.selectedAccountName);
-
-    const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
-        return (
-            <select className="ui search dropdown" value={selectedElement}
-                    onChange={e => setStateFunction(e.target.value)}>
-                {optionsArray.map((option, i) => <option key={i} value={option}>{option}</option>)}
-            </select>
-        );
-    };
-
-    const renderCalendar = function () {
-        return (
-            <input type="date" id="start" name="trip-start"
-                   value={date}
-                   onChange={e => setDate(e.target.value)}>
-            </input>
-        );
     };
 
     const renderAccounts = () => props.accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
@@ -147,8 +42,6 @@ const AddTransaction = (props) => {
             </div>
         );
     };
-    const formClassName = `ui form ${isTransactionInProcess||!props.isLoaded ? 'loading' : ''}`;
-
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
@@ -157,34 +50,18 @@ const AddTransaction = (props) => {
                 <div className="four wide column">
                     {renderBalanceBlock()}
                 </div>
-                <div className="eight wide column">
-                    <form className={formClassName} onSubmit={e => e.preventDefault()}>
-                        <div className="field">
-                            <label>Account</label>
-                            <div className="fields">
-                                <div className="nine wide field">{renderAccount()}</div>
-                                <div className="seven wide field">{renderAmountInputField()}</div>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <label>Category</label>
-                            <div className="fields">
-                                <div className="nine wide field">{renderCategory()}</div>
-                                <div className="seven wide field">{renderCalendar()}</div>
-                            </div>
-                        </div>
-                        {renderNoteField()}
-                        <div style={{textAlign: 'right'}}>
-                            <button className="big ui primary button "
-                                    onClick={onSaveClicked}>
-                                Save
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
+                               categories={props.categories}
+                               accounts={props.accounts}
+                               onCategoryChanged={props.onCategoryChanged}
+                               onAccountChanged={props.onAccountChanged}
+                               selectedCategoryName={props.selectedCategoryName}
+                               selectedAccountName={props.selectedAccountName}
+                               onSaveClickedCallBack={onSaveClicked}
 
+                />
             </div>
-            <div style={{textAlign: 'center'}} >{transactionStatusMessage}</div>
+            <div style={{textAlign: 'center'}}>{transactionStatusMessage}</div>
             <History/>
         </div>
 
