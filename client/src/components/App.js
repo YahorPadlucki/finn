@@ -8,6 +8,8 @@ import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
 import {fetchData} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
+import {AccountsProvider} from "./context/AccountsContext";
+import {CategoriesProvider} from "./context/CategoriesContext";
 
 const App = () => {
 
@@ -75,14 +77,13 @@ const App = () => {
             case 1:
                 return <Expenses/>;
             case 2:
-                return <AddTransaction accounts={accounts}
-                                       categories={categories}
-                                       selectedAccountName={selectedAccount.name}
-                                       selectedCategoryName={selectedCategoryName}
-                                       onAccountChanged={onAccountChanged}
-                                       onCategoryChanged={onCategoryChanged}
-                                       isLoaded={isLoaded}
-                                       onSuccessCallBack={fetchTransactions}
+                return <AddTransaction
+                    selectedAccountName={selectedAccount.name}
+                    selectedCategoryName={selectedCategoryName}
+                    onAccountChanged={onAccountChanged}
+                    onCategoryChanged={onCategoryChanged}
+                    isLoaded={isLoaded}
+                    onSuccessCallBack={fetchTransactions}
                 />;
             case 3:
                 return <History/>;
@@ -95,16 +96,20 @@ const App = () => {
 
     return (
         <TransactionsProvider value={transactions}>
-            <div className="ui container"
-                 style={{marginTop: '10px'}}>
-                <NavigationBar
-                    selectedButtonIndex={selectedInfoBlock}
-                    onButtonClicked={onTabButtonClicked}/>
-                <BalanceHeader account={selectedAccount.name}
-                               balance={selectedAccount.balance}/>
-                {renderInfoBlock()}
+            <AccountsProvider value={accounts}>
+                <CategoriesProvider value={categories}>
+                    <div className="ui container"
+                         style={{marginTop: '10px'}}>
+                        <NavigationBar
+                            selectedButtonIndex={selectedInfoBlock}
+                            onButtonClicked={onTabButtonClicked}/>
+                        <BalanceHeader account={selectedAccount.name}
+                                       balance={selectedAccount.balance}/>
+                        {renderInfoBlock()}
 
-            </div>
+                    </div>
+                </CategoriesProvider>
+            </AccountsProvider>
         </TransactionsProvider>
     );
 

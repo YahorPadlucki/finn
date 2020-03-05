@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {postTransaction} from '../api/serverApi'
 import History from "./History";
 import InputDataForm from "./InputDataForm";
+import AccountsContext from "../context/AccountsContext";
 
 const AddTransaction = (props) => {
+
+    const accounts = useContext(AccountsContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
@@ -32,7 +35,7 @@ const AddTransaction = (props) => {
 
     };
 
-    const renderAccounts = () => props.accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
+    const renderAccounts = () => accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
 
     const renderBalanceBlock = function () {
         return (
@@ -51,8 +54,6 @@ const AddTransaction = (props) => {
                     {renderBalanceBlock()}
                 </div>
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
-                               categories={props.categories}
-                               accounts={props.accounts}
                                onCategoryChanged={props.onCategoryChanged}
                                onAccountChanged={props.onAccountChanged}
                                selectedCategoryName={props.selectedCategoryName}

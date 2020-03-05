@@ -1,28 +1,21 @@
 import React from 'react';
 import Modal from "../popup/Modal";
+import InputDataForm from "./InputDataForm";
 
 const EditTransactionPopup = (props) => {
 
+
     const renderContent = () => {
         return (
-            <div className="eight wide column">
-                <form className="ui form" onSubmit={e => e.preventDefault()}>
-                    <div className="field">
-                        <label>Account</label>
-                        <div className="fields">
-                            <div className="nine wide field"></div>
-                            <div className="seven wide field"></div>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label>Category</label>
-                        <div className="fields">
-                            <div className="nine wide field"></div>
-                            <div className="seven wide field"></div>
-                        </div>
-                    </div>
-                </form>
-            </div>);
+            <InputDataForm isLoaded={props.isLoaded}
+                           onCategoryChanged={props.onCategoryChanged}
+                           onAccountChanged={props.onAccountChanged}
+                           selectedCategoryName={props.selectedCategoryName}
+                           selectedAccountName={props.selectedAccountName}
+                           onSaveClickedCallBack={props.onSaveClickedCallBack}
+
+            />)
+
     };
 
     const renderActions = () => {
