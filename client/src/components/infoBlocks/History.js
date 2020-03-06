@@ -57,8 +57,6 @@ const History = (props) => {
 
             return <EditTransactionPopup
                 isLoaded={true}
-                categories={["1","2"]}
-                accounts={["acc1","acc2"]}
                 onCategoryChanged={()=>console.log("category changed")}
                 onAccountChanged={()=>console.log("account changed")}
                 selectedCategoryName={transactionToEdit.category}

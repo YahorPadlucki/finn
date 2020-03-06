@@ -9,7 +9,7 @@ import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
 import {fetchData} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
 import {AccountsProvider} from "./context/AccountsContext";
-import {CategoriesProvider} from "./context/CategoriesContext";
+import CategoriesContext from "./context/CategoriesContext"
 
 const App = () => {
 
@@ -22,7 +22,6 @@ const App = () => {
 
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
     const [isLoaded, setIsLoaded] = useState(false);
-
 
     const onTabButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
@@ -97,7 +96,7 @@ const App = () => {
     return (
         <TransactionsProvider value={transactions}>
             <AccountsProvider value={accounts}>
-                <CategoriesProvider value={categories}>
+                <CategoriesContext.Provider value={{categories, onCategoryChanged}}>
                     <div className="ui container"
                          style={{marginTop: '10px'}}>
                         <NavigationBar
@@ -108,7 +107,7 @@ const App = () => {
                         {renderInfoBlock()}
 
                     </div>
-                </CategoriesProvider>
+                </CategoriesContext.Provider>
             </AccountsProvider>
         </TransactionsProvider>
     );

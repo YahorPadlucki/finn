@@ -65,6 +65,14 @@
       "date": "2020-03-04",
       "description": "note 12",
       "id": 6
+    },
+    {
+      "total": "123",
+      "account": "Cash",
+      "category": "Flat",
+      "date": "2020-03-05",
+      "description": "123",
+      "id": 7
     }
   ]
 }

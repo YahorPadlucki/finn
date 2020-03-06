@@ -1,11 +1,11 @@
-import React, {useEffect, useState,useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AccountsContext from "../context/AccountsContext";
 import CategoriesContext from "../context/CategoriesContext";
 
 const InputDataForm = (props) => {
 
     const accounts = useContext(AccountsContext);
-    const categories = useContext(CategoriesContext);
+    const {categories, onCategoryChanged} = useContext(CategoriesContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
     const [date, setDate] = useState('');
@@ -32,7 +32,7 @@ const InputDataForm = (props) => {
         setDate(currentDate);
     };
 
-    const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => props.onCategoryChanged(categoryName), props.selectedCategoryName);
+    const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChanged(categoryName), props.selectedCategoryName);
 
     const renderAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => props.onAccountChanged(accountName), props.selectedAccountName);
 

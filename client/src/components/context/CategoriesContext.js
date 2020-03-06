@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { createContext } from 'react';
 
-const CategoriesContext = React.createContext(["1", "2"]);
+const CategoriesContext = createContext({
+    categories: ['1','2'],
+    onCategoryChanged: (selectedCategoryName) => {
+    },
+});
 
-export const CategoriesProvider = CategoriesContext.Provider;
-export const CategoriesConsumer = CategoriesContext.Consumer;
 export default CategoriesContext
