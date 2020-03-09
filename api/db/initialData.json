@@ -73,6 +73,30 @@
       "date": "2020-03-05",
       "description": "123",
       "id": 7
+    },
+    {
+      "total": "321",
+      "account": "Cash",
+      "category": "Flat",
+      "date": "2020-03-09",
+      "description": "www",
+      "id": 8
+    },
+    {
+      "total": "1",
+      "account": "Cash",
+      "category": "Food",
+      "date": "2020-03-09",
+      "description": "",
+      "id": 9
+    },
+    {
+      "total": "111",
+      "account": "Cash",
+      "category": "Flat",
+      "date": "2020-03-09",
+      "description": "11",
+      "id": 10
     }
   ]
 }

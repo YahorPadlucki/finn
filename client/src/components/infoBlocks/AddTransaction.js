@@ -6,7 +6,7 @@ import AccountsContext from "../context/AccountsContext";
 
 const AddTransaction = (props) => {
 
-    const accounts = useContext(AccountsContext);
+    const {accounts} = useContext(AccountsContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');

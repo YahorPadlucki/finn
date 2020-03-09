@@ -8,8 +8,8 @@ import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
 import {fetchData} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
-import {AccountsProvider} from "./context/AccountsContext";
 import CategoriesContext from "./context/CategoriesContext"
+import AccountsContext from "./context/AccountsContext"
 
 const App = () => {
 
@@ -65,9 +65,6 @@ const App = () => {
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
     };
 
-    const onCategoryChanged = (selectedCategoryName) => {
-        setSelectedCategoryName(selectedCategoryName);
-    };
 
     const renderInfoBlock = () => {
         switch (selectedInfoBlock) {
@@ -79,8 +76,6 @@ const App = () => {
                 return <AddTransaction
                     selectedAccountName={selectedAccount.name}
                     selectedCategoryName={selectedCategoryName}
-                    onAccountChanged={onAccountChanged}
-                    onCategoryChanged={onCategoryChanged}
                     isLoaded={isLoaded}
                     onSuccessCallBack={fetchTransactions}
                 />;
@@ -95,8 +90,8 @@ const App = () => {
 
     return (
         <TransactionsProvider value={transactions}>
-            <AccountsProvider value={accounts}>
-                <CategoriesContext.Provider value={{categories, onCategoryChanged}}>
+            <AccountsContext.Provider value={{accounts, onAccountChanged}}>
+                <CategoriesContext.Provider value={{categories}}>
                     <div className="ui container"
                          style={{marginTop: '10px'}}>
                         <NavigationBar
@@ -108,7 +103,7 @@ const App = () => {
 
                     </div>
                 </CategoriesContext.Provider>
-            </AccountsProvider>
+            </AccountsContext.Provider>
         </TransactionsProvider>
     );
 

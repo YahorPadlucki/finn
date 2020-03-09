@@ -4,13 +4,16 @@ import CategoriesContext from "../context/CategoriesContext";
 
 const InputDataForm = (props) => {
 
-    const accounts = useContext(AccountsContext);
-    const {categories, onCategoryChanged} = useContext(CategoriesContext);
+    const {accounts, onAccountChanged} = useContext(AccountsContext);
+    const {categories} = useContext(CategoriesContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
     const [date, setDate] = useState('');
     const [total, setTotal] = useState('');
     const [description, setDescription] = useState('');
+
+    const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
+    const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
 
     let nameInput;
 
@@ -32,9 +35,19 @@ const InputDataForm = (props) => {
         setDate(currentDate);
     };
 
-    const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChanged(categoryName), props.selectedCategoryName);
+    const onCategoryChangedInternal = (categoryName) => {
+        setSelectedCategoryName(categoryName);
+    };
 
-    const renderAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => props.onAccountChanged(accountName), props.selectedAccountName);
+    const onAccountChangedInternal = (accountName) => {
+        setSelectedAccountName(accountName);
+        onAccountChanged(accountName);
+    };
+
+    const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
+
+    const renderAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountChangedInternal(accountName), selectedAccountName);
+
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
@@ -97,8 +110,8 @@ const InputDataForm = (props) => {
 
             props.onSaveClickedCallBack({
                 "total": total,
-                "account": props.selectedAccountName,
-                "category": props.selectedCategoryName,
+                "account": selectedAccountName,
+                "category": selectedCategoryName,
                 "date": date,
                 "description": description
             });

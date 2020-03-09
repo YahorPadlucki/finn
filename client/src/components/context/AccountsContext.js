@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { createContext }  from 'react'
 
-const AccountsContext = React.createContext(["1","2"]);
+const AccountsContext = createContext({
+    accounts: ['1','2'],
+    onAccountChanged: (selectedAccountName) => {
+    },
+});
 
-export const AccountsProvider = AccountsContext.Provider;
-export const AccountsConsumer = AccountsContext.Consumer;
 export default AccountsContext
