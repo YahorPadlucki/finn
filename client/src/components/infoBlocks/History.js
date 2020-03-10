@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import TransactionsContext from "../context/TransactionsContext";
 import EditTransactionPopup from "./EditTransactionPopup";
 
-const History = (props) => {
+const History = () => {
 
     const transactions = useContext(TransactionsContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
@@ -53,12 +53,8 @@ const History = (props) => {
     function renderEditPopup() {
         if (isEditPopupActive){
 
-            console.log(transactionToEdit)
-
             return <EditTransactionPopup
                 isLoaded={true}
-                onCategoryChanged={()=>console.log("category changed")}
-                onAccountChanged={()=>console.log("account changed")}
                 selectedCategoryName={transactionToEdit.category}
                 selectedAccountName={transactionToEdit.account}
                 onSaveClickedCallBack={()=>console.log("on save clicked")}

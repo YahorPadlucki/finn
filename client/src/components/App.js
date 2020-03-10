@@ -76,6 +76,7 @@ const App = () => {
                 return <AddTransaction
                     selectedAccountName={selectedAccount.name}
                     selectedCategoryName={selectedCategoryName}
+                    onAccountChanged={onAccountChanged}
                     isLoaded={isLoaded}
                     onSuccessCallBack={fetchTransactions}
                 />;
@@ -90,7 +91,7 @@ const App = () => {
 
     return (
         <TransactionsProvider value={transactions}>
-            <AccountsContext.Provider value={{accounts, onAccountChanged}}>
+            <AccountsContext.Provider value={{accounts}}>
                 <CategoriesContext.Provider value={{categories}}>
                     <div className="ui container"
                          style={{marginTop: '10px'}}>

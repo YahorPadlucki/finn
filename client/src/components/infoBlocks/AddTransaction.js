@@ -54,10 +54,9 @@ const AddTransaction = (props) => {
                     {renderBalanceBlock()}
                 </div>
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
-                               onCategoryChanged={props.onCategoryChanged}
-                               onAccountChanged={props.onAccountChanged}
                                selectedCategoryName={props.selectedCategoryName}
                                selectedAccountName={props.selectedAccountName}
+                               onAccountChanged = {props.onAccountChanged}
                                onSaveClickedCallBack={onSaveClicked}
 
                 />

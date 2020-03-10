@@ -4,7 +4,7 @@ import CategoriesContext from "../context/CategoriesContext";
 
 const InputDataForm = (props) => {
 
-    const {accounts, onAccountChanged} = useContext(AccountsContext);
+    const {accounts} = useContext(AccountsContext);
     const {categories} = useContext(CategoriesContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
@@ -41,7 +41,9 @@ const InputDataForm = (props) => {
 
     const onAccountChangedInternal = (accountName) => {
         setSelectedAccountName(accountName);
-        onAccountChanged(accountName);
+
+        if(props.onAccountChanged)
+        props.onAccountChanged(accountName);
     };
 
     const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);

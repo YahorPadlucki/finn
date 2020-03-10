@@ -97,6 +97,14 @@
       "date": "2020-03-09",
       "description": "11",
       "id": 10
+    },
+    {
+      "total": "999",
+      "account": "Cash",
+      "category": "Food",
+      "date": "2020-03-10",
+      "description": "cardd",
+      "id": 11
     }
   ]
 }

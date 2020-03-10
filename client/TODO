@@ -1,5 +1,8 @@
-- move selected category to context
 - edit pop
+    - set data
+    - set amount
+    - set note
+    - center popup when scrolling
 - edit transaction
 
 History:
