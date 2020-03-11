@@ -42,7 +42,7 @@ const App = () => {
         setAccounts(accounts);
         setSelectedAccount(accounts[0]);
 
-        const categories = await fetchDataType(CATEGORIES,);
+        const categories = await fetchDataType(CATEGORIES);
         setCategories(categories);
         setSelectedCategoryName(categories[0].name);
 
@@ -67,6 +67,7 @@ const App = () => {
 
 
     const renderInfoBlock = () => {
+
         switch (selectedInfoBlock) {
             case 0:
                 return <Balance/>;
@@ -89,9 +90,10 @@ const App = () => {
     };
 
 
+
     return (
-        <TransactionsProvider value={transactions}>
-            <AccountsContext.Provider value={{accounts}}>
+    <TransactionsProvider value={transactions}>
+             <AccountsContext.Provider value={{accounts}}>
                 <CategoriesContext.Provider value={{categories}}>
                     <div className="ui container"
                          style={{marginTop: '10px'}}>

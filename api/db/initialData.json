@@ -19,92 +19,52 @@
   ],
   "transactions": [
     {
-      "total": "10",
+      "total": "123",
       "account": "Card",
       "category": "Food",
-      "date": "2020-03-02",
-      "description": "10",
+      "date": "2020-03-11",
+      "description": "",
       "id": 1
     },
     {
-      "total": "9",
+      "total": "214",
       "account": "Card",
-      "category": "Food",
-      "date": "2020-03-02",
-      "description": "9",
+      "category": "Flat",
+      "date": "2020-03-11",
+      "description": "124",
       "id": 2
     },
     {
-      "total": "8",
-      "account": "Card",
+      "total": "444",
+      "account": "Cash",
       "category": "Food",
-      "date": "2020-03-02",
-      "description": "8",
+      "date": "2020-03-11",
+      "description": "",
       "id": 3
     },
     {
-      "total": "7",
+      "total": "123",
       "account": "Card",
       "category": "Food",
-      "date": "2020-03-02",
-      "description": "7",
+      "date": "2020-03-11",
+      "description": "",
       "id": 4
     },
     {
-      "total": "11",
+      "total": "21",
       "account": "Card",
-      "category": "Food",
-      "date": "2020-03-04",
-      "description": "note 11",
+      "category": "Flat",
+      "date": "2020-03-11",
+      "description": "",
       "id": 5
     },
     {
-      "total": "12",
+      "total": "1213",
       "account": "Card",
       "category": "Food",
-      "date": "2020-03-04",
-      "description": "note 12",
+      "date": "2020-03-66",
+      "description": "afw",
       "id": 6
-    },
-    {
-      "total": "123",
-      "account": "Cash",
-      "category": "Flat",
-      "date": "2020-03-05",
-      "description": "123",
-      "id": 7
-    },
-    {
-      "total": "321",
-      "account": "Cash",
-      "category": "Flat",
-      "date": "2020-03-09",
-      "description": "www",
-      "id": 8
-    },
-    {
-      "total": "1",
-      "account": "Cash",
-      "category": "Food",
-      "date": "2020-03-09",
-      "description": "",
-      "id": 9
-    },
-    {
-      "total": "111",
-      "account": "Cash",
-      "category": "Flat",
-      "date": "2020-03-09",
-      "description": "11",
-      "id": 10
-    },
-    {
-      "total": "999",
-      "account": "Cash",
-      "category": "Food",
-      "date": "2020-03-10",
-      "description": "cardd",
-      "id": 11
     }
   ]
 }

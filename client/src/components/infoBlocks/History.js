@@ -55,8 +55,7 @@ const History = () => {
 
             return <EditTransactionPopup
                 isLoaded={true}
-                selectedCategoryName={transactionToEdit.category}
-                selectedAccountName={transactionToEdit.account}
+                transactionToEdit = {transactionToEdit}
                 onSaveClickedCallBack={()=>console.log("on save clicked")}
                 OnCancel={() => setEditPopupActive(false)}/>;
         }

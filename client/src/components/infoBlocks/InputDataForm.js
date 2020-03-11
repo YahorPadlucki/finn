@@ -8,8 +8,8 @@ const InputDataForm = (props) => {
     const {categories} = useContext(CategoriesContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
-    const [date, setDate] = useState('');
-    const [total, setTotal] = useState('');
+    const [date, setDate] = useState(props.date);
+    const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
@@ -22,7 +22,10 @@ const InputDataForm = (props) => {
         // component did mount
         console.log("did mount")
         nameInput.focus();
-        setCurrentDate();
+
+        if (!date) {
+            setCurrentDate();
+        }
 
     }, []);
 
@@ -42,8 +45,8 @@ const InputDataForm = (props) => {
     const onAccountChangedInternal = (accountName) => {
         setSelectedAccountName(accountName);
 
-        if(props.onAccountChanged)
-        props.onAccountChanged(accountName);
+        if (props.onAccountChanged)
+            props.onAccountChanged(accountName);
     };
 
     const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
@@ -70,7 +73,7 @@ const InputDataForm = (props) => {
     };
 
     const clearFields = () => {
-        setTotal('');
+        setAmount('');
         setDescription('');
     };
 
@@ -83,8 +86,8 @@ const InputDataForm = (props) => {
                        ref={(input) => {
                            nameInput = input;
                        }}
-                       value={total}
-                       onChange={e => setTotal(e.target.value)}
+                       value={amount}
+                       onChange={e => setAmount(e.target.value)}
                        onKeyPress={onKeyPress}
                        placeholder="Amount"/>
             </div>
@@ -104,16 +107,16 @@ const InputDataForm = (props) => {
     };
 
     const onSaveClicked = async () => {
-        if (total.length === 0 || isNaN(total) || total <= 0) {
+        if (amount.length === 0 || isNaN(amount) || amount <= 0) {
             setIsInputValid(false);
         } else {
             if (!isInputValid)
                 setIsInputValid(true);
 
             props.onSaveClickedCallBack({
-                "total": total,
-                "account": selectedAccountName,
-                "category": selectedCategoryName,
+                "total": amount,
+                "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
+                "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
                 "date": date,
                 "description": description
             });
@@ -134,6 +137,7 @@ const InputDataForm = (props) => {
 
     return (
         <div className="eight wide column">
+
             <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
                 <div className="field">
                     <label>Account</label>
