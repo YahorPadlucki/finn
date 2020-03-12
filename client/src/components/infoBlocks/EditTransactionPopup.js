@@ -9,6 +9,8 @@ const EditTransactionPopup = (props) => {
         return (
             <InputDataForm isLoaded={props.isLoaded}
                            date={props.transactionToEdit.date}
+                           description={props.transactionToEdit.description}
+                           amount={props.transactionToEdit.total}
                            selectedAccountName={props.transactionToEdit.selectedAccountName}
                            selectedCategoryName={props.transactionToEdit.selectedCategoryName}
                            onSaveClickedCallBack={props.onSaveClickedCallBack}

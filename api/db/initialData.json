@@ -65,6 +65,29 @@
       "date": "2020-03-66",
       "description": "afw",
       "id": 6
+    },
+    {
+      "total": "111",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-12",
+      "id": 7
+    },
+    {
+      "total": "124",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-12",
+      "description": "",
+      "id": 8
+    },
+    {
+      "total": "214",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-12",
+      "description": "",
+      "id": 9
     }
   ]
 }

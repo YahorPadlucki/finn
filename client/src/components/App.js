@@ -10,6 +10,7 @@ import {fetchData} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
 import CategoriesContext from "./context/CategoriesContext"
 import AccountsContext from "./context/AccountsContext"
+import ApiContext from "./context/ApiContext"
 
 const App = () => {
 
@@ -89,25 +90,30 @@ const App = () => {
 
     };
 
+    const callApiMethod =()=>{
+        console.log("Call api")
+    };
 
 
     return (
-    <TransactionsProvider value={transactions}>
-             <AccountsContext.Provider value={{accounts}}>
-                <CategoriesContext.Provider value={{categories}}>
-                    <div className="ui container"
-                         style={{marginTop: '10px'}}>
-                        <NavigationBar
-                            selectedButtonIndex={selectedInfoBlock}
-                            onButtonClicked={onTabButtonClicked}/>
-                        <BalanceHeader account={selectedAccount.name}
-                                       balance={selectedAccount.balance}/>
-                        {renderInfoBlock()}
+        <ApiContext.Provider value={{callApiMethod}}>
+            <TransactionsProvider value={transactions}>
+                <AccountsContext.Provider value={{accounts}}>
+                    <CategoriesContext.Provider value={{categories}}>
+                        <div className="ui container"
+                             style={{marginTop: '10px'}}>
+                            <NavigationBar
+                                selectedButtonIndex={selectedInfoBlock}
+                                onButtonClicked={onTabButtonClicked}/>
+                            <BalanceHeader account={selectedAccount.name}
+                                           balance={selectedAccount.balance}/>
+                            {renderInfoBlock()}
 
-                    </div>
-                </CategoriesContext.Provider>
-            </AccountsContext.Provider>
-        </TransactionsProvider>
+                        </div>
+                    </CategoriesContext.Provider>
+                </AccountsContext.Provider>
+            </TransactionsProvider>
+        </ApiContext.Provider>
     );
 
 };

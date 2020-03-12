@@ -1,16 +1,18 @@
-- edit pop
-    - set data
-    - set amount
-    - set note
-    - center popup when scrolling
+
 - edit transaction
+- center edit popup when scrolling
+
+- combine contexts
 
 History:
 - show only 5
 - pages - or upload when scrolling
 
 
-
++ edit pop
+    + set date
+    + set amount
+    + set note
 + sort transactions - new at top
 + history update when added new
 + transactions history

@@ -15,13 +15,23 @@ const InputDataForm = (props) => {
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
 
-    let nameInput;
+    let amountInput;
 
 
     useEffect(() => {
         // component did mount
         console.log("did mount")
-        nameInput.focus();
+
+        if (props.amount) {
+            setAmount(props.amount);
+
+        } else {
+            amountInput.focus();
+        }
+
+        if (props.description) {
+            setDescription(props.description);
+        }
 
         if (!date) {
             setCurrentDate();
@@ -84,7 +94,7 @@ const InputDataForm = (props) => {
             <div className={className}>
                 <input type="text"
                        ref={(input) => {
-                           nameInput = input;
+                           amountInput = input;
                        }}
                        value={amount}
                        onChange={e => setAmount(e.target.value)}

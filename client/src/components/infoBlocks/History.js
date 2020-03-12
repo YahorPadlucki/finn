@@ -1,10 +1,12 @@
 import React, {useContext, useState} from 'react';
 import TransactionsContext from "../context/TransactionsContext";
 import EditTransactionPopup from "./EditTransactionPopup";
+import ApiContext from "../context/ApiContext";
 
 const History = () => {
 
     const transactions = useContext(TransactionsContext);
+    const {callApiMethod} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [transactionToEdit,setTransactionToEdit] = useState({});
 
@@ -56,7 +58,7 @@ const History = () => {
             return <EditTransactionPopup
                 isLoaded={true}
                 transactionToEdit = {transactionToEdit}
-                onSaveClickedCallBack={()=>console.log("on save clicked")}
+                onSaveClickedCallBack={()=>callApiMethod()}
                 OnCancel={() => setEditPopupActive(false)}/>;
         }
     }
