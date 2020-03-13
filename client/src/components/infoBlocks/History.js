@@ -6,7 +6,7 @@ import ApiContext from "../context/ApiContext";
 const History = () => {
 
     const transactions = useContext(TransactionsContext);
-    const {callApiMethod} = useContext(ApiContext);
+    const {editTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [transactionToEdit,setTransactionToEdit] = useState({});
 
@@ -58,10 +58,15 @@ const History = () => {
             return <EditTransactionPopup
                 isLoaded={true}
                 transactionToEdit = {transactionToEdit}
-                onSaveClickedCallBack={()=>callApiMethod()}
-                OnCancel={() => setEditPopupActive(false)}/>;
+                onSaveClickedCallBack={(transactionData)=>{
+                    editTransaction(transactionData);
+                    hideEditPopup();
+                }}
+                OnCancel={hideEditPopup}/>;
         }
     }
+
+    const hideEditPopup = ()=>setEditPopupActive(false);
 
     return (
         <div className="ui container"

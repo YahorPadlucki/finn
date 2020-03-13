@@ -123,13 +123,19 @@ const InputDataForm = (props) => {
             if (!isInputValid)
                 setIsInputValid(true);
 
-            props.onSaveClickedCallBack({
+            const transactionData = {
                 "total": amount,
                 "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
                 "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
                 "date": date,
                 "description": description
-            });
+            };
+
+            if (props.id) {
+                transactionData.id = props.id;
+            }
+
+            props.onSaveClickedCallBack(transactionData);
 
             clearFields();
             // const postResponse = await postTransaction();

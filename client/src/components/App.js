@@ -6,7 +6,7 @@ import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
-import {fetchData} from "./api/serverApi";
+import {fetchData, patchTransaction} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
 import CategoriesContext from "./context/CategoriesContext"
 import AccountsContext from "./context/AccountsContext"
@@ -90,13 +90,14 @@ const App = () => {
 
     };
 
-    const callApiMethod =()=>{
-        console.log("Call api")
+    const editTransaction = async (transactionData)=>{
+        await patchTransaction(transactionData)
+        fetchTransactions();
     };
 
 
     return (
-        <ApiContext.Provider value={{callApiMethod}}>
+        <ApiContext.Provider value={{editTransaction: editTransaction}}>
             <TransactionsProvider value={transactions}>
                 <AccountsContext.Provider value={{accounts}}>
                     <CategoriesContext.Provider value={{categories}}>

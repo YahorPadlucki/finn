@@ -19,75 +19,12 @@
   ],
   "transactions": [
     {
-      "total": "123",
+      "total": "325",
       "account": "Card",
       "category": "Food",
-      "date": "2020-03-11",
-      "description": "",
+      "date": "2020-03-13",
+      "description": "patching",
       "id": 1
-    },
-    {
-      "total": "214",
-      "account": "Card",
-      "category": "Flat",
-      "date": "2020-03-11",
-      "description": "124",
-      "id": 2
-    },
-    {
-      "total": "444",
-      "account": "Cash",
-      "category": "Food",
-      "date": "2020-03-11",
-      "description": "",
-      "id": 3
-    },
-    {
-      "total": "123",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-11",
-      "description": "",
-      "id": 4
-    },
-    {
-      "total": "21",
-      "account": "Card",
-      "category": "Flat",
-      "date": "2020-03-11",
-      "description": "",
-      "id": 5
-    },
-    {
-      "total": "1213",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-66",
-      "description": "afw",
-      "id": 6
-    },
-    {
-      "total": "111",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-12",
-      "id": 7
-    },
-    {
-      "total": "124",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-12",
-      "description": "",
-      "id": 8
-    },
-    {
-      "total": "214",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-12",
-      "description": "",
-      "id": 9
     }
   ]
 }

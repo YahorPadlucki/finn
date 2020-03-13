@@ -1,7 +1,7 @@
 import React, { createContext }  from 'react'
 
 const ApiContext = createContext({
-    callApiMethod: (aa) => {
+    editTransaction: (transactionData) => {
     },
 });
 
