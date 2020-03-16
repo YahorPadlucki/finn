@@ -1,14 +1,18 @@
+- delete popup
+- delete transaction
 
-- edit transaction
 - center edit popup when scrolling
 
 - combine contexts
+- enabel save only if smth was changed
 
 History:
 - show only 5
 - pages - or upload when scrolling
 
 
++ hide save btn
++ edit transaction
 + edit pop
     + set date
     + set amount
@@ -38,3 +42,6 @@ History:
 //    "start":"nodemon --watch test/mock json-server.js"
 make multiple
 https://github.com/typicode/json-server/issues/367
+
+Context
+https://dev.to/ramonak/react-context-api-updating-context-from-a-nested-component-in-functional-components-with-hooks-and-class-components-a7a

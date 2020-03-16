@@ -15,34 +15,17 @@ const EditTransactionPopup = (props) => {
                            selectedAccountName={props.transactionToEdit.selectedAccountName}
                            selectedCategoryName={props.transactionToEdit.selectedCategoryName}
                            onSaveClickedCallBack={props.onSaveClickedCallBack}
+                           onCancel={props.OnCancel}
 
             />)
 
-    };
-
-    const renderActions = () => {
-        return (
-
-            <div style={{textAlign: 'right'}}>
-                <button className='ui button blue'>Save</button>
-                <button className='ui button' onClick={props.OnCancel}>Cancel</button>
-            </div>
-
-
-        );
-
-    };
-
-    const onCancel = () => {
-        props.OnCancel();
     };
 
     return (
         <Modal
             title="Edit transaction"
             content={renderContent()}
-            actions={renderActions()}
-            onDismiss={onCancel}
+            onDismiss={() => props.OnCancel()}
         />
     );
 

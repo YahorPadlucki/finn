@@ -149,6 +149,10 @@ const InputDataForm = (props) => {
             onSaveClicked();
         }
     };
+    const renderCancelButton = () => {
+        if (props.onCancel)
+            return <button className='big ui button' onClick={() => props.onCancel()}>Cancel</button>;
+    };
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
     return (
@@ -175,7 +179,9 @@ const InputDataForm = (props) => {
                             onClick={onSaveClicked}>
                         Save
                     </button>
+                    {renderCancelButton()}
                 </div>
+
             </form>
         </div>
     );
