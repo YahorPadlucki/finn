@@ -2,13 +2,15 @@ import React, {useContext, useState} from 'react';
 import TransactionsContext from "../context/TransactionsContext";
 import EditTransactionPopup from "./EditTransactionPopup";
 import ApiContext from "../context/ApiContext";
+import DeleteTransactionPopup from "./DeleteTransactionPopup";
 
 const History = () => {
 
     const transactions = useContext(TransactionsContext);
-    const {editTransaction} = useContext(ApiContext);
+    const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
-    const [transactionToEdit,setTransactionToEdit] = useState({});
+    const [isDeletePopupActive, setDeletePopupActive] = useState(false);
+    const [transactionToEdit, setTransactionToEdit] = useState({});
 
     const formatDate = (dateStr) => {
         const dateArray = dateStr.split('-');
@@ -42,8 +44,13 @@ const History = () => {
                         <div className="mini ui button" onClick={() => {
                             setTransactionToEdit(transaction);
                             setEditPopupActive(true)
-                        }}>/</div>
-                        <div className="mini ui button red">X</div>
+                        }}>/
+                        </div>
+                        <div className="mini ui button red" onClick={() => {
+                            setTransactionToEdit(transaction);
+                            setDeletePopupActive(true)
+                        }}>X
+                        </div>
                     </div>
                 </div>
 
@@ -53,12 +60,12 @@ const History = () => {
     };
 
     function renderEditPopup() {
-        if (isEditPopupActive){
+        if (isEditPopupActive) {
 
             return <EditTransactionPopup
                 isLoaded={true}
-                transactionToEdit = {transactionToEdit}
-                onSaveClickedCallBack={(transactionData)=>{
+                transactionToEdit={transactionToEdit}
+                onSaveClickedCallBack={(transactionData) => {
                     editTransaction(transactionData);
                     hideEditPopup();
                 }}
@@ -66,7 +73,20 @@ const History = () => {
         }
     }
 
-    const hideEditPopup = ()=>setEditPopupActive(false);
+    function renderDeletePopup() {
+        if (isDeletePopupActive) {
+
+            return <DeleteTransactionPopup
+                OnDelete={() => {
+                    removeTransaction(transactionToEdit.id);
+                    hideDeletePopup();
+                }}
+                OnCancel={hideDeletePopup}/>;
+        }
+    }
+
+    const hideEditPopup = () => setEditPopupActive(false);
+    const hideDeletePopup = () => setDeletePopupActive(false);
 
     return (
         <div className="ui container"
@@ -76,6 +96,7 @@ const History = () => {
                 {renderTransactions()}
             </div>
             {renderEditPopup()}
+            {renderDeletePopup()}
         </div>
 
     )

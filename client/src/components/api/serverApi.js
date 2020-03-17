@@ -27,3 +27,11 @@ export const patchTransaction = async (data) => {
         .then(() => true)
         .catch(() => false);
 };
+
+export const deleteTransaction = async (id) => {
+    return await fetch(`http://localhost:3002/transactions/${id}`, {
+        method: 'DELETE',
+    })
+        .then(() => true)
+        .catch(() => false);
+};

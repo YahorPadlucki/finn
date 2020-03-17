@@ -1,5 +1,3 @@
-- delete popup
-- delete transaction
 
 - center edit popup when scrolling
 
@@ -11,6 +9,8 @@ History:
 - pages - or upload when scrolling
 
 
++ delete popup
++ delete transaction
 + hide save btn
 + edit transaction
 + edit pop

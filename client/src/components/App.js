@@ -6,7 +6,7 @@ import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
-import {fetchData, patchTransaction} from "./api/serverApi";
+import {deleteTransaction, fetchData, patchTransaction} from "./api/serverApi";
 import {TransactionsProvider} from "./context/TransactionsContext";
 import CategoriesContext from "./context/CategoriesContext"
 import AccountsContext from "./context/AccountsContext"
@@ -90,14 +90,22 @@ const App = () => {
 
     };
 
-    const editTransaction = async (transactionData)=>{
-        await patchTransaction(transactionData)
+    const editTransaction = async (transactionData) => {
+        await patchTransaction(transactionData);
+        fetchTransactions();
+    };
+
+    const removeTransaction = async (transactionId) => {
+        await deleteTransaction(transactionId);
         fetchTransactions();
     };
 
 
     return (
-        <ApiContext.Provider value={{editTransaction: editTransaction}}>
+        <ApiContext.Provider value={{
+            editTransaction: editTransaction,
+            removeTransaction: removeTransaction
+        }}>
             <TransactionsProvider value={transactions}>
                 <AccountsContext.Provider value={{accounts}}>
                     <CategoriesContext.Provider value={{categories}}>

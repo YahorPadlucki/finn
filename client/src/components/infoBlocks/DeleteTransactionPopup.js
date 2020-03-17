@@ -5,7 +5,7 @@ const DeleteTransactionPopup = (props) => {
 
 
     const renderContent = () => {
-        return
+        return 'Are you sure you want to delete this transaction?'
 
     };
 
@@ -13,7 +13,7 @@ const DeleteTransactionPopup = (props) => {
         return (
 
             <div style={{textAlign: 'right'}}>
-                <button className='ui button blue'>Save</button>
+                <button className='ui button red' onClick={props.OnDelete}>Delete</button>
                 <button className='ui button' onClick={props.OnCancel}>Cancel</button>
             </div>
 
@@ -28,9 +28,9 @@ const DeleteTransactionPopup = (props) => {
 
     return (
         <Modal
-            title="Edit transaction"
+            title="Delete transaction"
             content={renderContent()}
-            // actions={renderActions()}
+            actions={renderActions()}
             onDismiss={onCancel}
         />
     );

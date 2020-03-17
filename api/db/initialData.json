@@ -17,14 +17,5 @@
       "name": "Flat"
     }
   ],
-  "transactions": [
-    {
-      "total": "326",
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-13",
-      "description": "patching",
-      "id": 1
-    }
-  ]
+  "transactions": []
 }
