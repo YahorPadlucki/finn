@@ -17,5 +17,94 @@
       "name": "Flat"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": "123",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "awfw",
+      "id": 1
+    },
+    {
+      "total": "2142",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 2
+    },
+    {
+      "total": "2142",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 3
+    },
+    {
+      "total": "1242",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 4
+    },
+    {
+      "total": "1",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 5
+    },
+    {
+      "total": "1",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 6
+    },
+    {
+      "total": "2353",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 7
+    },
+    {
+      "total": "1",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 8
+    },
+    {
+      "total": "2353",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-19",
+      "description": "",
+      "id": 9
+    },
+    {
+      "total": "12421",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-20",
+      "description": "fasf",
+      "id": 10
+    },
+    {
+      "total": "2142",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-20",
+      "description": "sfaa",
+      "id": 11
+    }
+  ]
 }

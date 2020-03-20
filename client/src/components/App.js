@@ -11,6 +11,7 @@ import {TransactionsProvider} from "./context/TransactionsContext";
 import CategoriesContext from "./context/CategoriesContext"
 import AccountsContext from "./context/AccountsContext"
 import ApiContext from "./context/ApiContext"
+import './popup/Modal.css'
 
 const App = () => {
 
