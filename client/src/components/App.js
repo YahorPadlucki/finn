@@ -7,9 +7,7 @@ import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
 import {deleteTransaction, fetchData, patchTransaction} from "./api/serverApi";
-import {TransactionsProvider} from "./context/TransactionsContext";
-import CategoriesContext from "./context/CategoriesContext"
-import AccountsContext from "./context/AccountsContext"
+import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
 import './popup/Modal.css'
 
@@ -64,7 +62,14 @@ const App = () => {
     }
 
     const onAccountChanged = (selectedAccountName) => {
+        console.log("==== changed")
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
+    };
+
+    const onTransactionAdded = ()=>{
+        //TODO: initially remove money from acc
+        //if editing - then need to pass delta,
+        //if changing - need to pass old acc and initial sum
     };
 
 
@@ -107,22 +112,18 @@ const App = () => {
             editTransaction: editTransaction,
             removeTransaction: removeTransaction
         }}>
-            <TransactionsProvider value={transactions}>
-                <AccountsContext.Provider value={{accounts}}>
-                    <CategoriesContext.Provider value={{categories}}>
-                        <div className="ui container"
-                             style={{marginTop: '10px'}}>
-                            <NavigationBar
-                                selectedButtonIndex={selectedInfoBlock}
-                                onButtonClicked={onTabButtonClicked}/>
-                            <BalanceHeader account={selectedAccount.name}
-                                           balance={selectedAccount.balance}/>
-                            {renderInfoBlock()}
+            <AppContext.Provider value={{accounts, transactions, categories}}>
+                <div className="ui container"
+                     style={{marginTop: '10px'}}>
+                    <NavigationBar
+                        selectedButtonIndex={selectedInfoBlock}
+                        onButtonClicked={onTabButtonClicked}/>
+                    <BalanceHeader account={selectedAccount.name}
+                                   balance={selectedAccount.balance}/>
+                    {renderInfoBlock()}
 
-                        </div>
-                    </CategoriesContext.Provider>
-                </AccountsContext.Provider>
-            </TransactionsProvider>
+                </div>
+            </AppContext.Provider>
         </ApiContext.Provider>
     );
 

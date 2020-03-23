@@ -2,11 +2,11 @@ import React, {useContext, useState} from 'react';
 import {postTransaction} from '../api/serverApi'
 import History from "./History";
 import InputDataForm from "./InputDataForm";
-import AccountsContext from "../context/AccountsContext";
+import AppContext from "../context/AppContext";
 
 const AddTransaction = (props) => {
 
-    const {accounts} = useContext(AccountsContext);
+    const {accounts} = useContext(AppContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');

@@ -1,11 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import AccountsContext from "../context/AccountsContext";
-import CategoriesContext from "../context/CategoriesContext";
+import AppContext from "../context/AppContext";
 
 const InputDataForm = (props) => {
 
-    const {accounts} = useContext(AccountsContext);
-    const {categories} = useContext(CategoriesContext);
+    const {accounts, categories} = useContext(AppContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
     const [date, setDate] = useState(props.date);

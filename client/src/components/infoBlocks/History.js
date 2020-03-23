@@ -1,12 +1,12 @@
 import React, {useContext, useState} from 'react';
-import TransactionsContext from "../context/TransactionsContext";
 import EditTransactionPopup from "./EditTransactionPopup";
 import ApiContext from "../context/ApiContext";
 import DeleteTransactionPopup from "./DeleteTransactionPopup";
+import AppContext from "../context/AppContext";
 
 const History = () => {
 
-    const transactions = useContext(TransactionsContext);
+    const {transactions} = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);

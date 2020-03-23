@@ -1,14 +1,15 @@
-
-- center edit popup when scrolling
-
-- combine contexts
-- enabel save only if smth was changed
+- remove money from balance when adding transaction
+- money on balance when editing transaction
 
 History:
 - show only 5
 - pages - or upload when scrolling
 
+Edit popup:
+- enabel save only if smth was changed
 
++ combine contexts
++ center edit popup when scrolling
 + delete popup
 + delete transaction
 + hide save btn
