@@ -1,12 +1,13 @@
 import React, {useContext, useState} from 'react';
-import {postTransaction} from '../api/serverApi'
 import History from "./History";
 import InputDataForm from "./InputDataForm";
 import AppContext from "../context/AppContext";
+import ApiContext from "../context/ApiContext";
 
 const AddTransaction = (props) => {
 
     const {accounts} = useContext(AppContext);
+    const {addTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
@@ -14,25 +15,14 @@ const AddTransaction = (props) => {
     const onSaveClicked = async (transactionData) => {
         setIsTransactionInProcess(true);
 
-        const postResponse = await postTransaction(transactionData);
+        const postResponse = await addTransaction(transactionData);
 
         if (postResponse)
-            onSaveSuccess();
+            setTransactionStatusMessage("Transaction Saved");
         else
-            onFail();
+            setTransactionStatusMessage("Failed to Save");
 
         setIsTransactionInProcess(false);
-    };
-
-
-    const onSaveSuccess = () => {
-        setTransactionStatusMessage("Transaction Saved");
-        props.onSuccessCallBack();
-    };
-
-    const onFail = () => {
-        setTransactionStatusMessage("Failed to Save");
-
     };
 
     const renderAccounts = () => accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
@@ -57,7 +47,7 @@ const AddTransaction = (props) => {
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
                                selectedCategoryName={props.selectedCategoryName}
                                selectedAccountName={props.selectedAccountName}
-                               onAccountChanged = {props.onAccountChanged}
+                               onAccountChanged={props.onAccountChanged}
                                onSaveClickedCallBack={onSaveClicked}
 
                 />

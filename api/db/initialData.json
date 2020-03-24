@@ -41,6 +41,14 @@
       "date": "2020-03-19",
       "description": "",
       "id": 8
+    },
+    {
+      "total": "100",
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-24",
+      "description": "",
+      "id": 9
     }
   ]
 }

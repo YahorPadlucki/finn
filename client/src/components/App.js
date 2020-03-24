@@ -6,7 +6,7 @@ import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
-import {deleteTransaction, fetchData, patchTransaction} from "./api/serverApi";
+import {deleteTransaction, fetchData, patchTransaction, postTransaction} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
 import './popup/Modal.css'
@@ -66,10 +66,11 @@ const App = () => {
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
     };
 
-    const onTransactionAdded = ()=>{
+    const onTransactionAdded = () => {
         //TODO: initially remove money from acc
         //if editing - then need to pass delta,
         //if changing - need to pass old acc and initial sum
+        //if removing - also need to pass
     };
 
 
@@ -86,13 +87,20 @@ const App = () => {
                     selectedCategoryName={selectedCategoryName}
                     onAccountChanged={onAccountChanged}
                     isLoaded={isLoaded}
-                    onSuccessCallBack={fetchTransactions}
                 />;
             case 3:
                 return <History/>;
             default:
                 return null;
         }
+
+    };
+
+    const addTransaction = async (transactionData) => {
+        const postResponse = await postTransaction(transactionData);
+        selectedAccount.balance-=transactionData.total;
+        fetchTransactions();
+        return postResponse;
 
     };
 
@@ -110,9 +118,13 @@ const App = () => {
     return (
         <ApiContext.Provider value={{
             editTransaction: editTransaction,
-            removeTransaction: removeTransaction
+            removeTransaction: removeTransaction,
+            addTransaction: addTransaction
         }}>
-            <AppContext.Provider value={{accounts, transactions, categories}}>
+            <AppContext.Provider value={{
+                accounts, transactions, categories,
+
+            }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>
                     <NavigationBar
