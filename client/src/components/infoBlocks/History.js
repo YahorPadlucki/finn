@@ -78,7 +78,7 @@ const History = () => {
 
             return <DeleteTransactionPopup
                 OnDelete={() => {
-                    removeTransaction(transactionToEdit.id);
+                    removeTransaction(transactionToEdit);
                     hideDeletePopup();
                 }}
                 OnCancel={hideDeletePopup}/>;

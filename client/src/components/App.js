@@ -6,7 +6,7 @@ import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
 import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
-import {deleteTransaction, fetchData, patchTransaction, postTransaction} from "./api/serverApi";
+import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTransaction} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
 import './popup/Modal.css'
@@ -62,7 +62,6 @@ const App = () => {
     }
 
     const onAccountChanged = (selectedAccountName) => {
-        console.log("==== changed")
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
     };
 
@@ -98,7 +97,10 @@ const App = () => {
 
     const addTransaction = async (transactionData) => {
         const postResponse = await postTransaction(transactionData);
-        selectedAccount.balance-=transactionData.total;
+        selectedAccount.balance -= transactionData.total;
+
+        // console.log(accounts)
+        patchAccounts(selectedAccount);
         fetchTransactions();
         return postResponse;
 
@@ -109,9 +111,16 @@ const App = () => {
         fetchTransactions();
     };
 
-    const removeTransaction = async (transactionId) => {
-        await deleteTransaction(transactionId);
-        fetchTransactions();
+    const removeTransaction = async (transaction) => {
+        await deleteTransaction(transaction.id);
+
+        //TODO: setIsLoaded(false);
+
+        const acc = accounts.filter(acc => acc.name === transaction.account)[0];
+        acc.balance += transaction.total; // to number
+        patchAccounts(acc);
+
+        fetchInitData();
     };
 
 

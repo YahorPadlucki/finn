@@ -16,8 +16,19 @@ export const postTransaction = async (data) => {
 };
 
 export const patchTransaction = async (data) => {
-    console.log(data.id)
     return await fetch(`http://localhost:3002/transactions/${data.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => true)
+        .catch(() => false);
+};
+
+export const patchAccounts = async (data) => {
+    return await fetch(`http://localhost:3002/accounts/${data.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
