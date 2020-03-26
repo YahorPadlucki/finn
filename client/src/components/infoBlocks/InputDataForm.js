@@ -122,7 +122,7 @@ const InputDataForm = (props) => {
                 setIsInputValid(true);
 
             const transactionData = {
-                "total": amount,
+                "total": Number(amount),
                 "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
                 "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
                 "date": date,

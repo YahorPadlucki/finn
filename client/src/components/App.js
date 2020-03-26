@@ -114,11 +114,10 @@ const App = () => {
     const removeTransaction = async (transaction) => {
         await deleteTransaction(transaction.id);
 
-        //TODO: setIsLoaded(false);
 
         const acc = accounts.filter(acc => acc.name === transaction.account)[0];
         acc.balance += transaction.total; // to number
-        patchAccounts(acc);
+        await patchAccounts(acc);
 
         fetchInitData();
     };

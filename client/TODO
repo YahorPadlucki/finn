@@ -1,4 +1,4 @@
-- remove money from balance when adding transaction
+- handling server operation - block when deleting or editing
 - money on balance when editing transaction
 
 History:
@@ -8,6 +8,7 @@ History:
 Edit popup:
 - enabel save only if smth was changed
 
++ remove money from balance when adding transaction
 + combine contexts
 + center edit popup when scrolling
 + delete popup
