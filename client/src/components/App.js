@@ -96,30 +96,37 @@ const App = () => {
     };
 
     const addTransaction = async (transactionData) => {
+        setIsLoaded(false);
+
         const postResponse = await postTransaction(transactionData);
         selectedAccount.balance -= transactionData.total;
 
         // console.log(accounts)
-        patchAccounts(selectedAccount);
-        fetchTransactions();
+        await patchAccounts(selectedAccount);
+        await fetchTransactions();
+        setIsLoaded(true);
         return postResponse;
+
 
     };
 
     const editTransaction = async (transactionData) => {
         await patchTransaction(transactionData);
-        fetchTransactions();
+        await fetchTransactions();
     };
 
     const removeTransaction = async (transaction) => {
-        await deleteTransaction(transaction.id);
+        setIsLoaded(false);
 
+        await deleteTransaction(transaction.id);
 
         const acc = accounts.filter(acc => acc.name === transaction.account)[0];
         acc.balance += transaction.total; // to number
         await patchAccounts(acc);
 
-        fetchInitData();
+        await fetchInitData();
+        setIsLoaded(true);
+
     };
 
 
@@ -130,8 +137,10 @@ const App = () => {
             addTransaction: addTransaction
         }}>
             <AppContext.Provider value={{
-                accounts, transactions, categories,
-
+                accounts,
+                transactions,
+                categories,
+                isLoaded
             }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>

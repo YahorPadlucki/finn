@@ -15,7 +15,6 @@ const DeleteTransactionPopup = (props) => {
                 <button className='ui button red ' onClick={
                     () => {
                         props.OnDelete();
-                        props.OnCancel();
                     }
                 }>Delete
                 </button>

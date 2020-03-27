@@ -6,7 +6,7 @@ import AppContext from "../context/AppContext";
 
 const History = () => {
 
-    const {transactions} = useContext(AppContext);
+    const {transactions, isLoaded} = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -24,9 +24,9 @@ const History = () => {
     const renderTransactions = () => {
         if (!transactions) return <div>Loading</div>;
 
-        return transactions.map((transaction) => {
+        return transactions.map((transaction,index) => {
             return (
-                <div className="row">
+                <div className="row" key={index}>
                     <strong className="five  wide column"
                             style={{textAlign: 'left', verticalAlign: 'text-bottom'}}>
                         {formatDate(transaction.date)}
@@ -88,9 +88,14 @@ const History = () => {
     const hideEditPopup = () => setEditPopupActive(false);
     const hideDeletePopup = () => setDeletePopupActive(false);
 
+    const dimmerStyle = `ui ${isLoaded ? '' : "active"} inverted dimmer`;
     return (
-        <div className="ui container"
+
+        <div className="ui segment"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
+            <div className={dimmerStyle}>
+                <div className="ui text loader"/>
+            </div>
             <h4 style={{textAlign: 'center'}}>History</h4>
             <div className="ui centered padded grid">
                 {renderTransactions()}
@@ -98,7 +103,6 @@ const History = () => {
             {renderEditPopup()}
             {renderDeletePopup()}
         </div>
-
     )
 };
 
