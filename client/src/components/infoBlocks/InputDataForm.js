@@ -18,7 +18,7 @@ const InputDataForm = (props) => {
 
     useEffect(() => {
         // component did mount
-        console.log("did mount")
+        console.log("=== selected account "+props.selectedAccountName)
 
         if (props.amount) {
             setAmount(props.amount);
@@ -26,6 +26,7 @@ const InputDataForm = (props) => {
         } else {
             amountInput.focus();
         }
+
 
         if (props.description) {
             setDescription(props.description);

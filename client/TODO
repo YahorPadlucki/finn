@@ -1,5 +1,4 @@
-- handling server operation - block when deleting or editing
-- money on balance when editing transaction
+- edit transaction
 
 History:
 - show only 5
@@ -8,6 +7,7 @@ History:
 Edit popup:
 - enabel save only if smth was changed
 
++ handling server operation - block when deleting or editing
 + remove money from balance when adding transaction
 + combine contexts
 + center edit popup when scrolling

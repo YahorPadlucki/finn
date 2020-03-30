@@ -66,12 +66,13 @@ const History = () => {
                 isLoaded={true}
                 transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(transactionData) => {
-                    editTransaction(transactionData);
+                    editTransaction(transactionToEdit,transactionData);
                     hideEditPopup();
                 }}
                 OnCancel={hideEditPopup}/>;
         }
     }
+    
 
     function renderDeletePopup() {
         if (isDeletePopupActive) {

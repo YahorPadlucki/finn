@@ -101,7 +101,6 @@ const App = () => {
         const postResponse = await postTransaction(transactionData);
         selectedAccount.balance -= transactionData.total;
 
-        // console.log(accounts)
         await patchAccounts(selectedAccount);
         await fetchTransactions();
         setIsLoaded(true);
@@ -110,8 +109,21 @@ const App = () => {
 
     };
 
-    const editTransaction = async (transactionData) => {
-        await patchTransaction(transactionData);
+    const editTransaction = async (oldData, newData) => {
+
+
+        if (oldData.account === newData.account) {
+            const deltaAmount = oldData.total - newData.total;
+            const acc = accounts.filter(acc => acc.name === oldData.account)[0];
+            acc.balance += deltaAmount;
+            await patchAccounts(acc);
+
+        } else {
+
+        }
+
+        await patchTransaction(newData);
+
         await fetchTransactions();
     };
 
