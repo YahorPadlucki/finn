@@ -101,7 +101,8 @@ const App = () => {
         const postResponse = await postTransaction(transactionData);
         selectedAccount.balance -= transactionData.total;
 
-        await patchAccounts(selectedAccount);
+        const result = await patchAccounts(selectedAccount);
+        console.log(result)
         await fetchTransactions();
         setIsLoaded(true);
         return postResponse;
@@ -120,6 +121,14 @@ const App = () => {
 
         } else {
 
+            const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
+            oldAcc.balance += newData.total;
+
+            const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
+            newAcc.balance -= newData.total;
+
+            await patchAccounts(oldAcc);
+            await patchAccounts(newAcc);
         }
 
         await patchTransaction(newData);

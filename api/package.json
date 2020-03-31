@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
 
-    "start": "json-server -p 3002 -w db/initialData.json"
+    "start": "json-server --watch db/initialData.json"
   },
   "author": "",
   "license": "ISC",

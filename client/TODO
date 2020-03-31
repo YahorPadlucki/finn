@@ -1,4 +1,4 @@
-- edit transaction
+- server issue with queue of operations (catching errors)
 
 History:
 - show only 5
@@ -7,6 +7,7 @@ History:
 Edit popup:
 - enabel save only if smth was changed
 
++ edit transaction
 + handling server operation - block when deleting or editing
 + remove money from balance when adding transaction
 + combine contexts

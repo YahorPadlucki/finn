@@ -1,10 +1,12 @@
+const port = 3000;
+
 export const fetchData = async (dataUrl) => {
-    const response = await fetch(`http://localhost:3002/${dataUrl}`);
+    const response = await fetch(`http://localhost:${port}/${dataUrl}`);
     return await response.json();
 };
 
 export const postTransaction = async (data) => {
-    return await fetch(`http://localhost:3002/transactions`, {
+    return await fetch(`http://localhost:${port}/transactions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -16,7 +18,7 @@ export const postTransaction = async (data) => {
 };
 
 export const patchTransaction = async (data) => {
-    return await fetch(`http://localhost:3002/transactions/${data.id}`, {
+    return await fetch(`http://localhost:${port}/transactions/${data.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -28,7 +30,7 @@ export const patchTransaction = async (data) => {
 };
 
 export const patchAccounts = async (data) => {
-    return await fetch(`http://localhost:3002/accounts/${data.id}`, {
+    return await fetch(`http://localhost:${port}/accounts/${data.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +42,7 @@ export const patchAccounts = async (data) => {
 };
 
 export const deleteTransaction = async (id) => {
-    return await fetch(`http://localhost:3002/transactions/${id}`, {
+    return await fetch(`http://localhost:${port}/transactions/${id}`, {
         method: 'DELETE',
     })
         .then(() => true)

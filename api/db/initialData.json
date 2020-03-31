@@ -3,12 +3,12 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 2000
+      "balance": 1990
     },
     {
       "id": 2,
       "name": "Cash",
-      "balance": 100
+      "balance": 200
     }
   ],
   "categories": [
@@ -20,6 +20,85 @@
     }
   ],
   "transactions": [
-
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 1
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 2
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 3
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 4
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 5
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 6
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 7
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 8
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 9
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-31",
+      "description": "",
+      "id": 10
+    }
   ]
 }
