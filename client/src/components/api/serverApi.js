@@ -1,7 +1,10 @@
-const port = 3000;
+const port = 3002;
 
 export const fetchData = async (dataUrl) => {
-    const response = await fetch(`http://localhost:${port}/${dataUrl}`);
+    const response = await fetch(`http://localhost:${port}/${dataUrl}`)
+        .catch(() => false);
+    if (!response)
+        return false;
     return await response.json();
 };
 
@@ -14,7 +17,7 @@ export const postTransaction = async (data) => {
         body: JSON.stringify(data)
     })
         .then(() => true)
-        .catch(() => false);
+        .catch((e) => e);
 };
 
 export const patchTransaction = async (data) => {
@@ -26,7 +29,7 @@ export const patchTransaction = async (data) => {
         body: JSON.stringify(data)
     })
         .then(() => true)
-        .catch(() => false);
+        .catch((e) => e);
 };
 
 export const patchAccounts = async (data) => {
@@ -38,7 +41,7 @@ export const patchAccounts = async (data) => {
         body: JSON.stringify(data)
     })
         .then(() => true)
-        .catch(() => false);
+        .catch((e) => e);
 };
 
 export const deleteTransaction = async (id) => {
@@ -46,5 +49,5 @@ export const deleteTransaction = async (id) => {
         method: 'DELETE',
     })
         .then(() => true)
-        .catch(() => false);
+        .catch((e) => e);
 };

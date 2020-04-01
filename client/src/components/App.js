@@ -38,28 +38,37 @@ const App = () => {
 
     async function fetchInitData() {
 
-        const accounts = await fetchDataType(ACCOUNTS);
-        setAccounts(accounts);
-        setSelectedAccount(accounts[0]);
+        const accounts = await fetchData(ACCOUNTS);
+        if (accounts) {
+            setAccounts(accounts);
+            setSelectedAccount(accounts[0]);
+        }
 
-        const categories = await fetchDataType(CATEGORIES);
-        setCategories(categories);
-        setSelectedCategoryName(categories[0].name);
+
+        const categories = await fetchData(CATEGORIES);
+        if (categories) {
+            setCategories(categories);
+            setSelectedCategoryName(categories[0].name);
+        }
+
 
         await fetchTransactions();
         setIsLoaded(true);
     }
 
     const fetchTransactions = async () => {
-        const transactions = await fetchDataType(TRANSACTIONS);
-        transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
-        setTransactions(transactions);
+        //TODO handle
+        const transactions = await fetchData(TRANSACTIONS);
+        if (transactions) {
+            transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
+            setTransactions(transactions);
+        } else {
+            await fetchTransactions();
+        }
+
+
     };
 
-    async function fetchDataType(type) {
-        const result = await fetchData(type);
-        return result;
-    }
 
     const onAccountChanged = (selectedAccountName) => {
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
