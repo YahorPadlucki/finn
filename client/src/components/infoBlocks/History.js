@@ -12,6 +12,8 @@ const History = () => {
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
     const [transactionToEdit, setTransactionToEdit] = useState({});
 
+    const [itemsToShow, setItemsToShow] = useState(5);
+
     const formatDate = (dateStr) => {
         const dateArray = dateStr.split('-');
         const day = dateArray[dateArray.length - 1];
@@ -20,11 +22,15 @@ const History = () => {
         return `${day}.${month}`;
     };
 
+    const showMore = () => {
+        setItemsToShow(transactions.length)
+    };
+
 
     const renderTransactions = () => {
         if (!transactions) return <div>Loading</div>;
 
-        return transactions.map((transaction,index) => {
+        return transactions.slice(0, itemsToShow).map((transaction, index) => {
             return (
                 <div className="row" key={index}>
                     <strong className="five  wide column"
@@ -66,13 +72,13 @@ const History = () => {
                 isLoaded={true}
                 transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(transactionData) => {
-                    editTransaction(transactionToEdit,transactionData);
+                    editTransaction(transactionToEdit, transactionData);
                     hideEditPopup();
                 }}
                 OnCancel={hideEditPopup}/>;
         }
     }
-    
+
 
     function renderDeletePopup() {
         if (isDeletePopupActive) {

@@ -1,4 +1,5 @@
-- server issue with queue of operations (catching errors)
+- handling server errors ( when didn't get response - how to update balance)
+
 
 History:
 - show only 5

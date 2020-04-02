@@ -74,14 +74,6 @@ const App = () => {
         setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
     };
 
-    const onTransactionAdded = () => {
-        //TODO: initially remove money from acc
-        //if editing - then need to pass delta,
-        //if changing - need to pass old acc and initial sum
-        //if removing - also need to pass
-    };
-
-
     const renderInfoBlock = () => {
 
         switch (selectedInfoBlock) {
@@ -110,8 +102,7 @@ const App = () => {
         const postResponse = await postTransaction(transactionData);
         selectedAccount.balance -= transactionData.total;
 
-        const result = await patchAccounts(selectedAccount);
-        console.log(result)
+        await patchAccounts(selectedAccount);
         await fetchTransactions();
         setIsLoaded(true);
         return postResponse;
@@ -120,7 +111,6 @@ const App = () => {
     };
 
     const editTransaction = async (oldData, newData) => {
-
 
         if (oldData.account === newData.account) {
             const deltaAmount = oldData.total - newData.total;
