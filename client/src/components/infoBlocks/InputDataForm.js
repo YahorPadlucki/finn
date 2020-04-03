@@ -18,7 +18,7 @@ const InputDataForm = (props) => {
 
     useEffect(() => {
         // component did mount
-        console.log("=== selected account "+props.selectedAccountName)
+        console.log("=== selected account " + props.selectedAccountName)
 
         if (props.amount) {
             setAmount(props.amount);
@@ -122,11 +122,17 @@ const InputDataForm = (props) => {
             if (!isInputValid)
                 setIsInputValid(true);
 
+            // const month = date.
+            const dateData = date.split('-');
+
             const transactionData = {
                 "total": Number(amount),
                 "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
                 "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
                 "date": date,
+                "year": dateData[0],
+                "month": dateData[1],
+                "day": dateData[2],
                 "description": description
             };
 

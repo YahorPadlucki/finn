@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1925
+      "balance": 1909
     },
     {
       "id": 2,
@@ -21,204 +21,26 @@
   ],
   "transactions": [
     {
-      "total": 1,
+      "total": 2,
       "account": "Card",
       "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 1
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 2
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
+      "date": "2020-03-03",
+      "year": "2020",
+      "month": "03",
+      "day": "03",
       "description": "",
       "id": 3
     },
     {
-      "total": 1,
+      "total": 2,
       "account": "Card",
       "category": "Food",
-      "date": "2020-04-02",
+      "date": "2020-03-03",
+      "year": "2020",
+      "month": "03",
+      "day": "03",
       "description": "",
       "id": 4
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 5
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 6
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 7
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 8
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 9
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 10
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 11
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 12
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 13
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 14
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 15
-    },
-    {
-      "total": 4,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 16
-    },
-    {
-      "total": 4,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 17
-    },
-    {
-      "total": 4,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 18
-    },
-    {
-      "total": 4,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 19
-    },
-    {
-      "total": 4,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 20
-    },
-    {
-      "total": 5,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 21
-    },
-    {
-      "total": 5,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 22
-    },
-    {
-      "total": 5,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 23
-    },
-    {
-      "total": 5,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 24
-    },
-    {
-      "total": 5,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-02",
-      "description": "",
-      "id": 25
     }
   ]
 }

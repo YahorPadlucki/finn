@@ -24,13 +24,14 @@ const History = () => {
 
     const showMore = () => {
         setItemsToShow(transactions.length)
+        // transactions.slice(0, itemsToShow)
     };
 
 
     const renderTransactions = () => {
         if (!transactions) return <div>Loading</div>;
 
-        return transactions.slice(0, itemsToShow).map((transaction, index) => {
+        return transactions.map((transaction, index) => {
             return (
                 <div className="row" key={index}>
                     <strong className="five  wide column"

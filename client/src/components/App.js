@@ -58,7 +58,7 @@ const App = () => {
 
     const fetchTransactions = async () => {
         //TODO handle
-        const transactions = await fetchData(TRANSACTIONS);
+        const transactions = await fetchData(TRANSACTIONS+`?year=2020&month=04`);
         if (transactions) {
             transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
             setTransactions(transactions);
