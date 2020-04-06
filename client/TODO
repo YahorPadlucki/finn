@@ -1,12 +1,15 @@
-- handling server errors ( when didn't get response - how to update balance)
-
+- load first 10 transaction, then if needed 10 more etc
+- load data for selected date "+?year=2020&month=04"
 
 History:
+
 - show only 5
 - pages - or upload when scrolling
 
 Edit popup:
 - enabel save only if smth was changed
+
+- handling server errors ( when didn't get response - how to update balance)
 
 + edit transaction
 + handling server operation - block when deleting or editing

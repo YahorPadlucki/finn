@@ -23,6 +23,8 @@ const App = () => {
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
+
     const onTabButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
         console.log(selectedButtonIndex)
@@ -58,16 +60,23 @@ const App = () => {
 
     const fetchTransactions = async () => {
         //TODO handle
-        const transactions = await fetchData(TRANSACTIONS+`?year=2020&month=04`);
+        const transactions = await fetchData(TRANSACTIONS + `?_page=1&_limit=${loadTransactionsLimit}`);
         if (transactions) {
             transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
             setTransactions(transactions);
         } else {
             await fetchTransactions();
         }
-
-
+        // if(loadTransactionsLimit>=transactions.length)
+        // {
+        // TODO: detect that no more transaction can be loaded....
+        //     ?? allTransactionsLoaded
+        // }
     };
+
+    const showMoreTransactionsClicked = () => {
+        console.log("show more clicked")
+    }
 
 
     const onAccountChanged = (selectedAccountName) => {
@@ -89,7 +98,7 @@ const App = () => {
                     isLoaded={isLoaded}
                 />;
             case 3:
-                return <History/>;
+                return <History itemsToShow={10}/>;
             default:
                 return null;
         }
@@ -160,7 +169,8 @@ const App = () => {
                 accounts,
                 transactions,
                 categories,
-                isLoaded
+                isLoaded,
+                showMoreTransactionsClicked:showMoreTransactionsClicked
             }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>

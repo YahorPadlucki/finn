@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1909
+      "balance": 1865
     },
     {
       "id": 2,
@@ -41,6 +41,94 @@
       "day": "03",
       "description": "",
       "id": 4
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 5
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 6
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 7
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 8
+    },
+    {
+      "total": 10,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 9
+    },
+    {
+      "total": 10,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 10
+    },
+    {
+      "total": 10,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 11
+    },
+    {
+      "total": 10,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-06",
+      "year": "2020",
+      "month": "04",
+      "day": "06",
+      "description": "",
+      "id": 12
     }
   ]
 }

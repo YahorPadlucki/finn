@@ -53,7 +53,7 @@ const AddTransaction = (props) => {
                 />
             </div>
             <div style={{textAlign: 'center'}}>{transactionStatusMessage}</div>
-            <History/>
+            <History itemsToShow={5}/>
         </div>
 
     )

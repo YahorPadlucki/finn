@@ -1,18 +1,18 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import EditTransactionPopup from "./EditTransactionPopup";
 import ApiContext from "../context/ApiContext";
 import DeleteTransactionPopup from "./DeleteTransactionPopup";
 import AppContext from "../context/AppContext";
 
-const History = () => {
+const History = (props) => {
 
-    const {transactions, isLoaded} = useContext(AppContext);
+    const {transactions, isLoaded, showMoreTransactionsClicked} = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
     const [transactionToEdit, setTransactionToEdit] = useState({});
 
-    const [itemsToShow, setItemsToShow] = useState(5);
+    const [itemsToShow, setItemsToShow] = useState(props.itemsToShow);
 
     const formatDate = (dateStr) => {
         const dateArray = dateStr.split('-');
@@ -21,6 +21,14 @@ const History = () => {
 
         return `${day}.${month}`;
     };
+
+    useEffect(() => {
+        // component did mount
+        setItemsToShow(props.itemsToShow)
+        console.log("history did mount " + props.itemsToShow)
+        // fetchInitData();
+
+    }, []);
 
     const showMore = () => {
         setItemsToShow(transactions.length)
@@ -31,7 +39,7 @@ const History = () => {
     const renderTransactions = () => {
         if (!transactions) return <div>Loading</div>;
 
-        return transactions.map((transaction, index) => {
+        return transactions.slice(0, itemsToShow).map((transaction, index) => {
             return (
                 <div className="row" key={index}>
                     <strong className="five  wide column"
@@ -107,7 +115,9 @@ const History = () => {
             <h4 style={{textAlign: 'center'}}>History</h4>
             <div className="ui centered padded grid">
                 {renderTransactions()}
+                <button className="ui button" onClick={showMoreTransactionsClicked}>Show more</button>
             </div>
+
             {renderEditPopup()}
             {renderDeletePopup()}
         </div>
