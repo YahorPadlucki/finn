@@ -60,9 +60,8 @@ const App = () => {
 
     const fetchTransactions = async () => {
         //TODO handle
-        const transactions = await fetchData(TRANSACTIONS + `?_page=1&_limit=${loadTransactionsLimit}`);
+        const transactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&_page=1`);
         if (transactions) {
-            transactions.sort((a, b) => (a.id < b.id) ? 1 : -1);
             setTransactions(transactions);
         } else {
             await fetchTransactions();
@@ -74,9 +73,12 @@ const App = () => {
         // }
     };
 
-    const showMoreTransactionsClicked = () => {
-        console.log("show more clicked")
-    }
+    const loadMoreTransactions = () => {
+
+        console.log("Load more")
+        // setLoadTransactionsLimit(loadTransactionsLimit + 10);
+        // fetchTransactions()
+    };
 
 
     const onAccountChanged = (selectedAccountName) => {
@@ -170,7 +172,7 @@ const App = () => {
                 transactions,
                 categories,
                 isLoaded,
-                showMoreTransactionsClicked:showMoreTransactionsClicked
+                loadMoreTransactions: loadMoreTransactions
             }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>

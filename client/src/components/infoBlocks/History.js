@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import EditTransactionPopup from "./EditTransactionPopup";
 import ApiContext from "../context/ApiContext";
 import DeleteTransactionPopup from "./DeleteTransactionPopup";
@@ -6,7 +6,7 @@ import AppContext from "../context/AppContext";
 
 const History = (props) => {
 
-    const {transactions, isLoaded, showMoreTransactionsClicked} = useContext(AppContext);
+    const {transactions, isLoaded, loadMoreTransactions} = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -30,9 +30,14 @@ const History = (props) => {
 
     }, []);
 
-    const showMore = () => {
-        setItemsToShow(transactions.length)
-        // transactions.slice(0, itemsToShow)
+    const showMoreClicked = () => {
+
+        const newItemsToShowAmount = itemsToShow + 5;
+        if (itemsToShow < transactions.length) {
+            setItemsToShow(newItemsToShowAmount);
+        }
+        if (newItemsToShowAmount >= transactions.length)
+            loadMoreTransactions()
     };
 
 
@@ -101,6 +106,19 @@ const History = (props) => {
         }
     }
 
+    function renderShowMoreButton() {
+        if (itemsToShow >= transactions.length)
+            return;
+
+        return (
+            <button
+                className="ui button"
+                onClick={showMoreClicked}>
+                Show more
+            </button>
+        );
+    }
+
     const hideEditPopup = () => setEditPopupActive(false);
     const hideDeletePopup = () => setDeletePopupActive(false);
 
@@ -115,7 +133,7 @@ const History = (props) => {
             <h4 style={{textAlign: 'center'}}>History</h4>
             <div className="ui centered padded grid">
                 {renderTransactions()}
-                <button className="ui button" onClick={showMoreTransactionsClicked}>Show more</button>
+                {renderShowMoreButton()}
             </div>
 
             {renderEditPopup()}

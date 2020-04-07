@@ -7,7 +7,7 @@ const AppContext = createContext({
     isLoaded: false,
 
     allTransactionsLoaded: false,
-    showMoreTransactionsClicked: () => {
+    loadMoreTransactions: () => {
 
     }
 });
