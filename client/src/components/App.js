@@ -24,6 +24,8 @@ const App = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
+    const [isAllTransactionsLoaded, setIsAllTransactionsLoaded] = useState(false);
+
 
     const onTabButtonClicked = (selectedButtonIndex) => {
         setSelectedInfoBlock(selectedButtonIndex);
@@ -37,6 +39,13 @@ const App = () => {
         fetchInitData();
 
     }, []);
+
+    useEffect(() => {
+        // component did mount
+        console.log("loadTransactionsLimit changed")
+        fetchTransactions();
+
+    }, [loadTransactionsLimit]);
 
     async function fetchInitData() {
 
@@ -59,25 +68,26 @@ const App = () => {
     }
 
     const fetchTransactions = async () => {
-        //TODO handle
-        const transactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&_page=1`);
-        if (transactions) {
-            setTransactions(transactions);
+
+        const newTransactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&_page=1&_limit=${loadTransactionsLimit}`);
+        if (newTransactions) {
+
+            setIsAllTransactionsLoaded((newTransactions.length === transactions.length) || (newTransactions.length < loadTransactionsLimit));
+            //TODO case with first load
+
+            console.log("loaded: " + newTransactions.length)
+
+            setTransactions(newTransactions);
         } else {
             await fetchTransactions();
         }
-        // if(loadTransactionsLimit>=transactions.length)
-        // {
-        // TODO: detect that no more transaction can be loaded....
-        //     ?? allTransactionsLoaded
-        // }
+
     };
 
     const loadMoreTransactions = () => {
 
-        console.log("Load more")
-        // setLoadTransactionsLimit(loadTransactionsLimit + 10);
-        // fetchTransactions()
+        setLoadTransactionsLimit(loadTransactionsLimit + 10);
+
     };
 
 
@@ -172,6 +182,7 @@ const App = () => {
                 transactions,
                 categories,
                 isLoaded,
+                isAllTransactionsLoaded,
                 loadMoreTransactions: loadMoreTransactions
             }}>
                 <div className="ui container"

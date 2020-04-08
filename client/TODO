@@ -1,6 +1,7 @@
-- load first 10 transaction, then if needed 10 more etc
+- issue with history tab - load all on main tab - then switch to history tab
 - load data for selected date "+?year=2020&month=04"
 
++ load first 10 transaction, then if needed 10 more etc
 History:
 
 - show only 5

@@ -7,6 +7,7 @@ const AppContext = createContext({
     isLoaded: false,
 
     allTransactionsLoaded: false,
+    isAllTransactionsLoaded:false,
     loadMoreTransactions: () => {
 
     }

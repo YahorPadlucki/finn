@@ -6,7 +6,7 @@ import AppContext from "../context/AppContext";
 
 const History = (props) => {
 
-    const {transactions, isLoaded, loadMoreTransactions} = useContext(AppContext);
+    const {transactions, isLoaded, loadMoreTransactions, isAllTransactionsLoaded} = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -29,16 +29,6 @@ const History = (props) => {
         // fetchInitData();
 
     }, []);
-
-    const showMoreClicked = () => {
-
-        const newItemsToShowAmount = itemsToShow + 5;
-        if (itemsToShow < transactions.length) {
-            setItemsToShow(newItemsToShowAmount);
-        }
-        if (newItemsToShowAmount >= transactions.length)
-            loadMoreTransactions()
-    };
 
 
     const renderTransactions = () => {
@@ -106,8 +96,9 @@ const History = (props) => {
         }
     }
 
+
     function renderShowMoreButton() {
-        if (itemsToShow >= transactions.length)
+        if (isAllTransactionsLoaded)
             return;
 
         return (
@@ -118,6 +109,25 @@ const History = (props) => {
             </button>
         );
     }
+
+    const showMoreClicked = () => {
+
+        let newItemsToShowAmount = itemsToShow + 5;
+
+        // if(!isAllTransactionsLoaded)
+            setItemsToShow(newItemsToShowAmount);
+        // if (itemsToShow < transactions.length) {
+
+        // }
+
+        console.log("itemsToShow "+itemsToShow)
+
+        if (newItemsToShowAmount > transactions.length) {
+            loadMoreTransactions();
+        }
+
+    };
+
 
     const hideEditPopup = () => setEditPopupActive(false);
     const hideDeletePopup = () => setDeletePopupActive(false);
