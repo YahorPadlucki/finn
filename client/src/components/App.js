@@ -110,7 +110,8 @@ const App = () => {
                     isLoaded={isLoaded}
                 />;
             case 3:
-                return <History itemsToShow={10}/>;
+                return <History itemsToShow={10}
+                                isHistoryTab={true}/>;
             default:
                 return null;
         }

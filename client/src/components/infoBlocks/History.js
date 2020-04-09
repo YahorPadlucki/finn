@@ -6,7 +6,12 @@ import AppContext from "../context/AppContext";
 
 const History = (props) => {
 
-    const {transactions, isLoaded, loadMoreTransactions, isAllTransactionsLoaded} = useContext(AppContext);
+    const {
+        transactions,
+        isLoaded,
+        loadMoreTransactions,
+        isAllTransactionsLoaded
+    } = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -25,9 +30,17 @@ const History = (props) => {
     useEffect(() => {
         // component did mount
         setItemsToShow(props.itemsToShow)
-        console.log("history did mount " + props.itemsToShow)
-        // fetchInitData();
 
+        const date = new Date();
+        const currentYear = date.getFullYear().toString()
+        const currentMonth = date.getMonth()
+
+        console.log(currentYear)
+        console.log(currentMonth)
+
+
+            // + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
+            // '-' + date.getDate().toString().padStart(2, 0);
     }, []);
 
 
@@ -98,7 +111,7 @@ const History = (props) => {
 
 
     function renderShowMoreButton() {
-        if (isAllTransactionsLoaded)
+        if (isAllTransactionsLoaded && itemsToShow >= transactions.length)
             return;
 
         return (
@@ -114,18 +127,35 @@ const History = (props) => {
 
         let newItemsToShowAmount = itemsToShow + 5;
 
-        // if(!isAllTransactionsLoaded)
-            setItemsToShow(newItemsToShowAmount);
-        // if (itemsToShow < transactions.length) {
-
-        // }
-
-        console.log("itemsToShow "+itemsToShow)
+        setItemsToShow(newItemsToShowAmount);
+        console.log("itemsToShow " + itemsToShow)
 
         if (newItemsToShowAmount > transactions.length) {
             loadMoreTransactions();
         }
 
+    };
+
+    const renderDateSelection = () => {
+
+        if (props.isHistoryTab) {
+
+
+            return (
+                <div>
+                    <select className="ui search dropdown">
+                        <option value="">Month</option>
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                    </select>
+                    <select className="ui search dropdown">
+                        <option value="">Year</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </div>
+            )
+        }
     };
 
 
@@ -141,6 +171,7 @@ const History = (props) => {
                 <div className="ui text loader"/>
             </div>
             <h4 style={{textAlign: 'center'}}>History</h4>
+            {renderDateSelection()}
             <div className="ui centered padded grid">
                 {renderTransactions()}
                 {renderShowMoreButton()}

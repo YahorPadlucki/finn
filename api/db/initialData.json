@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1854
+      "balance": 2000
     },
     {
       "id": 2,
@@ -19,127 +19,5 @@
       "name": "Flat"
     }
   ],
-  "transactions": [
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-03",
-      "year": "2020",
-      "month": "03",
-      "day": "03",
-      "description": "",
-      "id": 3
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-03",
-      "year": "2020",
-      "month": "03",
-      "day": "03",
-      "description": "",
-      "id": 4
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 5
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 6
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 7
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 8
-    },
-    {
-      "total": 10,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 9
-    },
-    {
-      "total": 10,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 10
-    },
-    {
-      "total": 10,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 11
-    },
-    {
-      "total": 10,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-06",
-      "year": "2020",
-      "month": "04",
-      "day": "06",
-      "description": "",
-      "id": 12
-    },
-    {
-      "total": 11,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-07",
-      "year": "2020",
-      "month": "04",
-      "day": "07",
-      "description": "",
-      "id": 13
-    }
-  ]
+  "transactions": []
 }
