@@ -2,7 +2,8 @@ import React, {createContext} from 'react'
 
 const AppContext = createContext({
     accounts: ['1', '2'],
-    transactions: ["1", "1"],
+    latestTransactions: ["1", "1"],
+    historyTransactions: [],
     categories: ["1"],
     isLoaded: false,
 

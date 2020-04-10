@@ -15,7 +15,8 @@ const App = () => {
 
     const [accounts, setAccounts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [transactions, setTransactions] = useState([]);
+    const [latestTransactions, setLatestTransactions] = useState([]);
+    const [historyTransactions, setHistoryTransactions] = useState([]);
 
     const [selectedAccount, setSelectedAccount] = useState('');
     const [selectedCategoryName, setSelectedCategoryName] = useState('');
@@ -43,7 +44,7 @@ const App = () => {
     useEffect(() => {
         // component did mount
         console.log("loadTransactionsLimit changed")
-        fetchTransactions();
+        fetchLatestTransactions();
 
     }, [loadTransactionsLimit]);
 
@@ -63,23 +64,23 @@ const App = () => {
         }
 
 
-        await fetchTransactions();
+        await fetchLatestTransactions();
         setIsLoaded(true);
     }
 
-    const fetchTransactions = async () => {
+    const fetchLatestTransactions = async () => {
 
         const newTransactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&_page=1&_limit=${loadTransactionsLimit}`);
         if (newTransactions) {
 
-            setIsAllTransactionsLoaded((newTransactions.length === transactions.length) || (newTransactions.length < loadTransactionsLimit));
+            setIsAllTransactionsLoaded((newTransactions.length === latestTransactions.length) || (newTransactions.length < loadTransactionsLimit));
             //TODO case with first load
 
             console.log("loaded: " + newTransactions.length)
 
-            setTransactions(newTransactions);
+            setLatestTransactions(newTransactions);
         } else {
-            await fetchTransactions();
+            await fetchLatestTransactions();
         }
 
     };
@@ -125,7 +126,7 @@ const App = () => {
         selectedAccount.balance -= transactionData.total;
 
         await patchAccounts(selectedAccount);
-        await fetchTransactions();
+        await fetchLatestTransactions();
         setIsLoaded(true);
         return postResponse;
 
@@ -154,7 +155,7 @@ const App = () => {
 
         await patchTransaction(newData);
 
-        await fetchTransactions();
+        await fetchLatestTransactions();
     };
 
     const removeTransaction = async (transaction) => {
@@ -180,7 +181,8 @@ const App = () => {
         }}>
             <AppContext.Provider value={{
                 accounts,
-                transactions,
+                latestTransactions,
+                historyTransactions:historyTransactions,
                 categories,
                 isLoaded,
                 isAllTransactionsLoaded,

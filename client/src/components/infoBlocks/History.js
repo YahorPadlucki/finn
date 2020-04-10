@@ -7,7 +7,8 @@ import AppContext from "../context/AppContext";
 const History = (props) => {
 
     const {
-        transactions,
+        latestTransactions,
+        historyTransactions,
         isLoaded,
         loadMoreTransactions,
         isAllTransactionsLoaded
@@ -16,8 +17,11 @@ const History = (props) => {
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
     const [transactionToEdit, setTransactionToEdit] = useState({});
+    const [selectedDate, setSelectedDate] = useState({month: 1, year: 2020});
 
     const [itemsToShow, setItemsToShow] = useState(props.itemsToShow);
+    const [transactions, setTransactions] = useState([]);
+
 
     const formatDate = (dateStr) => {
         const dateArray = dateStr.split('-');
@@ -32,16 +36,21 @@ const History = (props) => {
         setItemsToShow(props.itemsToShow)
 
         const date = new Date();
-        const currentYear = date.getFullYear().toString()
-        const currentMonth = date.getMonth()
+        const year = date.getFullYear();
+        const month = date.getMonth();
 
-        console.log(currentYear)
-        console.log(currentMonth)
+        setSelectedDate({month, year})
 
+        console.log("Did mount")
 
-            // + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
-            // '-' + date.getDate().toString().padStart(2, 0);
+        // + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
+        // '-' + date.getDate().toString().padStart(2, 0);
     }, []);
+
+    useEffect(() => {
+        setTransactions(latestTransactions);
+
+    }, [latestTransactions])
 
 
     const renderTransactions = () => {
@@ -140,15 +149,15 @@ const History = (props) => {
 
         if (props.isHistoryTab) {
 
-
             return (
                 <div>
-                    <select className="ui search dropdown">
+                    <select className="ui search dropdown" value={selectedDate.month}>
                         <option value="">Month</option>
                         <option value="1">Jan</option>
                         <option value="2">Feb</option>
+                        <option value="3">Mar</option>
                     </select>
-                    <select className="ui search dropdown">
+                    <select className="ui search dropdown" value={selectedDate.year}>
                         <option value="">Year</option>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
