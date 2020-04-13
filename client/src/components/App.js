@@ -75,15 +75,26 @@ const App = () => {
 
             setIsAllTransactionsLoaded((newTransactions.length === latestTransactions.length) || (newTransactions.length < loadTransactionsLimit));
             //TODO case with first load
-
-            console.log("loaded: " + newTransactions.length)
-
             setLatestTransactions(newTransactions);
         } else {
             await fetchLatestTransactions();
         }
 
     };
+
+    const fetchHistoryTransactions = async (year, month) => {
+
+        console.log("fetch history "+month)
+        console.log("fetch history "+year)
+        const newTransactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&year=${year}&month=${month}`);
+        if (newTransactions) {
+            setHistoryTransactions(newTransactions);
+        } else {
+            await fetchHistoryTransactions();
+        }
+
+    };
+
 
     const loadMoreTransactions = () => {
 
@@ -182,11 +193,12 @@ const App = () => {
             <AppContext.Provider value={{
                 accounts,
                 latestTransactions,
-                historyTransactions:historyTransactions,
+                historyTransactions,
                 categories,
                 isLoaded,
                 isAllTransactionsLoaded,
-                loadMoreTransactions: loadMoreTransactions
+                loadMoreTransactions: loadMoreTransactions,
+                fetchHistoryTransactions: fetchHistoryTransactions
             }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>

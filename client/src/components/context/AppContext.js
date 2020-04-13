@@ -8,9 +8,10 @@ const AppContext = createContext({
     isLoaded: false,
 
     allTransactionsLoaded: false,
-    isAllTransactionsLoaded:false,
+    isAllTransactionsLoaded: false,
     loadMoreTransactions: () => {
-
+    },
+    fetchHistoryTransactions: (year, month) => {
     }
 });
 

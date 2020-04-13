@@ -11,7 +11,8 @@ const History = (props) => {
         historyTransactions,
         isLoaded,
         loadMoreTransactions,
-        isAllTransactionsLoaded
+        isAllTransactionsLoaded,
+        fetchHistoryTransactions
     } = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
@@ -37,9 +38,12 @@ const History = (props) => {
 
         const date = new Date();
         const year = date.getFullYear();
-        const month = date.getMonth();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
 
-        setSelectedDate({month, year})
+        setSelectedDate({month, year});
+
+        fetchHistoryTransactions(year, month)
+
 
         console.log("Did mount")
 
@@ -48,9 +52,23 @@ const History = (props) => {
     }, []);
 
     useEffect(() => {
-        setTransactions(latestTransactions);
+        if (props.isHistoryTab) {
+            setTransactions(historyTransactions);
+            setItemsToShow(historyTransactions.length);
+        } else {
 
-    }, [latestTransactions])
+            setTransactions(latestTransactions);
+            // setItemsToShow()
+        }
+
+    }, [latestTransactions, historyTransactions]);
+
+    useEffect(() => {
+        if (props.isHistoryTab) {
+            fetchHistoryTransactions(selectedDate.year, selectedDate.month);
+        }
+
+    }, [selectedDate]);
 
 
     const renderTransactions = () => {
@@ -120,7 +138,7 @@ const History = (props) => {
 
 
     function renderShowMoreButton() {
-        if (isAllTransactionsLoaded && itemsToShow >= transactions.length)
+        if (props.isHistoryTab || isAllTransactionsLoaded && itemsToShow >= transactions.length)
             return;
 
         return (
@@ -151,20 +169,31 @@ const History = (props) => {
 
             return (
                 <div>
-                    <select className="ui search dropdown" value={selectedDate.month}>
-                        <option value="">Month</option>
-                        <option value="1">Jan</option>
-                        <option value="2">Feb</option>
-                        <option value="3">Mar</option>
+                    <select className="ui search dropdown"
+                            value={selectedDate.month}
+                            onChange={e => setSelectedMonth(e.target.value)}>
+                        <option value="01">Jan</option>
+                        <option value="02">Feb</option>
+                        <option value="03">Mar</option>
+                        <option value="04">Apr</option>
                     </select>
-                    <select className="ui search dropdown" value={selectedDate.year}>
-                        <option value="">Year</option>
+                    <select className="ui search dropdown"
+                            value={selectedDate.year}
+                            onChange={e => setSelectedYear(e.target.value)}>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                     </select>
                 </div>
             )
         }
+    };
+
+    const setSelectedMonth = (month) => {
+        setSelectedDate({month, year: selectedDate.year});
+    };
+
+    const setSelectedYear = (year) => {
+        setSelectedDate({month: selectedDate.month, year});
     };
 
 

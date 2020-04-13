@@ -1,8 +1,11 @@
 History:
-- divide history latest and history month component?
-- on main page - show latest
-- on history page - show year month drop down and current month transactions
-- load data for selected date "+?year=2020&month=04"
+- check show more button functionality
+
++ divide history latest and history month component?
++ on main page - show latest
++ on history page - show year month drop down and current month transactions
++ load data for selected date "+?year=2020&month=04"
++ change date to selected and load transactions
 
 Edit popup:
 - enabel save only if smth was changed
