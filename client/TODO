@@ -1,6 +1,6 @@
 History:
-- check show more button functionality
-
++ case when editing transaction and it changes month
++ check show more button functionality
 + divide history latest and history month component?
 + on main page - show latest
 + on history page - show year month drop down and current month transactions

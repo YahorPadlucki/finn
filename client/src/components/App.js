@@ -167,6 +167,7 @@ const App = () => {
         await patchTransaction(newData);
 
         await fetchLatestTransactions();
+        await fetchHistoryTransactions(oldData.year,oldData.month);
     };
 
     const removeTransaction = async (transaction) => {

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1983
+      "balance": 1863
     },
     {
       "id": 2,
@@ -24,45 +24,12 @@
       "total": 1,
       "account": "Card",
       "category": "Food",
-      "date": "2020-04-13",
+      "date": "2020-04-14",
       "year": "2020",
       "month": "04",
-      "day": "13",
+      "day": "14",
       "description": "",
       "id": 1
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-13",
-      "year": "2020",
-      "month": "04",
-      "day": "13",
-      "description": "",
-      "id": 2
-    },
-    {
-      "total": 3,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-04-13",
-      "year": "2020",
-      "month": "04",
-      "day": "13",
-      "description": "",
-      "id": 3
-    },
-    {
-      "total": 11,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-03-13",
-      "year": "2020",
-      "month": "03",
-      "day": "13",
-      "description": "",
-      "id": 4
     }
   ]
 }
