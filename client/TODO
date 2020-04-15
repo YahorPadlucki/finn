@@ -1,3 +1,12 @@
+- expenses graphs
+- better calendar component
+
+Edit popup:
+- enabel save only if smth was changed
+
+- handling server errors ( when didn't get response - how to update balance)
+
+
 History:
 + case when editing transaction and it changes month
 + check show more button functionality
@@ -6,11 +15,6 @@ History:
 + on history page - show year month drop down and current month transactions
 + load data for selected date "+?year=2020&month=04"
 + change date to selected and load transactions
-
-Edit popup:
-- enabel save only if smth was changed
-
-- handling server errors ( when didn't get response - how to update balance)
 
 + load first 10 transaction, then if needed 10 more etc
 + show only 5
