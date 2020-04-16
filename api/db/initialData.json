@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1863
+      "balance": 1862
     },
     {
       "id": 2,
@@ -30,6 +30,17 @@
       "day": "14",
       "description": "",
       "id": 1
+    },
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-16T05:43:57.632Z",
+      "year": 2020,
+      "month": 3,
+      "day": 16,
+      "description": "",
+      "id": 2
     }
   ]
 }

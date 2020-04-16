@@ -1,5 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const InputDataForm = (props) => {
 
@@ -41,10 +43,10 @@ const InputDataForm = (props) => {
 
     const setCurrentDate = function () {
         const date = new Date();
-        const currentDate = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
-            '-' + date.getDate().toString().padStart(2, 0);
+        // const currentDate = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
+        //     '-' + date.getDate().toString().padStart(2, 0);
 
-        setDate(currentDate);
+        setDate(date);
     };
 
     const onCategoryChangedInternal = (categoryName) => {
@@ -74,10 +76,7 @@ const InputDataForm = (props) => {
 
     const renderCalendar = function () {
         return (
-            <input type="date" id="start" name="trip-start"
-                   value={date}
-                   onChange={e => setDate(e.target.value)}>
-            </input>
+            <DatePicker selected={date}/>
         );
     };
 
@@ -122,17 +121,15 @@ const InputDataForm = (props) => {
             if (!isInputValid)
                 setIsInputValid(true);
 
-            // const month = date.
-            const dateData = date.split('-');
 
             const transactionData = {
                 "total": Number(amount),
                 "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
                 "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
                 "date": date,
-                "year": dateData[0],
-                "month": dateData[1],
-                "day": dateData[2],
+                "year": date.getFullYear(),
+                "month": date.getMonth(),
+                "day": date.getDate(),
                 "description": description
             };
 
@@ -162,7 +159,6 @@ const InputDataForm = (props) => {
 
     return (
         <div className="eight wide column">
-
             <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
                 <div className="field">
                     <label>Account</label>
