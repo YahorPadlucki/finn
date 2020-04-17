@@ -180,6 +180,9 @@ const App = () => {
         await patchAccounts(acc);
 
         await fetchInitData();
+
+        //TODO: not very accurate
+        await fetchHistoryTransactions(transaction.year,transaction.month);
         setIsLoaded(true);
 
     };

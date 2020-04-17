@@ -1,5 +1,16 @@
 - expenses graphs
-- better calendar component
+
+- some times history show nothing when swtich to tab after addding transaction
+ (cant' reproduce so far)
+
+
++ better calendar component
+    + editing
+    + saving in new fromat
+    + gettting months in history in new format etc,
+
++ delete from history tab doesn't update history transactions
+https://github.com/Hacker0x01/react-datepicker
 
 Edit popup:
 - enabel save only if smth was changed

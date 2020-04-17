@@ -76,7 +76,8 @@ const InputDataForm = (props) => {
 
     const renderCalendar = function () {
         return (
-            <DatePicker selected={date}/>
+            <DatePicker selected={date}
+                        onChange={(date)=>setDate(date)}/>
         );
     };
 

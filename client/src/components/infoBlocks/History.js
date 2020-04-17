@@ -25,11 +25,8 @@ const History = (props) => {
 
 
     const formatDate = (dateStr) => {
-        const dateArray = dateStr.split('-');
-        const day = dateArray[dateArray.length - 1];
-        const month = dateArray[dateArray.length - 2];
-
-        return `${day}.${month}`;
+        const date = new Date(dateStr)
+        return `${date.getDate()}.${date.getMonth()+1}`;
     };
 
     useEffect(() => {
@@ -38,7 +35,7 @@ const History = (props) => {
 
         const date = new Date();
         const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const month = date.getMonth();
 
         setSelectedDate({month, year});
 
@@ -172,10 +169,10 @@ const History = (props) => {
                     <select className="ui search dropdown"
                             value={selectedDate.month}
                             onChange={e => setSelectedMonth(e.target.value)}>
-                        <option value="01">Jan</option>
-                        <option value="02">Feb</option>
-                        <option value="03">Mar</option>
-                        <option value="04">Apr</option>
+                        <option value="0">Jan</option>
+                        <option value="1">Feb</option>
+                        <option value="2">Mar</option>
+                        <option value="3">Apr</option>
                     </select>
                     <select className="ui search dropdown"
                             value={selectedDate.year}

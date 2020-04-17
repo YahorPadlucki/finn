@@ -8,7 +8,7 @@ const EditTransactionPopup = (props) => {
     const renderContent = () => {
         return (
             <InputDataForm isLoaded={props.isLoaded}
-                           date={props.transactionToEdit.date}
+                           date={new Date(props.transactionToEdit.date)}
                            description={props.transactionToEdit.description}
                            amount={props.transactionToEdit.total}
                            id={props.transactionToEdit.id}
