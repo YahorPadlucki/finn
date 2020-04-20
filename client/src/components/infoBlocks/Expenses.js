@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import AppContext from "../context/AppContext";
+
 
 const Expenses = () => {
 
+    const {
+        latestTransactions,
+        historyTransactions,
+        isLoaded,
+        loadMoreTransactions,
+        isAllTransactionsLoaded,
+        fetchHistoryTransactions
+    } = useContext(AppContext);
+
+    const [selectedDate, setSelectedDate] = useState({month: 1, year: 2020});
+
+
+    useEffect(() => {
+            fetchHistoryTransactions(selectedDate.year, selectedDate.month);
+
+    }, [selectedDate]);
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>

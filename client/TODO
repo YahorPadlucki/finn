@@ -1,4 +1,11 @@
-- expenses graphs
+Expenses
+- extract date picker component
+- total
+- categories
+- pie chart
+- selector for month/year
+
+expenses graphs
 
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
