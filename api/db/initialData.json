@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 2000
+      "balance": 1995
     },
     {
       "id": 2,
@@ -19,5 +19,28 @@
       "name": "Flat"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": 1,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-03-01T05:25:06.000Z",
+      "year": 2020,
+      "month": 2,
+      "day": 1,
+      "description": "",
+      "id": 1
+    },
+    {
+      "total": 4,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-04-21T05:30:42.525Z",
+      "year": 2020,
+      "month": 3,
+      "day": 21,
+      "description": "",
+      "id": 2
+    }
+  ]
 }

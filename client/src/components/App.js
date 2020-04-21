@@ -82,7 +82,7 @@ const App = () => {
 
     };
 
-    const fetchHistoryTransactions = async (year, month) => {
+    const fetchHistoryTransactions = async (month, year) => {
 
         console.log("fetch history "+month)
         console.log("fetch history "+year)
