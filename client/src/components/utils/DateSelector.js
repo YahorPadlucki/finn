@@ -11,12 +11,11 @@ const DateSelector = (props) => {
         const month = date.getMonth();
 
         setSelectedDate({month, year});
-        console.log("======")
-        //case with undefined
     }, []);
 
     useEffect(() => {
-        props.onSelectedDateChanged(selectedDate.month, selectedDate.year);
+        if (selectedDate.month && selectedDate.year)
+            props.onSelectedDateChanged(selectedDate.month, selectedDate.year);
     }, [selectedDate]);
 
 
@@ -31,7 +30,7 @@ const DateSelector = (props) => {
     return (
         <div>
             <select className="ui search dropdown"
-                    value={setSelectedDate.month}
+                    value={selectedDate.month}
                     onChange={e => setSelectedMonth(e.target.value)}>
                 <option value="0">Jan</option>
                 <option value="1">Feb</option>
@@ -47,7 +46,7 @@ const DateSelector = (props) => {
                 <option value="11">Dec</option>
             </select>
             <select className="ui search dropdown"
-                    value={setSelectedDate.year}
+                    value={selectedDate.year}
                     onChange={e => setSelectedYear(e.target.value)}>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>

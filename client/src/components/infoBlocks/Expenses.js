@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
+import DateSelector from "../utils/DateSelector";
 
 
 const Expenses = () => {
@@ -17,13 +18,15 @@ const Expenses = () => {
 
 
     useEffect(() => {
-            fetchHistoryTransactions(selectedDate.year, selectedDate.month);
+        fetchHistoryTransactions(selectedDate.year, selectedDate.month);
 
     }, [selectedDate]);
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
             <div>Expenses:</div>
+            <DateSelector
+                onSelectedDateChanged={fetchHistoryTransactions}/>
         </div>
 
     );
