@@ -31,12 +31,41 @@ const Expenses = () => {
         }
 
     }, [historyTransactions]);
+
+
+    const renderTable = () => {
+        //todo - arranvge by category
+        return historyTransactions.map((transaction, index) => {
+            return (
+                <tr>
+                    <td>None</td>
+                    <td>{transaction.category}</td>
+                    <td>None</td>
+                    <td>{transaction.total}</td>
+                </tr>
+            );
+        });
+    };
+
     return (
         <div className="ui container"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
             <div>Expenses: {total}</div>
             <DateSelector
                 onSelectedDateChanged={fetchHistoryTransactions}/>
+            <table className="ui celled table unstackable">
+                <thead>
+                <tr>
+                    <th className="two wide"/>
+                    <th className="ten wide"/>
+                    <th className="two wide"/>
+                    <th className="two wide"/>
+                </tr>
+                </thead>
+                <tbody>
+                {renderTable()}
+                </tbody>
+            </table>
         </div>
 
     );
