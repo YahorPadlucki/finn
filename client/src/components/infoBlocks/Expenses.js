@@ -34,8 +34,25 @@ const Expenses = () => {
 
 
     const renderTable = () => {
-        //todo - arranvge by category
-        return historyTransactions.map((transaction, index) => {
+
+        const combinedCategories = [];
+
+        historyTransactions.forEach(transaction => {
+            if (!combinedCategories.length) {
+                combinedCategories.push({...transaction});
+            } else {
+
+                const cobinedCategorie = combinedCategories.filter(tr => tr.category === transaction.category)[0];
+                if (!cobinedCategorie)
+                    combinedCategories.push({...transaction});
+                else
+                    cobinedCategorie.total += transaction.total;
+            }
+
+        });
+
+
+        return combinedCategories.map((transaction, index) => {
             return (
                 <tr>
                     <td>None</td>
@@ -56,10 +73,10 @@ const Expenses = () => {
             <table className="ui celled table unstackable">
                 <thead>
                 <tr>
-                    <th className="two wide"/>
-                    <th className="ten wide"/>
-                    <th className="two wide"/>
-                    <th className="two wide"/>
+                    <th className="two wide">Color</th>
+                    <th className="ten wide">Category</th>
+                    <th className="two wide">Percent</th>
+                    <th className="two wide">Total</th>
                 </tr>
                 </thead>
                 <tbody>
