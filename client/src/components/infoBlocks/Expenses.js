@@ -57,7 +57,7 @@ const Expenses = () => {
                 <tr>
                     <td>None</td>
                     <td>{transaction.category}</td>
-                    <td>None</td>
+                    <td>{((transaction.total / total) * 100).toFixed(1) + "%"}</td>
                     <td>{transaction.total}</td>
                 </tr>
             );
@@ -65,11 +65,12 @@ const Expenses = () => {
     };
 
     return (
-        <div className="ui container"
+        <div className="ui segment"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
-            <div>Expenses: {total}</div>
             <DateSelector
                 onSelectedDateChanged={fetchHistoryTransactions}/>
+            <h4 style={{textAlign: 'right'}}>Expenses total: {total}</h4>
+
             <table className="ui celled table unstackable">
                 <thead>
                 <tr>

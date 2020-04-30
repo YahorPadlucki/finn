@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1994
+      "balance": 1991
     },
     {
       "id": 2,
@@ -52,6 +52,17 @@
       "day": 23,
       "description": "",
       "id": 3
+    },
+    {
+      "total": 3,
+      "account": "Card",
+      "category": "Flat",
+      "date": "2020-04-30T05:16:30.272Z",
+      "year": 2020,
+      "month": 3,
+      "day": 30,
+      "description": "",
+      "id": 4
     }
   ]
 }
