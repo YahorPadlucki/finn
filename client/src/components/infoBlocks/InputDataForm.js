@@ -11,6 +11,7 @@ const InputDataForm = (props) => {
     const [date, setDate] = useState(props.date);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
+    const [selectedMenuId, setSelectedMenuId] = useState(0);
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
@@ -26,7 +27,8 @@ const InputDataForm = (props) => {
             setAmount(props.amount);
 
         } else {
-            amountInput.focus();
+            //TODO:
+            // amountInput.focus();
         }
 
 
@@ -77,7 +79,7 @@ const InputDataForm = (props) => {
     const renderCalendar = function () {
         return (
             <DatePicker selected={date}
-                        onChange={(date)=>setDate(date)}/>
+                        onChange={(date) => setDate(date)}/>
         );
     };
 
@@ -158,8 +160,9 @@ const InputDataForm = (props) => {
     };
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
-    return (
-        <div className="eight wide column">
+
+    const renderExpenseForm = () => {
+        return (
             <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
                 <div className="field">
                     <label>Account</label>
@@ -185,6 +188,33 @@ const InputDataForm = (props) => {
                 </div>
 
             </form>
+        );
+    };
+
+    const getMenuItemClass = (id) => `item ${id === selectedMenuId ? 'active' : ''}`;
+    const onMenuItemClicked = (id) => setSelectedMenuId(id);
+
+    const renderForm = () => {
+
+        switch (selectedMenuId) {
+            case 0:
+                return renderExpenseForm();
+            case 1:
+                return <div/>;
+            case 2:
+                return <div/>;
+        }
+    };
+
+
+    return (
+        <div className="eight wide column">
+            <div className="ui three item menu">
+                <a className={getMenuItemClass(0)} onClick={() => onMenuItemClicked(0)}>Expense</a>
+                <a className={getMenuItemClass(1)} onClick={() => onMenuItemClicked(1)}>Transfer</a>
+                <a className={getMenuItemClass(2)} onClick={() => onMenuItemClicked(2)}>Income</a>
+            </div>
+            {renderForm()}
         </div>
     );
 };
