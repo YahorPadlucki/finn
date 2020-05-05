@@ -191,6 +191,37 @@ const InputDataForm = (props) => {
         );
     };
 
+    //TODO: income category
+    const renderIncomeForm = ()=>{
+        return (
+            <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
+                <div className="field">
+                    <label>Account</label>
+                    <div className="fields">
+                        <div className="nine wide field">{renderAccount()}</div>
+                        <div className="seven wide field">{renderAmountInputField()}</div>
+                    </div>
+                </div>
+                <div className="field">
+                    <label>Category</label>
+                    <div className="fields">
+                        <div className="nine wide field">{renderCategory()}</div>
+                        <div className="seven wide field">{renderCalendar()}</div>
+                    </div>
+                </div>
+                {renderNoteField()}
+                <div style={{textAlign: 'right'}}>
+                    <button className="big ui primary button "
+                            onClick={onSaveClicked}>
+                        Save
+                    </button>
+                    {renderCancelButton()}
+                </div>
+
+            </form>
+        );
+    };
+
     const getMenuItemClass = (id) => `item ${id === selectedMenuId ? 'active' : ''}`;
     const onMenuItemClicked = (id) => setSelectedMenuId(id);
 
@@ -202,7 +233,7 @@ const InputDataForm = (props) => {
             case 1:
                 return <div/>;
             case 2:
-                return <div/>;
+                return renderIncomeForm();
         }
     };
 
