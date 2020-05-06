@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 1991
+      "balance": 1976
     },
     {
       "id": 2,
@@ -17,6 +17,17 @@
     },
     {
       "name": "Flat"
+    }
+  ],
+  "incomeCategories": [
+    {
+      "name": "Salary"
+    },
+    {
+      "name": "Games"
+    },
+    {
+      "name": "Other"
     }
   ],
   "transactions": [
@@ -63,6 +74,17 @@
       "day": 30,
       "description": "",
       "id": 4
+    },
+    {
+      "total": 15,
+      "account": "Card",
+      "category": "Food",
+      "date": "2020-05-06T05:32:46.565Z",
+      "year": 2020,
+      "month": 4,
+      "day": 6,
+      "description": "",
+      "id": 5
     }
   ]
 }

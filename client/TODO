@@ -1,9 +1,12 @@
+Add income
+Edit income transaction
+
 Expenses
-- extract date picker component
-- total
-- categories
++ extract date picker component
++ total
++ categories
++ selector for month/year
 - pie chart
-- selector for month/year
 
 expenses graphs
 

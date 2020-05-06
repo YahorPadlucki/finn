@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const InputDataForm = (props) => {
 
-    const {accounts, categories} = useContext(AppContext);
+    const {accounts, categories, incomeCategories} = useContext(AppContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
     const [date, setDate] = useState(props.date);
@@ -15,6 +15,7 @@ const InputDataForm = (props) => {
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
+    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState();
 
     let amountInput;
 
@@ -55,6 +56,10 @@ const InputDataForm = (props) => {
         setSelectedCategoryName(categoryName);
     };
 
+    const onIncomeCategoryChangedInternal = (categoryName) => {
+        setSelectedIncomeCategoryName(categoryName);
+    };
+
     const onAccountChangedInternal = (accountName) => {
         setSelectedAccountName(accountName);
 
@@ -63,6 +68,7 @@ const InputDataForm = (props) => {
     };
 
     const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
+    const renderIncomeCategory = () => renderOptionsList(incomeCategories.map(category => category.name), (categoryName) => onIncomeCategoryChangedInternal(categoryName), selectedIncomeCategoryName);
 
     const renderAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountChangedInternal(accountName), selectedAccountName);
 
@@ -161,7 +167,7 @@ const InputDataForm = (props) => {
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
 
-    const renderExpenseForm = () => {
+    const renderForm = (isIncome = false) => {
         return (
             <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
                 <div className="field">
@@ -174,38 +180,7 @@ const InputDataForm = (props) => {
                 <div className="field">
                     <label>Category</label>
                     <div className="fields">
-                        <div className="nine wide field">{renderCategory()}</div>
-                        <div className="seven wide field">{renderCalendar()}</div>
-                    </div>
-                </div>
-                {renderNoteField()}
-                <div style={{textAlign: 'right'}}>
-                    <button className="big ui primary button "
-                            onClick={onSaveClicked}>
-                        Save
-                    </button>
-                    {renderCancelButton()}
-                </div>
-
-            </form>
-        );
-    };
-
-    //TODO: income category
-    const renderIncomeForm = ()=>{
-        return (
-            <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
-                <div className="field">
-                    <label>Account</label>
-                    <div className="fields">
-                        <div className="nine wide field">{renderAccount()}</div>
-                        <div className="seven wide field">{renderAmountInputField()}</div>
-                    </div>
-                </div>
-                <div className="field">
-                    <label>Category</label>
-                    <div className="fields">
-                        <div className="nine wide field">{renderCategory()}</div>
+                        <div className="nine wide field">{isIncome ? renderIncomeCategory() : renderCategory()}</div>
                         <div className="seven wide field">{renderCalendar()}</div>
                     </div>
                 </div>
@@ -225,15 +200,15 @@ const InputDataForm = (props) => {
     const getMenuItemClass = (id) => `item ${id === selectedMenuId ? 'active' : ''}`;
     const onMenuItemClicked = (id) => setSelectedMenuId(id);
 
-    const renderForm = () => {
+    const renderFields = () => {
 
         switch (selectedMenuId) {
             case 0:
-                return renderExpenseForm();
+                return renderForm();
             case 1:
                 return <div/>;
             case 2:
-                return renderIncomeForm();
+                return renderForm(true);
         }
     };
 
@@ -245,7 +220,7 @@ const InputDataForm = (props) => {
                 <a className={getMenuItemClass(1)} onClick={() => onMenuItemClicked(1)}>Transfer</a>
                 <a className={getMenuItemClass(2)} onClick={() => onMenuItemClicked(2)}>Income</a>
             </div>
-            {renderForm()}
+            {renderFields()}
         </div>
     );
 };

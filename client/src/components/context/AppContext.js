@@ -4,7 +4,8 @@ const AppContext = createContext({
     accounts: ['1', '2'],
     latestTransactions: ["1", "1"],
     historyTransactions: [],
-    categories: ["1"],
+    categories: ["Food"],
+    incomeCategories: ["Salary"],
     isLoaded: false,
 
     allTransactionsLoaded: false,

@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
-import {ACCOUNTS, CATEGORIES, TRANSACTIONS} from "./api/types";
+import {ACCOUNTS, CATEGORIES, TRANSACTIONS, INCOME_CATEGORIES} from "./api/types";
 import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTransaction} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
@@ -15,6 +15,7 @@ const App = () => {
 
     const [accounts, setAccounts] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [incomeCategories, setIncomeCategories] = useState([]);
     const [latestTransactions, setLatestTransactions] = useState([]);
     const [historyTransactions, setHistoryTransactions] = useState([]);
 
@@ -63,6 +64,11 @@ const App = () => {
             setSelectedCategoryName(categories[0].name);
         }
 
+        const incomeCategories = await fetchData(INCOME_CATEGORIES);
+        if (incomeCategories) {
+            setIncomeCategories(incomeCategories);
+        }
+
 
         await fetchLatestTransactions();
         setIsLoaded(true);
@@ -84,8 +90,8 @@ const App = () => {
 
     const fetchHistoryTransactions = async (month, year) => {
 
-        console.log("fetch history "+month)
-        console.log("fetch history "+year)
+        console.log("fetch history " + month)
+        console.log("fetch history " + year)
         const newTransactions = await fetchData(TRANSACTIONS + `?_sort=id&_order=desc&year=${year}&month=${month}`);
         if (newTransactions) {
             setHistoryTransactions(newTransactions);
@@ -167,7 +173,7 @@ const App = () => {
         await patchTransaction(newData);
 
         await fetchLatestTransactions();
-        await fetchHistoryTransactions(oldData.year,oldData.month);
+        await fetchHistoryTransactions(oldData.year, oldData.month);
     };
 
     const removeTransaction = async (transaction) => {
@@ -182,7 +188,7 @@ const App = () => {
         await fetchInitData();
 
         //TODO: not very accurate
-        await fetchHistoryTransactions(transaction.year,transaction.month);
+        await fetchHistoryTransactions(transaction.year, transaction.month);
         setIsLoaded(true);
 
     };
@@ -199,6 +205,7 @@ const App = () => {
                 latestTransactions,
                 historyTransactions,
                 categories,
+                incomeCategories,
                 isLoaded,
                 isAllTransactionsLoaded,
                 loadMoreTransactions: loadMoreTransactions,
