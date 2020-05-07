@@ -11,7 +11,7 @@ const InputDataForm = (props) => {
     const [date, setDate] = useState(props.date);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-    const [selectedMenuId, setSelectedMenuId] = useState(0);
+    const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(0);
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
@@ -197,12 +197,12 @@ const InputDataForm = (props) => {
         );
     };
 
-    const getMenuItemClass = (id) => `item ${id === selectedMenuId ? 'active' : ''}`;
-    const onMenuItemClicked = (id) => setSelectedMenuId(id);
+    const getMenuItemClass = (id) => `item ${id === selectedTransactionFormId ? 'active' : ''}`;
+    const onMenuItemClicked = (id) => setSelectedTransactionFormId(id);
 
     const renderFields = () => {
 
-        switch (selectedMenuId) {
+        switch (selectedTransactionFormId) {
             case 0:
                 return renderForm();
             case 1:

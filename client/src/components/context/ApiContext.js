@@ -7,6 +7,8 @@ const ApiContext = createContext({
     },
     addTransaction: (transactionData) => {
     },
+    addIncomeTransaction: (transactionData) => {
+    },
     //TODO: add income
 });
 

@@ -7,7 +7,7 @@ import ApiContext from "../context/ApiContext";
 const AddTransaction = (props) => {
 
     const {accounts} = useContext(AppContext);
-    const {addTransaction} = useContext(ApiContext);
+    const {addTransaction,addIncomeTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
