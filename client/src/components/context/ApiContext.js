@@ -9,7 +9,6 @@ const ApiContext = createContext({
     },
     addIncomeTransaction: (transactionData) => {
     },
-    //TODO: add income
 });
 
 export default ApiContext

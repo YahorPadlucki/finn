@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {INCOME_TYPE, TRANSACTION_TYPE} from "../api/types";
 
 const InputDataForm = (props) => {
 
@@ -15,7 +16,7 @@ const InputDataForm = (props) => {
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
-    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState();
+    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState(props.selectedIncomeCategoryName);
 
     let amountInput;
 
@@ -130,29 +131,50 @@ const InputDataForm = (props) => {
             if (!isInputValid)
                 setIsInputValid(true);
 
+            const transactionType = getTransactionType();
 
             const transactionData = {
                 "total": Number(amount),
                 "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
-                "category": selectedCategoryName ? selectedCategoryName : props.selectedCategoryName,
+                "category": getSelectedCategoryName(),
                 "date": date,
                 "year": date.getFullYear(),
                 "month": date.getMonth(),
                 "day": date.getDate(),
-                "description": description
+                "description": description,
+                "type": transactionType
             };
 
             if (props.id) {
                 transactionData.id = props.id;
             }
 
-            props.onSaveClickedCallBack(transactionData);
+            props.onSaveClickedCallBack(transactionData, transactionType);
 
             clearFields();
             // const postResponse = await postTransaction();
 
 
         }
+    };
+
+    const getTransactionType = () => {
+        switch (selectedTransactionFormId) {
+            case 0:
+                return TRANSACTION_TYPE;
+            case 2:
+                return INCOME_TYPE;
+        }
+    };
+
+    const getSelectedCategoryName = () => {
+        switch (selectedTransactionFormId) {
+            case 0:
+                return selectedCategoryName ? selectedCategoryName : props.selectedCategoryName;
+            case 2:
+                return selectedIncomeCategoryName ? selectedIncomeCategoryName : props.selectedCategoryName;
+        }
+
     };
 
     const onKeyPress = (e) => {

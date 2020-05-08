@@ -121,6 +121,7 @@ const App = () => {
             case 1:
                 return <Expenses/>;
             case 2:
+                //TODO: selected income category
                 return <AddTransaction
                     selectedAccountName={selectedAccount.name}
                     selectedCategoryName={selectedCategoryName}
@@ -141,6 +142,20 @@ const App = () => {
 
         const postResponse = await postTransaction(transactionData);
         selectedAccount.balance -= transactionData.total;
+
+        await patchAccounts(selectedAccount);
+        await fetchLatestTransactions();
+        setIsLoaded(true);
+        return postResponse;
+
+
+    };
+
+    const addIncomeTransaction = async (transactionData) => {
+        setIsLoaded(false);
+
+        const postResponse = await postTransaction(transactionData);
+        selectedAccount.balance += transactionData.total;
 
         await patchAccounts(selectedAccount);
         await fetchLatestTransactions();
@@ -198,7 +213,8 @@ const App = () => {
         <ApiContext.Provider value={{
             editTransaction: editTransaction,
             removeTransaction: removeTransaction,
-            addTransaction: addTransaction
+            addTransaction: addTransaction,
+            addIncomeTransaction: addIncomeTransaction
         }}>
             <AppContext.Provider value={{
                 accounts,

@@ -3,19 +3,31 @@ import History from "./History";
 import InputDataForm from "./InputDataForm";
 import AppContext from "../context/AppContext";
 import ApiContext from "../context/ApiContext";
+import {INCOME_TYPE, TRANSACTION_TYPE} from "../api/types";
 
 const AddTransaction = (props) => {
 
     const {accounts} = useContext(AppContext);
-    const {addTransaction,addIncomeTransaction} = useContext(ApiContext);
+    const {addTransaction, addIncomeTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
 
-    const onSaveClicked = async (transactionData) => {
+    const onSaveClicked = async (transactionData, transactionType) => {
         setIsTransactionInProcess(true);
 
-        const postResponse = await addTransaction(transactionData);
+
+        let postResponse;
+
+        switch (transactionType) {
+            case TRANSACTION_TYPE:
+                postResponse = await addTransaction(transactionData);
+                break;
+            case INCOME_TYPE:
+                postResponse = await addIncomeTransaction(transactionData);
+                break;
+        }
+
 
         if (postResponse)
             setTransactionStatusMessage("Transaction Saved");
