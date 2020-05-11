@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 2000
+      "balance": 2094
     },
     {
       "id": 2,
@@ -30,18 +30,5 @@
       "name": "Other"
     }
   ],
-  "transactions": [
-    {
-      "total": 50,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-05-08T05:38:49.948Z",
-      "year": 2020,
-      "month": 4,
-      "day": 8,
-      "description": "",
-      "type": "incomeType",
-      "id": 1
-    }
-  ]
+  "transactions": []
 }

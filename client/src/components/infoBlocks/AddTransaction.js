@@ -59,6 +59,7 @@ const AddTransaction = (props) => {
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
                                selectedCategoryName={props.selectedCategoryName}
                                selectedAccountName={props.selectedAccountName}
+                               selectedIncomeCategoryName={props.selectedIncomeCategoryName}
                                onAccountChanged={props.onAccountChanged}
                                onSaveClickedCallBack={onSaveClicked}
 

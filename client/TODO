@@ -1,5 +1,7 @@
 Add income
 Edit income transaction
+    - display in history
+    - edit
 
 Expenses
 + extract date picker component

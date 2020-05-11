@@ -21,6 +21,7 @@ const App = () => {
 
     const [selectedAccount, setSelectedAccount] = useState('');
     const [selectedCategoryName, setSelectedCategoryName] = useState('');
+    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState('');
 
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -67,6 +68,8 @@ const App = () => {
         const incomeCategories = await fetchData(INCOME_CATEGORIES);
         if (incomeCategories) {
             setIncomeCategories(incomeCategories);
+            setSelectedIncomeCategoryName(incomeCategories[0].name);
+            console.log("init income "+incomeCategories[0].name)
         }
 
 
@@ -121,11 +124,12 @@ const App = () => {
             case 1:
                 return <Expenses/>;
             case 2:
-                //TODO: selected income category
+                //TODO: selected income category (props and use effect?)
                 return <AddTransaction
                     selectedAccountName={selectedAccount.name}
                     selectedCategoryName={selectedCategoryName}
                     onAccountChanged={onAccountChanged}
+                    selectedIncomeCategoryName={selectedIncomeCategoryName}
                     isLoaded={isLoaded}
                 />;
             case 3:
