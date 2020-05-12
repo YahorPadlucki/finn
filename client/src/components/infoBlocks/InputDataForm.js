@@ -64,6 +64,7 @@ const InputDataForm = (props) => {
 
     const onAccountChangedInternal = (accountName) => {
         setSelectedAccountName(accountName);
+        console.log("== changed internal "+accountName)
 
         if (props.onAccountChanged)
             props.onAccountChanged(accountName);
@@ -173,7 +174,7 @@ const InputDataForm = (props) => {
             case 0:
                 return selectedCategoryName ? selectedCategoryName : props.selectedCategoryName;
             case 2:
-                return selectedIncomeCategoryName ? selectedIncomeCategoryName : props.selectedCategoryName;
+                return selectedIncomeCategoryName ? selectedIncomeCategoryName : props.selectedIncomeCategoryName;
         }
 
     };

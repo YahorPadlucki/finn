@@ -52,6 +52,12 @@ const History = (props) => {
         if (!transactions) return <div>Loading</div>;
 
         return transactions.slice(0, itemsToShow).map((transaction, index) => {
+            let getAccount = function () {
+                return transaction.account;
+            };
+            let getCategory = function () {
+                return transaction.category;
+            };
             return (
                 <div className="row" key={index}>
                     <strong className="five  wide column"
@@ -60,9 +66,9 @@ const History = (props) => {
                     </strong>
 
                     <div className="seven wide column" style={{textAlign: 'left'}}>
-                        <label>{transaction.account}</label>
+                        <label>{getAccount()}</label>
                         <label> -> </label>
-                        <label>{transaction.category}</label>
+                        <label>{getCategory()}</label>
                         <div>{transaction.description}</div>
                     </div>
 
