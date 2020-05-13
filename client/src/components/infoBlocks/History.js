@@ -4,6 +4,7 @@ import ApiContext from "../context/ApiContext";
 import DeleteTransactionPopup from "./DeleteTransactionPopup";
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
+import {INCOME_TYPE, TRANSACTION_TYPE} from "../api/types";
 
 const History = (props) => {
 
@@ -53,10 +54,20 @@ const History = (props) => {
 
         return transactions.slice(0, itemsToShow).map((transaction, index) => {
             let getAccount = function () {
-                return transaction.account;
+                if (transaction.type === TRANSACTION_TYPE) {
+                    return transaction.account;
+                }
+                if (transaction.type === INCOME_TYPE) {
+                    return transaction.category;
+                }
             };
             let getCategory = function () {
-                return transaction.category;
+                if (transaction.type === TRANSACTION_TYPE) {
+                    return transaction.category;
+                }
+                if (transaction.type === INCOME_TYPE) {
+                    return transaction.account;
+                }
             };
             return (
                 <div className="row" key={index}>
