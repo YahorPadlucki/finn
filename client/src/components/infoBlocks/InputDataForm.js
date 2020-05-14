@@ -39,11 +39,21 @@ const InputDataForm = (props) => {
             setDescription(props.description);
         }
 
+        if (props.transactionType) {
+            if (props.transactionType === TRANSACTION_TYPE) {
+                setSelectedTransactionFormId(0)
+            }
+            if (props.transactionType === INCOME_TYPE) {
+                setSelectedTransactionFormId(2)
+            }
+        }
+
         if (!date) {
             setCurrentDate();
         }
 
     }, []);
+
 
 
     const setCurrentDate = function () {
@@ -64,7 +74,7 @@ const InputDataForm = (props) => {
 
     const onAccountChangedInternal = (accountName) => {
         setSelectedAccountName(accountName);
-        console.log("== changed internal "+accountName)
+        console.log("== changed internal " + accountName)
 
         if (props.onAccountChanged)
             props.onAccountChanged(accountName);

@@ -53,22 +53,24 @@ const History = (props) => {
         if (!transactions) return <div>Loading</div>;
 
         return transactions.slice(0, itemsToShow).map((transaction, index) => {
-            let getAccount = function () {
+            const getTransactionDirection = function () {
                 if (transaction.type === TRANSACTION_TYPE) {
-                    return transaction.account;
+                    return "->";
                 }
                 if (transaction.type === INCOME_TYPE) {
-                    return transaction.category;
+                    return "<-";
                 }
             };
-            let getCategory = function () {
+
+            const getTransactionColor = function () {
                 if (transaction.type === TRANSACTION_TYPE) {
-                    return transaction.category;
+                    return "";
                 }
                 if (transaction.type === INCOME_TYPE) {
-                    return transaction.account;
+                    return "green";
                 }
             };
+
             return (
                 <div className="row" key={index}>
                     <strong className="five  wide column"
@@ -76,10 +78,10 @@ const History = (props) => {
                         {formatDate(transaction.date)}
                     </strong>
 
-                    <div className="seven wide column" style={{textAlign: 'left'}}>
-                        <label>{getAccount()}</label>
-                        <label> -> </label>
-                        <label>{getCategory()}</label>
+                    <div className="seven wide column" style={{textAlign: 'left', color: getTransactionColor()}}>
+                        <label>{transaction.account}</label>
+                        <label> {getTransactionDirection()} </label>
+                        <label>{transaction.category}</label>
                         <div>{transaction.description}</div>
                     </div>
 

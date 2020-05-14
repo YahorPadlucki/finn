@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 2094
+      "balance": 2096
     },
     {
       "id": 2,
@@ -54,6 +54,18 @@
       "description": "",
       "type": "incomeType",
       "id": 2
+    },
+    {
+      "total": 2,
+      "account": "Card",
+      "category": "Games",
+      "date": "2020-05-14T05:49:08.371Z",
+      "year": 2020,
+      "month": 4,
+      "day": 14,
+      "description": "2",
+      "type": "incomeType",
+      "id": 3
     }
   ]
 }
