@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
-import {ACCOUNTS, CATEGORIES, TRANSACTIONS, INCOME_CATEGORIES} from "./api/types";
+import {ACCOUNTS, CATEGORIES, TRANSACTIONS, INCOME_CATEGORIES, SPEND_TYPE, INCOME_TYPE} from "./api/types";
 import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTransaction} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
@@ -69,7 +69,7 @@ const App = () => {
         if (incomeCategories) {
             setIncomeCategories(incomeCategories);
             setSelectedIncomeCategoryName(incomeCategories[0].name);
-            console.log("init income "+incomeCategories[0].name)
+            console.log("init income " + incomeCategories[0].name)
         }
 
 
@@ -169,8 +169,7 @@ const App = () => {
 
     };
 
-    const editTransaction = async (oldData, newData) => {
-
+    const editSpendTransaction = async function (oldData, newData) {
         if (oldData.account === newData.account) {
             const deltaAmount = oldData.total - newData.total;
             const acc = accounts.filter(acc => acc.name === oldData.account)[0];
@@ -190,6 +189,28 @@ const App = () => {
         }
 
         await patchTransaction(newData);
+    };
+
+    const editIncomeTransaction = async function (oldData, newData) {
+        if (oldData.account === newData.account) {
+            const deltaAmount = oldData.total - newData.total;
+            const acc = accounts.filter(acc => acc.name === oldData.account)[0];
+            acc.balance += deltaAmount;
+            await patchAccounts(acc);
+
+        }
+        await patchTransaction(newData);
+
+    };
+
+    const editTransaction = async (oldData, newData) => {
+        if (oldData.type === SPEND_TYPE) {
+            await editSpendTransaction(oldData, newData);
+        }
+
+        if (oldData.type === INCOME_TYPE) {
+            await editIncomeTransaction(oldData, newData);
+        }
 
         await fetchLatestTransactions();
         await fetchHistoryTransactions(oldData.year, oldData.month);

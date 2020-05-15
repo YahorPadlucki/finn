@@ -3,7 +3,7 @@ import History from "./History";
 import InputDataForm from "./InputDataForm";
 import AppContext from "../context/AppContext";
 import ApiContext from "../context/ApiContext";
-import {INCOME_TYPE, TRANSACTION_TYPE} from "../api/types";
+import {INCOME_TYPE, SPEND_TYPE} from "../api/types";
 
 const AddTransaction = (props) => {
 
@@ -20,7 +20,7 @@ const AddTransaction = (props) => {
         let postResponse;
 
         switch (transactionType) {
-            case TRANSACTION_TYPE:
+            case SPEND_TYPE:
                 postResponse = await addTransaction(transactionData);
                 break;
             case INCOME_TYPE:

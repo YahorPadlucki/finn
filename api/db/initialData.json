@@ -3,12 +3,12 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 2096
+      "balance": 2000
     },
     {
       "id": 2,
       "name": "Cash",
-      "balance": 200
+      "balance": 222
     }
   ],
   "categories": [
@@ -30,42 +30,5 @@
       "name": "Other"
     }
   ],
-  "transactions": [
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Food",
-      "date": "2020-05-12T05:59:30.645Z",
-      "year": 2020,
-      "month": 4,
-      "day": 12,
-      "description": "",
-      "type": "transactionType",
-      "id": 1
-    },
-    {
-      "total": 1,
-      "account": "Card",
-      "category": "Salary",
-      "date": "2020-05-12T06:03:03.235Z",
-      "year": 2020,
-      "month": 4,
-      "day": 12,
-      "description": "",
-      "type": "incomeType",
-      "id": 2
-    },
-    {
-      "total": 2,
-      "account": "Card",
-      "category": "Games",
-      "date": "2020-05-14T05:49:08.371Z",
-      "year": 2020,
-      "month": 4,
-      "day": 14,
-      "description": "2",
-      "type": "incomeType",
-      "id": 3
-    }
-  ]
+  "transactions": []
 }

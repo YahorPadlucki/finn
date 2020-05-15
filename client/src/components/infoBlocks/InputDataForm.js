@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {INCOME_TYPE, TRANSACTION_TYPE} from "../api/types";
+import {INCOME_TYPE, SPEND_TYPE} from "../api/types";
 
 const InputDataForm = (props) => {
 
@@ -16,7 +16,7 @@ const InputDataForm = (props) => {
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
-    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState(props.selectedIncomeCategoryName);
+    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState(props.selectedCategoryName);
 
     let amountInput;
 
@@ -24,6 +24,7 @@ const InputDataForm = (props) => {
     useEffect(() => {
         // component did mount
         console.log("=== selected account " + props.selectedAccountName)
+        console.log("=== selected income " + props.selectedAccountName)
         console.log("=== selected income " + props.selectedAccountName)
 
         if (props.amount) {
@@ -40,7 +41,7 @@ const InputDataForm = (props) => {
         }
 
         if (props.transactionType) {
-            if (props.transactionType === TRANSACTION_TYPE) {
+            if (props.transactionType === SPEND_TYPE) {
                 setSelectedTransactionFormId(0)
             }
             if (props.transactionType === INCOME_TYPE) {
@@ -53,7 +54,6 @@ const InputDataForm = (props) => {
         }
 
     }, []);
-
 
 
     const setCurrentDate = function () {
@@ -173,7 +173,7 @@ const InputDataForm = (props) => {
     const getTransactionType = () => {
         switch (selectedTransactionFormId) {
             case 0:
-                return TRANSACTION_TYPE;
+                return SPEND_TYPE;
             case 2:
                 return INCOME_TYPE;
         }
@@ -247,13 +247,22 @@ const InputDataForm = (props) => {
     };
 
 
+    let renderToggleBar = function () {
+        if (!props.isEditPopup) {
+            return (
+                <div className="ui three item menu">
+                    <a className={getMenuItemClass(0)} onClick={() => onMenuItemClicked(0)}>Expense</a>
+                    <a className={getMenuItemClass(1)} onClick={() => onMenuItemClicked(1)}>Transfer</a>
+                    <a className={getMenuItemClass(2)} onClick={() => onMenuItemClicked(2)}>Income</a>
+                </div>
+            )
+        }
+
+
+    };
     return (
         <div className="eight wide column">
-            <div className="ui three item menu">
-                <a className={getMenuItemClass(0)} onClick={() => onMenuItemClicked(0)}>Expense</a>
-                <a className={getMenuItemClass(1)} onClick={() => onMenuItemClicked(1)}>Transfer</a>
-                <a className={getMenuItemClass(2)} onClick={() => onMenuItemClicked(2)}>Income</a>
-            </div>
+            {renderToggleBar()}
             {renderFields()}
         </div>
     );
