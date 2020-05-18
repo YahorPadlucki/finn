@@ -1,7 +1,10 @@
-Add income
 Edit income transaction
-    - display in history
-    - edit
+    + display in history
+    + edit
+    - check editing transactions
+
+Transfer transaction
+
 
 Expenses
 + extract date picker component
@@ -16,6 +19,7 @@ expenses graphs
  (cant' reproduce so far)
 
 
++ Add income
 + better calendar component
     + editing
     + saving in new fromat

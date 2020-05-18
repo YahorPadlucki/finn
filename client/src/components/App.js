@@ -169,49 +169,32 @@ const App = () => {
 
     };
 
-    const editSpendTransaction = async function (oldData, newData) {
+
+    const editTransaction = async (oldData, newData) => {
+        let sign = 1;
+        if (oldData.type === INCOME_TYPE) {
+            sign = -1;
+        }
+
         if (oldData.account === newData.account) {
             const deltaAmount = oldData.total - newData.total;
             const acc = accounts.filter(acc => acc.name === oldData.account)[0];
-            acc.balance += deltaAmount;
+            acc.balance += deltaAmount * sign;
             await patchAccounts(acc);
 
         } else {
 
             const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
-            oldAcc.balance += newData.total;
+            oldAcc.balance += newData.total * sign;
 
             const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
-            newAcc.balance -= newData.total;
+            newAcc.balance -= newData.total * sign;
 
             await patchAccounts(oldAcc);
             await patchAccounts(newAcc);
         }
 
         await patchTransaction(newData);
-    };
-
-    const editIncomeTransaction = async function (oldData, newData) {
-        if (oldData.account === newData.account) {
-            const deltaAmount = oldData.total - newData.total;
-            const acc = accounts.filter(acc => acc.name === oldData.account)[0];
-            acc.balance += deltaAmount;
-            await patchAccounts(acc);
-
-        }
-        await patchTransaction(newData);
-
-    };
-
-    const editTransaction = async (oldData, newData) => {
-        if (oldData.type === SPEND_TYPE) {
-            await editSpendTransaction(oldData, newData);
-        }
-
-        if (oldData.type === INCOME_TYPE) {
-            await editIncomeTransaction(oldData, newData);
-        }
-
         await fetchLatestTransactions();
         await fetchHistoryTransactions(oldData.year, oldData.month);
     };
@@ -222,7 +205,13 @@ const App = () => {
         await deleteTransaction(transaction.id);
 
         const acc = accounts.filter(acc => acc.name === transaction.account)[0];
-        acc.balance += transaction.total; // to number
+
+        if (transaction.type === SPEND_TYPE)
+            acc.balance += transaction.total;
+        if (transaction.type === INCOME_TYPE)
+            acc.balance -= transaction.total;
+
+
         await patchAccounts(acc);
 
         await fetchInitData();
