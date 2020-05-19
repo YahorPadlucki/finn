@@ -185,10 +185,17 @@ const App = () => {
         } else {
 
             const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
-            oldAcc.balance += newData.total * sign;
-
             const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
-            newAcc.balance -= newData.total * sign;
+
+            if (newData.total === oldData.total) {
+                oldAcc.balance += newData.total * sign;
+                newAcc.balance -= newData.total * sign;
+            } else {
+
+                oldAcc.balance += oldData.total * sign;
+                newAcc.balance -= newData.total * sign;
+            }
+
 
             await patchAccounts(oldAcc);
             await patchAccounts(newAcc);

@@ -1,7 +1,4 @@
-Edit income transaction
-    + display in history
-    + edit
-    - check editing transactions
+
 
 Transfer transaction
 
@@ -18,6 +15,12 @@ expenses graphs
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
 
+
+Edit income transaction
+    + display in history
+    + edit
+    + check editing transactions
+        + changing account and amount together
 
 + Add income
 + better calendar component
