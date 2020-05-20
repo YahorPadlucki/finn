@@ -12,7 +12,7 @@ const InputDataForm = (props) => {
     const [date, setDate] = useState(props.date);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-    const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(0);
+    const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(1);
 
     const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
@@ -231,6 +231,40 @@ const InputDataForm = (props) => {
         );
     };
 
+
+    const renderTransferForm = () => {
+        return (
+            <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
+                <div className="field">
+                    <label>From Account</label>
+                    <div className="fields">
+                        <div className="nine wide field">{renderAccount()}</div>
+                        <div className="seven wide field">{renderAmountInputField()}</div>
+                    </div>
+                </div>
+                <div className="field">
+                    <label>To Account</label>
+                    <div className="fields">
+                        <div className="nine wide field">{renderAccount()}</div>
+                        <div className="seven wide field">{renderAmountInputField()}</div>
+                    </div>
+                </div>
+                <div className="fields">
+                    <div className="nine wide field">{renderNoteField()}</div>
+                    <div className="seven wide field">{renderCalendar()}</div>
+                </div>
+                <div style={{textAlign: 'right'}}>
+                    <button className="big ui primary button "
+                            onClick={onSaveClicked}>
+                        Save
+                    </button>
+                    {renderCancelButton()}
+                </div>
+
+            </form>
+        );
+    };
+
     const getMenuItemClass = (id) => `item ${id === selectedTransactionFormId ? 'active' : ''}`;
     const onMenuItemClicked = (id) => setSelectedTransactionFormId(id);
 
@@ -240,7 +274,7 @@ const InputDataForm = (props) => {
             case 0:
                 return renderForm();
             case 1:
-                return <div/>;
+                return renderTransferForm();
             case 2:
                 return renderForm(true);
         }
