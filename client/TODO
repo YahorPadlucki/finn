@@ -1,6 +1,7 @@
 Transfer transaction
-    - to account switch differently
     - disable if same accounts
+    - red input - reset on typing, not only on clicking save
+    + to account switch differently
 
 
 Expenses

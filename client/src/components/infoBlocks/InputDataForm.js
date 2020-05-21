@@ -14,7 +14,9 @@ const InputDataForm = (props) => {
     const [description, setDescription] = useState('');
     const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(1);
 
-    const [selectedAccountName, setSelectedAccountName] = useState(props.selectedAccountName);
+    const [selectedAccountFromName, setSelectedAccountFromName] = useState(props.selectedAccountName);
+    const [selectedAccountToName, setSelectedAccountToName] = useState(props.selectedAccountToName);
+
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
     const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState(props.selectedCategoryName);
 
@@ -50,19 +52,11 @@ const InputDataForm = (props) => {
         }
 
         if (!date) {
-            setCurrentDate();
+            setDate(new Date());
         }
 
     }, []);
 
-
-    const setCurrentDate = function () {
-        const date = new Date();
-        // const currentDate = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +
-        //     '-' + date.getDate().toString().padStart(2, 0);
-
-        setDate(date);
-    };
 
     const onCategoryChangedInternal = (categoryName) => {
         setSelectedCategoryName(categoryName);
@@ -72,18 +66,23 @@ const InputDataForm = (props) => {
         setSelectedIncomeCategoryName(categoryName);
     };
 
-    const onAccountChangedInternal = (accountName) => {
-        setSelectedAccountName(accountName);
-        console.log("== changed internal " + accountName)
+    const onAccountFromChangedInternal = (accountName) => {
+        setSelectedAccountFromName(accountName);
 
         if (props.onAccountChanged)
             props.onAccountChanged(accountName);
     };
 
+    const onAccountToChanged = (accountName) => {
+        setSelectedAccountToName(accountName);
+
+    };
+
     const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
     const renderIncomeCategory = () => renderOptionsList(incomeCategories.map(category => category.name), (categoryName) => onIncomeCategoryChangedInternal(categoryName), selectedIncomeCategoryName);
 
-    const renderAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountChangedInternal(accountName), selectedAccountName);
+    const renderFromAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountFromChangedInternal(accountName), selectedAccountFromName);
+    const renderToAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountToChanged(accountName), selectedAccountToName);
 
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
@@ -108,11 +107,12 @@ const InputDataForm = (props) => {
     };
 
 
-    const renderAmountInputField = function () {
-        const className = `field ${isInputValid ? '' : 'error'}`;
+    const renderAmountInputField = function (isDisabled = false) {
+        const className = `field ${isDisabled ? 'disabled' : ''} ${isInputValid ? '' : 'error'}`;
         return (
             <div className={className}>
                 <input type="text"
+                       style={{}}
                        ref={(input) => {
                            amountInput = input;
                        }}
@@ -147,7 +147,7 @@ const InputDataForm = (props) => {
 
             const transactionData = {
                 "total": Number(amount),
-                "account": selectedAccountName ? selectedAccountName : props.selectedAccountName,
+                "account": selectedAccountFromName ? selectedAccountFromName : props.selectedAccountName,
                 "category": getSelectedCategoryName(),
                 "date": date,
                 "year": date.getFullYear(),
@@ -193,6 +193,7 @@ const InputDataForm = (props) => {
         if (e.key === 'Enter') {
             onSaveClicked();
         }
+
     };
     const renderCancelButton = () => {
         if (props.onCancel)
@@ -207,7 +208,7 @@ const InputDataForm = (props) => {
                 <div className="field">
                     <label>Account</label>
                     <div className="fields">
-                        <div className="nine wide field">{renderAccount()}</div>
+                        <div className="nine wide field">{renderFromAccount()}</div>
                         <div className="seven wide field">{renderAmountInputField()}</div>
                     </div>
                 </div>
@@ -238,15 +239,15 @@ const InputDataForm = (props) => {
                 <div className="field">
                     <label>From Account</label>
                     <div className="fields">
-                        <div className="nine wide field">{renderAccount()}</div>
+                        <div className="nine wide field">{renderFromAccount()}</div>
                         <div className="seven wide field">{renderAmountInputField()}</div>
                     </div>
                 </div>
                 <div className="field">
                     <label>To Account</label>
                     <div className="fields">
-                        <div className="nine wide field">{renderAccount()}</div>
-                        <div className="seven wide field">{renderAmountInputField()}</div>
+                        <div className="nine wide field">{renderToAccount()}</div>
+                        <div className="seven wide field">{renderAmountInputField(true)}</div>
                     </div>
                 </div>
                 <div className="fields">
