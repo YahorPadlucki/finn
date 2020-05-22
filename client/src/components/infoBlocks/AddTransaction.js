@@ -3,12 +3,12 @@ import History from "./History";
 import InputDataForm from "./InputDataForm";
 import AppContext from "../context/AppContext";
 import ApiContext from "../context/ApiContext";
-import {INCOME_TYPE, SPEND_TYPE} from "../api/types";
+import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 
 const AddTransaction = (props) => {
 
     const {accounts} = useContext(AppContext);
-    const {addTransaction, addIncomeTransaction} = useContext(ApiContext);
+    const {addTransaction, addTransferTransaction, addIncomeTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
     const [transactionStatusMessage, setTransactionStatusMessage] = useState('');
@@ -22,6 +22,9 @@ const AddTransaction = (props) => {
         switch (transactionType) {
             case SPEND_TYPE:
                 postResponse = await addTransaction(transactionData);
+                break;
+            case TRANSFER_TYPE:
+                postResponse = await addTransferTransaction(transactionData);
                 break;
             case INCOME_TYPE:
                 postResponse = await addIncomeTransaction(transactionData);

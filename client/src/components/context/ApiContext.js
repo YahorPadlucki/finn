@@ -9,6 +9,8 @@ const ApiContext = createContext({
     },
     addIncomeTransaction: (transactionData) => {
     },
+    addTransferTransaction: (transactionData) => {
+    },
 });
 
 export default ApiContext

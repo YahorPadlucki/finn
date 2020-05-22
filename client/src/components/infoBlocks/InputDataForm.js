@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {INCOME_TYPE, SPEND_TYPE} from "../api/types";
+import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 
 const InputDataForm = (props) => {
 
@@ -107,8 +107,8 @@ const InputDataForm = (props) => {
     };
 
 
-    const renderAmountInputField = function (isDisabled = false) {
-        const className = `field ${isDisabled ? 'disabled' : ''} ${isInputValid ? '' : 'error'}`;
+    const renderAmountInputField = function () {
+        const className = `field ${isInputValid ? '' : 'error'}`;
         return (
             <div className={className}>
                 <input type="text"
@@ -148,6 +148,7 @@ const InputDataForm = (props) => {
             const transactionData = {
                 "total": Number(amount),
                 "account": selectedAccountFromName ? selectedAccountFromName : props.selectedAccountName,
+                "toAccount": setSelectedAccountToName,
                 "category": getSelectedCategoryName(),
                 "date": date,
                 "year": date.getFullYear(),
@@ -174,6 +175,8 @@ const InputDataForm = (props) => {
         switch (selectedTransactionFormId) {
             case 0:
                 return SPEND_TYPE;
+            case 1:
+                return TRANSFER_TYPE;
             case 2:
                 return INCOME_TYPE;
         }
@@ -247,7 +250,6 @@ const InputDataForm = (props) => {
                     <label>To Account</label>
                     <div className="fields">
                         <div className="nine wide field">{renderToAccount()}</div>
-                        <div className="seven wide field">{renderAmountInputField(true)}</div>
                     </div>
                 </div>
                 <div className="fields">

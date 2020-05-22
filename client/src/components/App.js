@@ -169,6 +169,21 @@ const App = () => {
 
     };
 
+    const addTransferTransaction = async (transactionData) => {
+        setIsLoaded(false);
+
+        //TODO:
+        const postResponse = await postTransaction(transactionData);
+        // selectedAccount.balance += transactionData.total;
+        //
+        // await patchAccounts(selectedAccount);
+        // await fetchLatestTransactions();
+        setIsLoaded(true);
+        return postResponse;
+
+
+    };
+
 
     const editTransaction = async (oldData, newData) => {
         let sign = 1;
@@ -235,7 +250,8 @@ const App = () => {
             editTransaction: editTransaction,
             removeTransaction: removeTransaction,
             addTransaction: addTransaction,
-            addIncomeTransaction: addIncomeTransaction
+            addIncomeTransaction: addIncomeTransaction,
+            addTransferTransaction: addTransferTransaction
         }}>
             <AppContext.Provider value={{
                 accounts,
