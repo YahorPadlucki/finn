@@ -1,5 +1,6 @@
 Transfer transaction
-    - red input - reset on typing, not only on clicking save
+    - save transaction
+    + red input - reset on typing, not only on clicking save
     + disable if same accounts
     + to account switch differently
 

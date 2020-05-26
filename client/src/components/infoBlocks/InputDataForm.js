@@ -25,10 +25,6 @@ const InputDataForm = (props) => {
 
     useEffect(() => {
         // component did mount
-        console.log("=== selected account " + props.selectedAccountName)
-        console.log("=== selected income " + props.selectedAccountName)
-        console.log("=== selected income " + props.selectedAccountName)
-
         if (props.amount) {
             setAmount(props.amount);
 
@@ -57,9 +53,17 @@ const InputDataForm = (props) => {
 
     }, []);
 
+
     useEffect(() => {
         renderAmountInputField();
-    },[setSelectedAccountFromName,setSelectedAccountToName]);
+    }, [selectedAccountFromName, selectedAccountToName]);
+
+    useEffect(() => {
+        if (accounts[0]) {
+            setSelectedAccountToName(accounts[0].name);
+            setSelectedAccountFromName(accounts[0].name);
+        }
+    }, [accounts]);
 
 
     const onCategoryChangedInternal = (categoryName) => {
@@ -110,23 +114,21 @@ const InputDataForm = (props) => {
         setDescription('');
     };
 
+    const isInputFieldDisabled = () => selectedTransactionFormId === 1 && selectedAccountToName === selectedAccountFromName;
 
-    const isInputDisabled = () => {
-        if (selectedTransactionFormId === 1)
-            if (selectedAccountToName === selectedAccountFromName)
-                return `disabled`;
+    const getInputFieldClassName = () => {
+        return `field ${isInputValid ? '' : 'error'} ${isInputFieldDisabled() ? `disabled` : ``}`;
 
-        return ``;
     };
 
     const renderAmountInputField = function () {
-        const className = `field ${isInputValid ? '' : 'error'}` + isInputDisabled();
+        console.log(getInputFieldClassName())
         if (!isErrorInInputField()) {
             if (!isInputValid)
                 setIsInputValid(true);
         }
         return (
-            <div className={className}>
+            <div className={getInputFieldClassName()}>
                 <input type="text"
                        style={{}}
                        ref={(input) => {
@@ -153,11 +155,11 @@ const InputDataForm = (props) => {
     };
 
     const isErrorInInputField = () => {
-        return amount.length === 0 || isNaN(amount) || amount <= 0;
+        return amount.length === 0 || isNaN(amount) || amount <= 0 || isInputFieldDisabled();
     };
 
     const onSaveClicked = async () => {
-        if (isErrorInInputField()) {
+        if (isErrorInInputField() || isInputFieldDisabled()) {
             setIsInputValid(false);
         } else {
             if (!isInputValid)
@@ -168,7 +170,7 @@ const InputDataForm = (props) => {
             const transactionData = {
                 "total": Number(amount),
                 "account": selectedAccountFromName ? selectedAccountFromName : props.selectedAccountName,
-                "toAccount": setSelectedAccountToName,
+                "toAccount": selectedAccountToName,
                 "category": getSelectedCategoryName(),
                 "date": date,
                 "year": date.getFullYear(),
