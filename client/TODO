@@ -1,5 +1,8 @@
 Transfer transaction
-    - save transaction
+    - edit transaction
+    + save transaction
+    + display
+    + delete
     + red input - reset on typing, not only on clicking save
     + disable if same accounts
     + to account switch differently

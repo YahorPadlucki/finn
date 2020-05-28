@@ -4,7 +4,7 @@ import ApiContext from "../context/ApiContext";
 import DeleteTransactionPopup from "./DeleteTransactionPopup";
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
-import {INCOME_TYPE, SPEND_TYPE} from "../api/types";
+import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 
 const History = (props) => {
 
@@ -54,12 +54,10 @@ const History = (props) => {
 
         return transactions.slice(0, itemsToShow).map((transaction, index) => {
             const getTransactionDirection = function () {
-                if (transaction.type === SPEND_TYPE) {
-                    return "->";
-                }
                 if (transaction.type === INCOME_TYPE) {
                     return "<-";
                 }
+                return "->";
             };
 
             const getTransactionColor = function () {
@@ -69,6 +67,15 @@ const History = (props) => {
                 if (transaction.type === INCOME_TYPE) {
                     return "green";
                 }
+                return ""
+            };
+
+            const getTransactionDestination = function () {
+                if (transaction.type === TRANSFER_TYPE) {
+                    return transaction.toAccount;
+                }
+
+                return transaction.category
             };
 
             return (
@@ -81,7 +88,7 @@ const History = (props) => {
                     <div className="seven wide column" style={{textAlign: 'left', color: getTransactionColor()}}>
                         <label>{transaction.account}</label>
                         <label> {getTransactionDirection()} </label>
-                        <label>{transaction.category}</label>
+                        <label>{getTransactionDestination()}</label>
                         <div>{transaction.description}</div>
                     </div>
 

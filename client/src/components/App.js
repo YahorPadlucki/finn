@@ -5,7 +5,15 @@ import NavigationBar from "./NavigationBar";
 import Balance from "./infoBlocks/Balance";
 import History from "./infoBlocks/History";
 import AddTransaction from "./infoBlocks/AddTransaction";
-import {ACCOUNTS, CATEGORIES, TRANSACTIONS, INCOME_CATEGORIES, SPEND_TYPE, INCOME_TYPE} from "./api/types";
+import {
+    ACCOUNTS,
+    CATEGORIES,
+    INCOME_CATEGORIES,
+    INCOME_TYPE,
+    SPEND_TYPE,
+    TRANSACTIONS,
+    TRANSFER_TYPE
+} from "./api/types";
 import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTransaction} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
@@ -172,12 +180,18 @@ const App = () => {
     const addTransferTransaction = async (transactionData) => {
         setIsLoaded(false);
 
-        //TODO:
         const postResponse = await postTransaction(transactionData);
-        // selectedAccount.balance += transactionData.total;
-        //
-        // await patchAccounts(selectedAccount);
-        // await fetchLatestTransactions();
+
+        const fromAcc = accounts.filter(acc => acc.name === transactionData.account)[0];
+        const toAcc = accounts.filter(acc => acc.name === transactionData.toAccount)[0];
+
+        toAcc.balance += transactionData.total;
+        fromAcc.balance -= transactionData.total;
+
+
+        await patchAccounts(toAcc);
+        await patchAccounts(fromAcc);
+        await fetchLatestTransactions();
         setIsLoaded(true);
         return postResponse;
 
@@ -232,6 +246,13 @@ const App = () => {
             acc.balance += transaction.total;
         if (transaction.type === INCOME_TYPE)
             acc.balance -= transaction.total;
+
+        if (transaction.type === TRANSFER_TYPE) {
+            acc.balance += transaction.total;
+            const toAcc = accounts.filter(acc => acc.name === transaction.toAccount)[0];
+            toAcc.balance -= transaction.total;
+            await patchAccounts(toAcc);
+        }
 
 
         await patchAccounts(acc);
