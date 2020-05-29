@@ -60,8 +60,11 @@ const InputDataForm = (props) => {
 
     useEffect(() => {
         if (accounts[0]) {
-            setSelectedAccountToName(accounts[0].name);
-            setSelectedAccountFromName(accounts[0].name);
+            if (!props.selectedAccountToName)
+                setSelectedAccountToName(accounts[0].name);
+
+            if (!props.selectedAccountFromName)
+                setSelectedAccountFromName(accounts[0].name);
         }
     }, [accounts]);
 

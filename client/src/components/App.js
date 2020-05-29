@@ -235,6 +235,8 @@ const App = () => {
         await fetchHistoryTransactions(oldData.year, oldData.month);
     };
 
+    const editTransferTransaction=()=>{}
+
     const removeTransaction = async (transaction) => {
         setIsLoaded(false);
 
