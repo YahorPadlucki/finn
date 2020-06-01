@@ -200,6 +200,12 @@ const App = () => {
 
 
     const editTransaction = async (oldData, newData) => {
+        console.log("Here ")
+        if (oldData.type === TRANSFER_TYPE) {
+            await editTransferTransaction(oldData, newData);
+            return;
+        }
+
         let sign = 1;
         if (oldData.type === INCOME_TYPE) {
             sign = -1;
@@ -235,7 +241,27 @@ const App = () => {
         await fetchHistoryTransactions(oldData.year, oldData.month);
     };
 
-    const editTransferTransaction=()=>{}
+    const editTransferTransaction = async (oldData, newData) => {
+
+        const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
+        const oldToAcc = accounts.filter(acc => acc.name === oldData.toAccount)[0];
+
+        const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
+        const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
+
+        if (newData.total === oldData.total) {
+            oldAcc.balance += newData.total;
+            newAcc.balance -= newData.total;
+        } else {
+
+            oldAcc.balance += oldData.total;
+            newAcc.balance -= newData.total;
+        }
+
+        await patchAccounts(oldAcc);
+        await patchAccounts(newAcc);
+
+    };
 
     const removeTransaction = async (transaction) => {
         setIsLoaded(false);

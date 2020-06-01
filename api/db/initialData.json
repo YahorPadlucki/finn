@@ -3,12 +3,17 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 90
+      "balance": 95
     },
     {
       "id": 2,
       "name": "Cash",
-      "balance": 110
+      "balance": 105
+    },
+    {
+      "id": 3,
+      "name": "Bank",
+      "balance": 100
     }
   ],
   "categories": [
@@ -33,12 +38,12 @@
   "transactions": [
     {
       "total": 5,
-      "account": "Cash",
-      "toAccount": "Card",
-      "date": "2020-05-29T05:44:40.265Z",
+      "account": "Card",
+      "toAccount": "Cash",
+      "date": "2020-06-01T05:38:05.138Z",
       "year": 2020,
-      "month": 4,
-      "day": 29,
+      "month": 5,
+      "day": 1,
       "description": "",
       "type": "transferType",
       "id": 1
