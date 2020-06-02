@@ -14,7 +14,7 @@ const InputDataForm = (props) => {
     const [description, setDescription] = useState('');
     const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(1);
 
-    const [selectedAccountFromName, setSelectedAccountFromName] = useState(props.selectedAccountName);
+    const [selectedAccountFromName, setSelectedAccountFromName] = useState(props.selectedAccountFromName);
     const [selectedAccountToName, setSelectedAccountToName] = useState(props.selectedAccountToName);
 
     const [selectedCategoryName, setSelectedCategoryName] = useState(props.selectedCategoryName);
@@ -172,7 +172,7 @@ const InputDataForm = (props) => {
 
             const transactionData = {
                 "total": Number(amount),
-                "account": selectedAccountFromName ? selectedAccountFromName : props.selectedAccountName,
+                "account": selectedAccountFromName ? selectedAccountFromName : props.selectedAccountFromName,
                 "toAccount": selectedAccountToName,
                 "category": getSelectedCategoryName(),
                 "date": date,

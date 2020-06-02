@@ -13,7 +13,7 @@ const EditTransactionPopup = (props) => {
                            description={props.transactionToEdit.description}
                            amount={props.transactionToEdit.total}
                            id={props.transactionToEdit.id}
-                           selectedAccountName={props.transactionToEdit.account}
+                           selectedAccountFromName={props.transactionToEdit.account}
                            selectedAccountToName={props.transactionToEdit.toAccount}
                            selectedCategoryName={props.transactionToEdit.category}
                            transactionType={props.transactionToEdit.type}

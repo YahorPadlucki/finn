@@ -250,17 +250,32 @@ const App = () => {
         const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
 
         if (newData.total === oldData.total) {
-            oldAcc.balance += newData.total;
-            newAcc.balance -= newData.total;
-        } else {
 
-            oldAcc.balance += oldData.total;
-            newAcc.balance -= newData.total;
+            if (oldAcc === newAcc) {
+                // case when only TO acc changed
+                if (oldToAcc !== newToAcc) {
+                    oldToAcc.balance -= oldData.total;
+                    newToAcc.balance += newData.total;
+                }
+            } else {
+                //case when only FROM account changed
+                if (oldToAcc === newToAcc) {
+                    oldAcc.balance += oldData.total;
+                    newAcc.balance -= newData.total;
+                }
+            }
         }
 
         await patchAccounts(oldAcc);
         await patchAccounts(newAcc);
+        await patchAccounts(oldToAcc);
+        await patchAccounts(newToAcc);
 
+        await patchTransaction(oldData);
+        await patchTransaction(newData);
+
+        await fetchLatestTransactions();
+        await fetchHistoryTransactions(oldData.year, oldData.month);
     };
 
     const removeTransaction = async (transaction) => {
