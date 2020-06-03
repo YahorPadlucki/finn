@@ -243,15 +243,16 @@ const App = () => {
 
     const editTransferTransaction = async (oldData, newData) => {
 
-        const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
+        const oldFromAcc = accounts.filter(acc => acc.name === oldData.account)[0];
         const oldToAcc = accounts.filter(acc => acc.name === oldData.toAccount)[0];
 
-        const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
+        const newFromAcc = accounts.filter(acc => acc.name === newData.account)[0];
         const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
 
-        if (newData.total === oldData.total) {
+        //todo when to and from changed
 
-            if (oldAcc === newAcc) {
+        if (newData.total === oldData.total) {
+            if (oldFromAcc === newFromAcc) {
                 // case when only TO acc changed
                 if (oldToAcc !== newToAcc) {
                     oldToAcc.balance -= oldData.total;
@@ -260,14 +261,45 @@ const App = () => {
             } else {
                 //case when only FROM account changed
                 if (oldToAcc === newToAcc) {
-                    oldAcc.balance += oldData.total;
-                    newAcc.balance -= newData.total;
+                    oldFromAcc.balance += oldData.total;
+                    newFromAcc.balance -= newData.total;
                 }
             }
+        } else {
+            const deltaAmount = oldData.total - newData.total;
+
+            if (oldFromAcc === newFromAcc) {
+                oldFromAcc.balance += deltaAmount;
+
+                if (oldToAcc === newToAcc) {
+                    oldToAcc.balance -= deltaAmount;
+                } else {
+                    newToAcc.balance += newData.total;
+                    oldToAcc.balance -= oldData.total;
+                }
+
+            } else {
+
+                if (oldToAcc === newToAcc) {
+                    newFromAcc.balance -= newData.total;
+                    oldFromAcc.balance += oldData.total;
+
+                }else {
+                    newToAcc.balance += newData.total;
+                    oldToAcc.balance -= oldData.total;
+
+                    newFromAcc.balance -= newData.total;
+                    oldFromAcc.balance += oldData.total;
+                }
+
+            }
+
+
+            // acc.balance += deltaAmount * sign;
         }
 
-        await patchAccounts(oldAcc);
-        await patchAccounts(newAcc);
+        await patchAccounts(oldFromAcc);
+        await patchAccounts(newFromAcc);
         await patchAccounts(oldToAcc);
         await patchAccounts(newToAcc);
 
