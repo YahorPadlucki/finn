@@ -249,81 +249,89 @@ const App = () => {
         const newFromAcc = accounts.filter(acc => acc.name === newData.account)[0];
         const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
 
-        await removeTransaction(oldData);
+      /*  await removeTransaction(oldData);
         await addTransferTransaction(newData);
 
-        //todo balance not updated
+
+
+        await fetchLatestTransactions();
+        await fetchHistoryTransactions(oldData.year, oldData.month);
+
+        const accounts = await fetchData(ACCOUNTS);
+        if (accounts)
+            setAccounts(accounts);
+*/
+        //todo rafactor
         // can use such method?
 
-        // if (newData.total === oldData.total) {
-        //     if (oldFromAcc === newFromAcc) {
-        //         // case when only TO acc changed
-        //         if (oldToAcc !== newToAcc) {
-        //             oldToAcc.balance -= oldData.total;
-        //             newToAcc.balance += newData.total;
-        //         }else {
-        //
-        //         }
-        //
-        //     } else {
-        //         //case when only FROM account changed
-        //         if (oldToAcc === newToAcc) {
-        //             oldFromAcc.balance += oldData.total;
-        //             newFromAcc.balance -= newData.total;
-        //         }else{
-        //             oldFromAcc.balance += oldData.total;
-        //             oldToAcc.balance -= oldData.total;
-        //
-        //             newFromAcc.balance -= newData.total;
-        //             newToAcc.balance += newData.total;
-        //         }
-        //
-        //     }
-        // } else {
-        //     const deltaAmount = oldData.total - newData.total;
-        //
-        //     if (oldFromAcc === newFromAcc) {
-        //         oldFromAcc.balance += deltaAmount;
-        //
-        //         if (oldToAcc === newToAcc) {
-        //             oldToAcc.balance -= deltaAmount;
-        //         } else {
-        //             newToAcc.balance += newData.total;
-        //             oldToAcc.balance -= oldData.total;
-        //         }
-        //
-        //     } else {
-        //
-        //         if (oldToAcc === newToAcc) {
-        //             newFromAcc.balance -= newData.total;
-        //             oldFromAcc.balance += oldData.total;
-        //
-        //             oldToAcc.balance -= deltaAmount;
-        //         } else {
-        //
-        //             oldFromAcc.balance += oldData.total;
-        //             oldToAcc.balance -= oldData.total;
-        //
-        //             newFromAcc.balance -= newData.total;
-        //             newToAcc.balance += newData.total;
-        //         }
-        //
-        //     }
-        //
-        //
-        //     // acc.balance += deltaAmount * sign;
-        // }
-        //
-        // await patchAccounts(oldFromAcc);
-        // await patchAccounts(newFromAcc);
-        // await patchAccounts(oldToAcc);
-        // await patchAccounts(newToAcc);
-        //
-        // await patchTransaction(oldData);
-        // await patchTransaction(newData);
+        if (newData.total === oldData.total) {
+            if (oldFromAcc === newFromAcc) {
+                // case when only TO acc changed
+                if (oldToAcc !== newToAcc) {
+                    oldToAcc.balance -= oldData.total;
+                    newToAcc.balance += newData.total;
+                }else {
 
-        // await fetchLatestTransactions();
-        // await fetchHistoryTransactions(oldData.year, oldData.month);
+                }
+
+            } else {
+                //case when only FROM account changed
+                if (oldToAcc === newToAcc) {
+                    oldFromAcc.balance += oldData.total;
+                    newFromAcc.balance -= newData.total;
+                }else{
+                    oldFromAcc.balance += oldData.total;
+                    oldToAcc.balance -= oldData.total;
+
+                    newFromAcc.balance -= newData.total;
+                    newToAcc.balance += newData.total;
+                }
+
+            }
+        } else {
+            const deltaAmount = oldData.total - newData.total;
+
+            if (oldFromAcc === newFromAcc) {
+                oldFromAcc.balance += deltaAmount;
+
+                if (oldToAcc === newToAcc) {
+                    oldToAcc.balance -= deltaAmount;
+                } else {
+                    newToAcc.balance += newData.total;
+                    oldToAcc.balance -= oldData.total;
+                }
+
+            } else {
+
+                if (oldToAcc === newToAcc) {
+                    newFromAcc.balance -= newData.total;
+                    oldFromAcc.balance += oldData.total;
+
+                    oldToAcc.balance -= deltaAmount;
+                } else {
+
+                    oldFromAcc.balance += oldData.total;
+                    oldToAcc.balance -= oldData.total;
+
+                    newFromAcc.balance -= newData.total;
+                    newToAcc.balance += newData.total;
+                }
+
+            }
+
+
+        }
+
+        await patchAccounts(oldFromAcc);
+        await patchAccounts(newFromAcc);
+        await patchAccounts(oldToAcc);
+        await patchAccounts(newToAcc);
+
+        await patchTransaction(oldData);
+        await patchTransaction(newData);
+
+        await fetchLatestTransactions();
+        await fetchHistoryTransactions(oldData.year, oldData.month);
     };
 
     const removeTransaction = async (transaction) => {
