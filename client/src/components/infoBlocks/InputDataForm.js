@@ -125,7 +125,6 @@ const InputDataForm = (props) => {
     };
 
     const renderAmountInputField = function () {
-        console.log(getInputFieldClassName())
         if (!isErrorInInputField()) {
             if (!isInputValid)
                 setIsInputValid(true);

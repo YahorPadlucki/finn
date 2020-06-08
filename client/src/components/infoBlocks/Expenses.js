@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
+import {SPEND_TYPE} from "../api/types";
 
 
 const Expenses = () => {
@@ -26,7 +27,13 @@ const Expenses = () => {
     useEffect(() => {
 
         if (historyTransactions.length) {
-            const total = historyTransactions.reduce((total, transaction) => total + transaction.total, 0);
+            const total = historyTransactions.reduce((total, transaction) => {
+                let spendAmount = 0;
+                if (transaction.type === SPEND_TYPE)
+                    spendAmount = transaction.total;
+
+                return total + spendAmount;
+            }, 0);
             setTotal(total);
         }
 
@@ -38,15 +45,18 @@ const Expenses = () => {
         const combinedCategories = [];
 
         historyTransactions.forEach(transaction => {
-            if (!combinedCategories.length) {
-                combinedCategories.push({...transaction});
-            } else {
 
-                const cobinedCategorie = combinedCategories.filter(tr => tr.category === transaction.category)[0];
-                if (!cobinedCategorie)
+            if (transaction.type === SPEND_TYPE) {
+                if (!combinedCategories.length) {
                     combinedCategories.push({...transaction});
-                else
-                    cobinedCategorie.total += transaction.total;
+                } else {
+
+                    const cobinedCategorie = combinedCategories.filter(tr => tr.category === transaction.category)[0];
+                    if (!cobinedCategorie)
+                        combinedCategories.push({...transaction});
+                    else
+                        cobinedCategorie.total += transaction.total;
+                }
             }
 
         });
