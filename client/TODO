@@ -1,15 +1,4 @@
--remove transactions from expensies
-- income Category wri=ong ( card < - Food )
-
-Transfer transaction
-    - edit transaction
-    + save transaction
-    + display
-    + delete
-    + red input - reset on typing, not only on clicking save
-    + disable if same accounts
-    + to account switch differently
-
+- income Category wrong ( card < - Food )
 
 Expenses
 + extract date picker component
@@ -23,6 +12,16 @@ expenses graphs
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
 
+
++remove transactions from expensies
+Transfer transaction
+    + edit transaction
+    + save transaction
+    + display
+    + delete
+    + red input - reset on typing, not only on clicking save
+    + disable if same accounts
+    + to account switch differently
 
 Edit income transaction
     + display in history

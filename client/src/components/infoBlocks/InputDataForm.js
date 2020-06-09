@@ -12,7 +12,7 @@ const InputDataForm = (props) => {
     const [date, setDate] = useState(props.date);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-    const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(1);
+    const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(0);
 
     const [selectedAccountFromName, setSelectedAccountFromName] = useState(props.selectedAccountFromName);
     const [selectedAccountToName, setSelectedAccountToName] = useState(props.selectedAccountToName);
@@ -228,21 +228,55 @@ const InputDataForm = (props) => {
     };
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
+    const getAccountTitle = () => {
+        switch (selectedTransactionFormId) {
+            case 0:
+                return "Account";
+            case  1:
+                return "From Account";
+            case 2:
+                return "To Account";
+        }
+    };
 
-    const renderForm = (isIncome = false) => {
+
+    const getCategoryTitle = () => {
+        switch (selectedTransactionFormId) {
+            case 0:
+                return "Category";
+            case  1:
+                return "To Account";
+            case 2:
+                return "From";
+        }
+    };
+
+    const getRenderCategory = () => {
+        switch (selectedTransactionFormId) {
+            case 0:
+                return renderCategory();
+            case  1:
+                return renderToAccount();
+            case 2:
+                return renderIncomeCategory();
+        }
+    };
+
+
+    const renderForm = () => {
         return (
             <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
                 <div className="field">
-                    <label>Account</label>
+                    <label>{getAccountTitle()}</label>
                     <div className="fields">
                         <div className="nine wide field">{renderFromAccount()}</div>
                         <div className="seven wide field">{renderAmountInputField()}</div>
                     </div>
                 </div>
                 <div className="field">
-                    <label>Category</label>
+                    <label>{getCategoryTitle()}</label>
                     <div className="fields">
-                        <div className="nine wide field">{isIncome ? renderIncomeCategory() : renderCategory()}</div>
+                        <div className="nine wide field">{getRenderCategory()}</div>
                         <div className="seven wide field">{renderCalendar()}</div>
                     </div>
                 </div>
@@ -260,53 +294,8 @@ const InputDataForm = (props) => {
     };
 
 
-    const renderTransferForm = () => {
-        return (
-            <form className={formStateClassName} onSubmit={e => e.preventDefault()}>
-                <div className="field">
-                    <label>From Account</label>
-                    <div className="fields">
-                        <div className="nine wide field">{renderFromAccount()}</div>
-                        <div className="seven wide field">{renderAmountInputField()}</div>
-                    </div>
-                </div>
-                <div className="field">
-                    <label>To Account</label>
-                    <div className="fields">
-                        <div className="nine wide field">{renderToAccount()}</div>
-                    </div>
-                </div>
-                <div className="fields">
-                    <div className="nine wide field">{renderNoteField()}</div>
-                    <div className="seven wide field">{renderCalendar()}</div>
-                </div>
-                <div style={{textAlign: 'right'}}>
-                    <button className="big ui primary button "
-                            onClick={onSaveClicked}>
-                        Save
-                    </button>
-                    {renderCancelButton()}
-                </div>
-
-            </form>
-        );
-    };
-
     const getMenuItemClass = (id) => `item ${id === selectedTransactionFormId ? 'active' : ''}`;
     const onMenuItemClicked = (id) => setSelectedTransactionFormId(id);
-
-    const renderFields = () => {
-
-        switch (selectedTransactionFormId) {
-            case 0:
-                return renderForm();
-            case 1:
-                return renderTransferForm();
-            case 2:
-                return renderForm(true);
-        }
-    };
-
 
     let renderToggleBar = function () {
         if (!props.isEditPopup) {
@@ -324,7 +313,7 @@ const InputDataForm = (props) => {
     return (
         <div className="eight wide column">
             {renderToggleBar()}
-            {renderFields()}
+            {renderForm()}
         </div>
     );
 };
