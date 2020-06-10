@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState,useRef} from 'react';
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
 import {SPEND_TYPE} from "../api/types";
@@ -17,6 +17,10 @@ const Expenses = () => {
 
     const [selectedDate, setSelectedDate] = useState({month: 1, year: 2020});
     const [total, setTotal] = useState(0);
+
+    const canvasRef= useRef(null);
+    // const canvasObj = canvasRef.current;
+    // const ctx = canvasObj.getContext('2d');
 
 
     useEffect(() => {
@@ -74,6 +78,17 @@ const Expenses = () => {
         });
     };
 
+    function draw(ctx, location) {
+        // ctx.fillStyle = 'deepskyblue'
+        // ctx.shadowColor = 'dodgerblue'
+        // ctx.shadowBlur = 20  ctx.save()
+        // ctx.scale(SCALE, SCALE)  ctx.translate(location.x / SCALE - OFFSET, location.y / SCALE - OFFSET)
+        // ctx.fill(HOOK_PATH)
+        ctx.fillStyle = 'deepskyblue'
+        ctx.lineTo(0, 100);
+        ctx.restore()
+    }
+
     return (
         <div className="ui segment"
              style={{border: '1px solid rgba(34,36,38,.15)'}}>
@@ -94,6 +109,16 @@ const Expenses = () => {
                 {renderTable()}
                 </tbody>
             </table>
+
+            <canvas
+                ref={canvasRef}
+                onClick={e => {
+                    const canvas = canvasRef.current;
+                    const ctx = canvas.getContext('2d')
+                    draw(ctx, { x: e.clientX, y: e.clientY })
+                }}
+            />
+
         </div>
 
     );

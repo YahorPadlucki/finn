@@ -1,14 +1,17 @@
-- income Category wrong ( card < - Food )
+
+
+- pie chart
 
 Expenses
 + extract date picker component
 + total
 + categories
 + selector for month/year
-- pie chart
+
 
 expenses graphs
 
+- income Category wrong ( card < - Food )
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
 
