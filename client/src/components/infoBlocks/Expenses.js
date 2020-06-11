@@ -1,7 +1,8 @@
-import React, {useContext, useEffect, useState,useRef} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
 import {SPEND_TYPE} from "../api/types";
+import Chart from "chart.js"
 
 
 const Expenses = () => {
@@ -18,15 +19,21 @@ const Expenses = () => {
     const [selectedDate, setSelectedDate] = useState({month: 1, year: 2020});
     const [total, setTotal] = useState(0);
 
-    const canvasRef= useRef(null);
-    // const canvasObj = canvasRef.current;
-    // const ctx = canvasObj.getContext('2d');
+    const canvasRef = useRef(null);
 
 
     useEffect(() => {
         fetchHistoryTransactions(selectedDate.year, selectedDate.month);
 
     }, [selectedDate]);
+
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d')
+        draw(ctx, {x: 0, y: 0})
+
+    }, []);
 
     useEffect(() => {
 
@@ -79,14 +86,23 @@ const Expenses = () => {
     };
 
     function draw(ctx, location) {
-        // ctx.fillStyle = 'deepskyblue'
-        // ctx.shadowColor = 'dodgerblue'
-        // ctx.shadowBlur = 20  ctx.save()
-        // ctx.scale(SCALE, SCALE)  ctx.translate(location.x / SCALE - OFFSET, location.y / SCALE - OFFSET)
-        // ctx.fill(HOOK_PATH)
-        ctx.fillStyle = 'deepskyblue'
-        ctx.lineTo(0, 100);
-        ctx.restore()
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor:["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"],
+                    data: [3, 10, 5]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
     }
 
     return (
@@ -112,11 +128,6 @@ const Expenses = () => {
 
             <canvas
                 ref={canvasRef}
-                onClick={e => {
-                    const canvas = canvasRef.current;
-                    const ctx = canvas.getContext('2d')
-                    draw(ctx, { x: e.clientX, y: e.clientY })
-                }}
             />
 
         </div>
