@@ -3,12 +3,12 @@
     {
       "id": 1,
       "name": "Card",
-      "balance": 100
+      "balance": 75
     },
     {
       "id": 2,
       "name": "Cash",
-      "balance": 100
+      "balance": 85
     },
     {
       "id": 3,
@@ -18,10 +18,12 @@
   ],
   "categories": [
     {
-      "name": "Food"
+      "name": "Food",
+      "color": "rgb(255, 99, 132)"
     },
     {
-      "name": "Flat"
+      "name": "Flat",
+      "color": "rgb(54, 162, 235)"
     }
   ],
   "incomeCategories": [
@@ -35,5 +37,45 @@
       "name": "Other"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": 10,
+      "account": "Card",
+      "toAccount": "Card",
+      "category": "Food",
+      "date": "2020-06-12T05:34:23.855Z",
+      "year": 2020,
+      "month": 5,
+      "day": 12,
+      "description": "",
+      "type": "transactionType",
+      "id": 1
+    },
+    {
+      "total": 15,
+      "account": "Card",
+      "toAccount": "Card",
+      "category": "Flat",
+      "date": "2020-06-12T05:34:23.855Z",
+      "year": 2020,
+      "month": 5,
+      "day": 12,
+      "description": "",
+      "type": "transactionType",
+      "id": 2
+    },
+    {
+      "total": 15,
+      "account": "Cash",
+      "toAccount": "Card",
+      "category": "Flat",
+      "date": "2020-06-12T05:34:23.855Z",
+      "year": 2020,
+      "month": 5,
+      "day": 12,
+      "description": "",
+      "type": "transactionType",
+      "id": 3
+    }
+  ]
 }

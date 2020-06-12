@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
 import {SPEND_TYPE} from "../api/types";
@@ -8,7 +8,7 @@ import Chart from "chart.js"
 const Expenses = () => {
 
     const {
-        latestTransactions,
+        categories,
         historyTransactions,
         isLoaded,
         loadMoreTransactions,
@@ -24,16 +24,8 @@ const Expenses = () => {
 
     useEffect(() => {
         fetchHistoryTransactions(selectedDate.year, selectedDate.month);
-
     }, [selectedDate]);
 
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d')
-        draw(ctx, {x: 0, y: 0})
-
-    }, []);
 
     useEffect(() => {
 
@@ -48,8 +40,10 @@ const Expenses = () => {
             setTotal(total);
         }
 
+
     }, [historyTransactions]);
 
+    const getTransactionColor = (transaction) => categories.toString();
 
     const renderTable = () => {
 
@@ -72,11 +66,13 @@ const Expenses = () => {
 
         });
 
+        drawChart(combinedCategories);
+
 
         return combinedCategories.map((transaction, index) => {
             return (
                 <tr>
-                    <td>None</td>
+                    <td>{getTransactionColor(transaction)}</td>
                     <td>{transaction.category}</td>
                     <td>{((transaction.total / total) * 100).toFixed(1) + "%"}</td>
                     <td>{transaction.total}</td>
@@ -85,18 +81,32 @@ const Expenses = () => {
         });
     };
 
-    function draw(ctx, location) {
+
+
+    function drawChart(combinedCategories) {
+        const canvas = canvasRef.current;
+        if (!canvas) return; // Todo
+        const ctx = canvas.getContext('2d');
+
+        const labels = [];
+        const data = [];
+        combinedCategories.forEach(transaction => {
+            labels.push(transaction.category);
+            data.push(transaction.total);
+        });
+
+
         var chart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'pie',
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March'],
+                labels: labels,
                 datasets: [{
                     label: 'My First dataset',
-                    backgroundColor:["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"],
-                    data: [3, 10, 5]
+                    backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+                    data: data
                 }]
             },
 
