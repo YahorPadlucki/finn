@@ -43,7 +43,14 @@ const Expenses = () => {
 
     }, [historyTransactions]);
 
-    const getTransactionColor = (transaction) => categories.toString();
+    const getTransactionColor = (transaction) => {
+        if (categories && categories.length) {
+
+            return categories.filter((category) => category.name === transaction.category)[0].color
+
+        }
+        return "";
+    };
 
     const renderTable = () => {
 
@@ -82,7 +89,6 @@ const Expenses = () => {
     };
 
 
-
     function drawChart(combinedCategories) {
         const canvas = canvasRef.current;
         if (!canvas) return; // Todo
@@ -104,7 +110,6 @@ const Expenses = () => {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'My First dataset',
                     backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
                     data: data
                 }]
