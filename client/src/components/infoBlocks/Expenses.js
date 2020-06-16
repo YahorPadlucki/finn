@@ -43,9 +43,8 @@ const Expenses = () => {
 
     }, [historyTransactions]);
 
-    const getTransactionColor = (transaction) => {
+    const getTransactionColorCode = (transaction) => {
         if (categories && categories.length) {
-
             return categories.filter((category) => category.name === transaction.category)[0].color
 
         }
@@ -79,7 +78,8 @@ const Expenses = () => {
         return combinedCategories.map((transaction, index) => {
             return (
                 <tr>
-                    <td>{getTransactionColor(transaction)}</td>
+
+                    <td style={{'background-color': getTransactionColorCode(transaction)}}/>
                     <td>{transaction.category}</td>
                     <td>{((transaction.total / total) * 100).toFixed(1) + "%"}</td>
                     <td>{transaction.total}</td>
@@ -96,9 +96,11 @@ const Expenses = () => {
 
         const labels = [];
         const data = [];
+        const colors = [];
         combinedCategories.forEach(transaction => {
             labels.push(transaction.category);
             data.push(transaction.total);
+            colors.push(getTransactionColorCode(transaction))
         });
 
 
@@ -110,7 +112,7 @@ const Expenses = () => {
             data: {
                 labels: labels,
                 datasets: [{
-                    backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+                    backgroundColor: colors,
                     data: data
                 }]
             },
