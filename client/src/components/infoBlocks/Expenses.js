@@ -44,15 +44,14 @@ const Expenses = () => {
     }, [historyTransactions]);
 
     const getTransactionColorCode = (transaction) => {
-        if (categories && categories.length) {
-            return categories.filter((category) => category.name === transaction.category)[0].color
-
-        }
-        return "";
+        return categories.filter((category) => category.name === transaction.category)[0].color
     };
 
     const renderTable = () => {
 
+        if (!categories || !categories.length) {
+            return "";
+        }
         const combinedCategories = [];
 
         historyTransactions.forEach(transaction => {
@@ -97,6 +96,7 @@ const Expenses = () => {
         const labels = [];
         const data = [];
         const colors = [];
+
         combinedCategories.forEach(transaction => {
             labels.push(transaction.category);
             data.push(transaction.total);
@@ -104,21 +104,15 @@ const Expenses = () => {
         });
 
 
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
+        new Chart(ctx, {
             type: 'pie',
-
-            // The data for our dataset
             data: {
                 labels: labels,
                 datasets: [{
                     backgroundColor: colors,
                     data: data
                 }]
-            },
-
-            // Configuration options go here
-            options: {}
+            }
         });
     }
 
