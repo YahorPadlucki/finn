@@ -18,6 +18,7 @@ import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTrans
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
 import './popup/Modal.css'
+import Settings from "./infoBlocks/Settings";
 
 const App = () => {
 
@@ -31,7 +32,7 @@ const App = () => {
     const [selectedCategoryName, setSelectedCategoryName] = useState('');
     const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState('');
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(1);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(4);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
@@ -143,6 +144,8 @@ const App = () => {
             case 3:
                 return <History itemsToShow={10}
                                 isHistoryTab={true}/>;
+            case 4:
+                return <Settings/>
             default:
                 return null;
         }
@@ -249,18 +252,18 @@ const App = () => {
         const newFromAcc = accounts.filter(acc => acc.name === newData.account)[0];
         const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
 
-      /*  await removeTransaction(oldData);
-        await addTransferTransaction(newData);
+        /*  await removeTransaction(oldData);
+          await addTransferTransaction(newData);
 
 
 
-        await fetchLatestTransactions();
-        await fetchHistoryTransactions(oldData.year, oldData.month);
+          await fetchLatestTransactions();
+          await fetchHistoryTransactions(oldData.year, oldData.month);
 
-        const accounts = await fetchData(ACCOUNTS);
-        if (accounts)
-            setAccounts(accounts);
-*/
+          const accounts = await fetchData(ACCOUNTS);
+          if (accounts)
+              setAccounts(accounts);
+  */
         //todo rafactor
         // can use such method?
 
@@ -270,7 +273,7 @@ const App = () => {
                 if (oldToAcc !== newToAcc) {
                     oldToAcc.balance -= oldData.total;
                     newToAcc.balance += newData.total;
-                }else {
+                } else {
 
                 }
 
@@ -279,7 +282,7 @@ const App = () => {
                 if (oldToAcc === newToAcc) {
                     oldFromAcc.balance += oldData.total;
                     newFromAcc.balance -= newData.total;
-                }else{
+                } else {
                     oldFromAcc.balance += oldData.total;
                     oldToAcc.balance -= oldData.total;
 

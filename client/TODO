@@ -1,12 +1,15 @@
+Settings tab
+    - list all accounts
+ - add accounts
+ - add category?
 
-
-- pie chart
 
 Expenses
 + extract date picker component
 + total
 + categories
 + selector for month/year
++ pie chart
 
 
 expenses graphs
