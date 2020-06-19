@@ -33,6 +33,29 @@ const Settings = () => {
 
 
     function renderAccounts() {
+        return (
+            <div className="row" >
+
+                <div className="seven wide column" style={{textAlign: 'left'}}>
+                    <label>xxx</label>
+                </div>
+
+                <div className="four wide column " style={{textAlign: 'right'}}>
+
+                    <div className="mini ui button" onClick={() => {
+                        // setTransactionToEdit(transaction);
+                        setEditPopupActive(true)
+                    }}>/
+                    </div>
+                    <div className="mini ui button red" onClick={() => {
+                        // setTransactionToEdit(transaction);
+                        setDeletePopupActive(true)
+                    }}>X
+                    </div>
+                </div>
+            </div>);
+
+
 
     }
 
@@ -43,10 +66,7 @@ const Settings = () => {
                 <div className="ui text loader"/>
             </div>
             <h4 style={{textAlign: 'center'}}>Settings</h4>
-            <div className="ui centered padded grid">
-                {renderAccounts()}
-            </div>
-
+            {renderAccounts()}
             {renderEditPopup()}
             {renderDeletePopup()}
         </div>
