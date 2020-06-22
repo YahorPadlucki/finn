@@ -5,6 +5,7 @@ import AppContext from "../context/AppContext";
 const Settings = () => {
     const {
         isLoaded,
+        accounts
     } = useContext(AppContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -33,28 +34,24 @@ const Settings = () => {
 
 
     function renderAccounts() {
-        return (
-            <div className="row" >
-
-                <div className="seven wide column" style={{textAlign: 'left'}}>
-                    <label>xxx</label>
-                </div>
-
-                <div className="four wide column " style={{textAlign: 'right'}}>
-
-                    <div className="mini ui button" onClick={() => {
-                        // setTransactionToEdit(transaction);
-                        setEditPopupActive(true)
-                    }}>/
-                    </div>
-                    <div className="mini ui button red" onClick={() => {
-                        // setTransactionToEdit(transaction);
-                        setDeletePopupActive(true)
-                    }}>X
+        return accounts.map(acc => {
+            return (
+                <div className="item">
+                    <div>{acc.name}
+                        <div className="mini ui button right floated" onClick={() => {
+                            // setTransactionToEdit(transaction);
+                            setEditPopupActive(true)
+                        }}>/
+                        </div>
+                        <div className="mini ui button red right floated" onClick={() => {
+                            // setTransactionToEdit(transaction);
+                            setDeletePopupActive(true)
+                        }}>X
+                        </div>
                     </div>
                 </div>
-            </div>);
-
+            );
+        });
 
 
     }
@@ -66,7 +63,13 @@ const Settings = () => {
                 <div className="ui text loader"/>
             </div>
             <h4 style={{textAlign: 'center'}}>Settings</h4>
+            <h3>Accounts</h3>
+            <div className="ui middle aligned divided list">
+                {renderAccounts()}
+            </div>
+            <h3>Categories</h3>
             {renderAccounts()}
+
             {renderEditPopup()}
             {renderDeletePopup()}
         </div>
