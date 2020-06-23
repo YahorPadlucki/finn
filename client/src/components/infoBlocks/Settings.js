@@ -5,7 +5,8 @@ import AppContext from "../context/AppContext";
 const Settings = () => {
     const {
         isLoaded,
-        accounts
+        accounts,
+        categories
     } = useContext(AppContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -33,11 +34,11 @@ const Settings = () => {
     }
 
 
-    function renderAccounts() {
-        return accounts.map(acc => {
+    function renderElements(elemets) {
+        return elemets.map(el => {
             return (
                 <div className="item">
-                    <div>{acc.name}
+                    <div>{el.name}
                         <div className="mini ui button right floated" onClick={() => {
                             // setTransactionToEdit(transaction);
                             setEditPopupActive(true)
@@ -65,10 +66,12 @@ const Settings = () => {
             <h4 style={{textAlign: 'center'}}>Settings</h4>
             <h3>Accounts</h3>
             <div className="ui middle aligned divided list">
-                {renderAccounts()}
+                {renderElements(accounts)}
             </div>
             <h3>Categories</h3>
-            {renderAccounts()}
+            <div className="ui middle aligned divided list">
+                {renderElements(categories)}
+            </div>
 
             {renderEditPopup()}
             {renderDeletePopup()}
