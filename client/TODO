@@ -2,6 +2,10 @@ Settings tab
     - list all accounts
  - add accounts
  - add category?
+ Edit account
+ - generate unique id when adding new name
+ - check if exist - prevent to create new
+ - if delete - all transaction delete? (add additional prompt)
 
 
 Expenses

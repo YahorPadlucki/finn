@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
+import EditFieldNamePopup from "./EditFieldNamePopup";
 
 
 const Settings = () => {
@@ -20,8 +21,14 @@ const Settings = () => {
 
     function renderEditPopup() {
         if (isEditPopupActive) {
-
-            return "";// edit popup
+            return <EditFieldNamePopup
+                isLoaded={isLoaded}
+                // transactionToEdit={transactionToEdit}
+                onSaveClickedCallBack={(transactionData) => {
+                    // editTransaction(transactionToEdit, transactionData);
+                    hideEditPopup();
+                }}
+                OnCancel={hideEditPopup}/>;
         }
     }
 
