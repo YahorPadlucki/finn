@@ -3,7 +3,7 @@ import Modal from "../popup/Modal";
 
 const EditFieldNamePopup = (props) => {
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(props.name);
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
 
@@ -16,6 +16,12 @@ const EditFieldNamePopup = (props) => {
                            onChange={e => setName(e.target.value)}
                            onKeyPress={onKeyPress}
                     />
+                </div>
+                <div style={{textAlign: 'right'}}>
+                    <button className="big ui primary button "
+                            onClick={onKeyPress}>
+                        Save
+                    </button>
                 </div>
             </form>
         )

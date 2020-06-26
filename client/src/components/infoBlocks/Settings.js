@@ -12,6 +12,9 @@ const Settings = () => {
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
 
+    const [fieldToEdit, setFieldToEdit] = useState('');
+
+
 
     const hideEditPopup = () => setEditPopupActive(false);
     const hideDeletePopup = () => setDeletePopupActive(false);
@@ -23,6 +26,7 @@ const Settings = () => {
         if (isEditPopupActive) {
             return <EditFieldNamePopup
                 isLoaded={isLoaded}
+                name = {fieldToEdit.name}
                 // transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(transactionData) => {
                     // editTransaction(transactionToEdit, transactionData);
@@ -47,12 +51,12 @@ const Settings = () => {
                 <div className="item">
                     <div>{el.name}
                         <div className="mini ui button right floated" onClick={() => {
-                            // setTransactionToEdit(transaction);
+                            setFieldToEdit(el);
                             setEditPopupActive(true)
                         }}>/
                         </div>
                         <div className="mini ui button red right floated" onClick={() => {
-                            // setTransactionToEdit(transaction);
+                            setFieldToEdit(el);
                             setDeletePopupActive(true)
                         }}>X
                         </div>

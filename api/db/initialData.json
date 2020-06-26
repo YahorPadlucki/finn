@@ -3,38 +3,46 @@
     {
       "id": 1,
       "name": "Card",
+      "nameId": 1,
       "balance": 75
     },
     {
       "id": 2,
       "name": "Cash",
+      "nameId": 2,
       "balance": 85
     },
     {
       "id": 3,
       "name": "Bank",
+      "nameId": 3,
       "balance": 100
     }
   ],
   "categories": [
     {
       "name": "Food",
+      "nameId": 4,
       "color": "rgb(255, 99, 132)"
     },
     {
       "name": "Flat",
+      "nameId": 5,
       "color": "rgb(54, 162, 235)"
     }
   ],
   "incomeCategories": [
     {
-      "name": "Salary"
+      "name": "Salary",
+      "nameId": 6
     },
     {
-      "name": "Games"
+      "name": "Games",
+      "nameId": 7
     },
     {
-      "name": "Other"
+      "name": "Other",
+      "nameId": 8
     }
   ],
   "transactions": [
