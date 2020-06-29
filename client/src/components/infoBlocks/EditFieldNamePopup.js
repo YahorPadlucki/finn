@@ -3,7 +3,7 @@ import Modal from "../popup/Modal";
 
 const EditFieldNamePopup = (props) => {
 
-    const [name, setName] = useState(props.name);
+    const [name, setName] = useState(props.fieldToEdit.name);
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
 
@@ -19,17 +19,44 @@ const EditFieldNamePopup = (props) => {
                 </div>
                 <div style={{textAlign: 'right'}}>
                     <button className="big ui primary button "
-                            onClick={onKeyPress}>
+                            onClick={onSaveClicked}>
                         Save
+                    </button>
+                    <button className='big ui button'
+                            onClick={() => props.OnCancel()}>
+                        Cancel
                     </button>
                 </div>
             </form>
         )
     };
 
+    const onSaveClicked = async () => {
+        // if (isErrorInInputField() || isInputFieldDisabled()) {
+        //     setIsInputValid(false);
+        // } else {
+        //     if (!isInputValid)
+        //         setIsInputValid(true);
+        //
+
+        console.log("name id: "+props.fieldToEdit.nameId);
+        console.log("name: "+props.fieldToEdit.name);
+        console.log("new name: "+name);
+
+            const nameData = {
+            };
+
+
+            // props.onSaveClickedCallBack(transactionData, transactionType);
+
+            // clearFields();
+            // const postResponse = await postTransaction();
+    };
+
+
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {
-            // onSaveClicked();
+            onSaveClicked();
         }
 
     };

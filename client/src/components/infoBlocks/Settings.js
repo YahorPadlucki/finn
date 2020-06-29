@@ -26,7 +26,7 @@ const Settings = () => {
         if (isEditPopupActive) {
             return <EditFieldNamePopup
                 isLoaded={isLoaded}
-                name = {fieldToEdit.name}
+                fieldToEdit ={fieldToEdit}
                 // transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(transactionData) => {
                     // editTransaction(transactionToEdit, transactionData);
