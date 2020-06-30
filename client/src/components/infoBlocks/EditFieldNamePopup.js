@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Modal from "../popup/Modal";
+import AppContext from "../context/AppContext";
 
 const EditFieldNamePopup = (props) => {
 
     const [name, setName] = useState(props.fieldToEdit.name);
+    const {
+        editName
+    } = useContext(AppContext);
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
 
@@ -39,18 +43,16 @@ const EditFieldNamePopup = (props) => {
         //         setIsInputValid(true);
         //
 
-        console.log("name id: "+props.fieldToEdit.nameId);
-        console.log("name: "+props.fieldToEdit.name);
-        console.log("new name: "+name);
+        if (props.fieldToEdit.name === name)
+            return;
 
-            const nameData = {
-            };
+        editName(props.fieldToEdit.nameId, props.fieldToEdit.name, name);
 
 
-            // props.onSaveClickedCallBack(transactionData, transactionType);
+        // props.onSaveClickedCallBack(transactionData, transactionType);
 
-            // clearFields();
-            // const postResponse = await postTransaction();
+        // clearFields();
+        // const postResponse = await postTransaction();
     };
 
 

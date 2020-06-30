@@ -9,7 +9,7 @@ import {
     ACCOUNTS,
     CATEGORIES,
     INCOME_CATEGORIES,
-    INCOME_TYPE,
+    INCOME_TYPE, NAMES,
     SPEND_TYPE,
     TRANSACTIONS,
     TRANSFER_TYPE
@@ -61,6 +61,8 @@ const App = () => {
 
     async function fetchInitData() {
 
+        const names = await fetchData(NAMES);
+        console.log(names)
         const accounts = await fetchData(ACCOUNTS);
         if (accounts) {
             setAccounts(accounts);
@@ -367,6 +369,10 @@ const App = () => {
 
     };
 
+    const editName = (nameId, newName, oldName) => {
+
+    };
+
 
     return (
         <ApiContext.Provider value={{
@@ -374,7 +380,8 @@ const App = () => {
             removeTransaction: removeTransaction,
             addTransaction: addTransaction,
             addIncomeTransaction: addIncomeTransaction,
-            addTransferTransaction: addTransferTransaction
+            addTransferTransaction: addTransferTransaction,
+            editName:editName
         }}>
             <AppContext.Provider value={{
                 accounts,

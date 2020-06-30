@@ -51,3 +51,5 @@ export const deleteTransaction = async (id) => {
         .then(() => true)
         .catch((e) => e);
 };
+
+// export const patchName = async

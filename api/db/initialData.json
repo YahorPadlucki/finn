@@ -45,6 +45,40 @@
       "nameId": 8
     }
   ],
+  "names": [
+    {
+      "name": "Card",
+      "nameId": 1
+    },
+    {
+      "name": "Cash",
+      "nameId": 2
+    },
+    {
+      "name": "Bank",
+      "nameId": 3
+    },
+    {
+      "name": "Food",
+      "nameId": 4
+    },
+    {
+      "name": "Flat",
+      "nameId": 5
+    },
+    {
+      "name": "Salary",
+      "nameId": 6
+    },
+    {
+      "name": "Games",
+      "nameId": 7
+    },
+    {
+      "name": "Other",
+      "nameId": 8
+    }
+  ],
   "transactions": [
     {
       "total": 10,
