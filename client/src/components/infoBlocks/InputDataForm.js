@@ -6,7 +6,10 @@ import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 
 const InputDataForm = (props) => {
 
-    const {accounts, categories, incomeCategories} = useContext(AppContext);
+    const {
+        accounts, categories, incomeCategories,
+        getNameFromNameId
+    } = useContext(AppContext);
 
     const [isInputValid, setIsInputValid] = useState(true);
     const [date, setDate] = useState(props.date);
@@ -14,6 +17,8 @@ const InputDataForm = (props) => {
     const [description, setDescription] = useState('');
     const [selectedTransactionFormId, setSelectedTransactionFormId] = useState(0);
 
+
+    //TODO: Change to ids
     const [selectedAccountFromName, setSelectedAccountFromName] = useState(props.selectedAccountFromName);
     const [selectedAccountToName, setSelectedAccountToName] = useState(props.selectedAccountToName);
 
@@ -89,11 +94,11 @@ const InputDataForm = (props) => {
 
     };
 
-    const renderCategory = () => renderOptionsList(categories.map(category => category.name), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
-    const renderIncomeCategory = () => renderOptionsList(incomeCategories.map(category => category.name), (categoryName) => onIncomeCategoryChangedInternal(categoryName), selectedIncomeCategoryName);
+    const renderCategory = () => renderOptionsList(categories.map(category => getNameFromNameId(category.nameId)), (categoryName) => onCategoryChangedInternal(categoryName), selectedCategoryName);
+    const renderIncomeCategory = () => renderOptionsList(incomeCategories.map(category => getNameFromNameId(category.nameId)), (categoryName) => onIncomeCategoryChangedInternal(categoryName), selectedIncomeCategoryName);
 
-    const renderFromAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountFromChangedInternal(accountName), selectedAccountFromName);
-    const renderToAccount = () => renderOptionsList(accounts.map(account => account.name), (accountName) => onAccountToChanged(accountName), selectedAccountToName);
+    const renderFromAccount = () => renderOptionsList(accounts.map(account =>getNameFromNameId(account.nameId)), (accountName) => onAccountFromChangedInternal(accountName), selectedAccountFromName);
+    const renderToAccount = () => renderOptionsList(accounts.map(account => getNameFromNameId(account.nameId)), (accountName) => onAccountToChanged(accountName), selectedAccountToName);
 
 
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {

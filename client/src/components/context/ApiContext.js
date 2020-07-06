@@ -11,6 +11,9 @@ const ApiContext = createContext({
     },
     addTransferTransaction: (transactionData) => {
     },
+    getNameFromNameId: (nameId) => {
+
+    }
 });
 
 export default ApiContext

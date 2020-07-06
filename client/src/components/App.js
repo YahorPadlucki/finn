@@ -23,6 +23,7 @@ import Settings from "./infoBlocks/Settings";
 const App = () => {
 
     const [accounts, setAccounts] = useState([]);
+    const [names, setNames] = useState([]);
     const [categories, setCategories] = useState([]);
     const [incomeCategories, setIncomeCategories] = useState([]);
     const [latestTransactions, setLatestTransactions] = useState([]);
@@ -32,7 +33,7 @@ const App = () => {
     const [selectedCategoryName, setSelectedCategoryName] = useState('');
     const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState('');
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(4);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
@@ -62,7 +63,7 @@ const App = () => {
     async function fetchInitData() {
 
         const names = await fetchData(NAMES);
-        console.log(names)
+        setNames(names);
         const accounts = await fetchData(ACCOUNTS);
         if (accounts) {
             setAccounts(accounts);
@@ -87,6 +88,11 @@ const App = () => {
         await fetchLatestTransactions();
         setIsLoaded(true);
     }
+
+    const getNameFromNameId = (id) => {
+        return names.filter(el => el.nameId === id)[0].name;
+
+    };
 
     const fetchLatestTransactions = async () => {
 
@@ -381,7 +387,7 @@ const App = () => {
             addTransaction: addTransaction,
             addIncomeTransaction: addIncomeTransaction,
             addTransferTransaction: addTransferTransaction,
-            editName:editName
+            editName: editName
         }}>
             <AppContext.Provider value={{
                 accounts,
@@ -392,7 +398,9 @@ const App = () => {
                 isLoaded,
                 isAllTransactionsLoaded,
                 loadMoreTransactions: loadMoreTransactions,
-                fetchHistoryTransactions: fetchHistoryTransactions
+                fetchHistoryTransactions: fetchHistoryTransactions,
+                getNameFromNameId: getNameFromNameId
+
             }}>
                 <div className="ui container"
                      style={{marginTop: '10px'}}>
