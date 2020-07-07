@@ -30,8 +30,8 @@ const App = () => {
     const [historyTransactions, setHistoryTransactions] = useState([]);
 
     const [selectedAccount, setSelectedAccount] = useState('');
-    const [selectedCategoryName, setSelectedCategoryName] = useState('');
-    const [selectedIncomeCategoryName, setSelectedIncomeCategoryName] = useState('');
+    const [selectedCategoryNameId, setSelectedCategoryNameId] = useState('');
+    const [selectedIncomeCategoryNameId, setSelectedIncomeCategoryNameId] = useState('');
 
     const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -74,14 +74,14 @@ const App = () => {
         const categories = await fetchData(CATEGORIES);
         if (categories) {
             setCategories(categories);
-            setSelectedCategoryName(categories[0].name);
+            setSelectedCategoryNameId(categories[0].nameId);
         }
 
         const incomeCategories = await fetchData(INCOME_CATEGORIES);
         if (incomeCategories) {
             setIncomeCategories(incomeCategories);
-            setSelectedIncomeCategoryName(incomeCategories[0].name);
-            console.log("init income " + incomeCategories[0].name)
+            setSelectedIncomeCategoryNameId(incomeCategories[0].nameId);
+            console.log("init income " + incomeCategories[0].nameId)
         }
 
 
@@ -129,8 +129,8 @@ const App = () => {
     };
 
 
-    const onAccountChanged = (selectedAccountName) => {
-        setSelectedAccount(accounts.find(el => el.name === selectedAccountName));
+    const onAccountChanged = (selectedAccountNameId) => {
+        setSelectedAccount(accounts.find(el => el.nameId === selectedAccountNameId));
     };
 
     const renderInfoBlock = () => {
@@ -143,10 +143,10 @@ const App = () => {
             case 2:
                 //TODO: selected income category (props and use effect?)
                 return <AddTransaction
-                    selectedAccountName={selectedAccount.name}
-                    selectedCategoryName={selectedCategoryName}
+                    selectedAccountNameId={selectedAccount.nameId}
+                    selectedCategoryNameId={selectedCategoryNameId}
                     onAccountChanged={onAccountChanged}
-                    selectedIncomeCategoryName={selectedIncomeCategoryName}
+                    selectedIncomeCategoryNameId={selectedIncomeCategoryNameId}
                     isLoaded={isLoaded}
                 />;
             case 3:

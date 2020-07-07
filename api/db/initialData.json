@@ -47,35 +47,35 @@
   ],
   "names": [
     {
-      "name": "Card",
+      "name": "Cardd",
       "nameId": 1
     },
     {
-      "name": "Cash",
+      "name": "Cashh",
       "nameId": 2
     },
     {
-      "name": "Bank",
+      "name": "Bankk",
       "nameId": 3
     },
     {
-      "name": "Food",
+      "name": "Foodd",
       "nameId": 4
     },
     {
-      "name": "Flat",
+      "name": "Flatt",
       "nameId": 5
     },
     {
-      "name": "Salary",
+      "name": "Salaryy",
       "nameId": 6
     },
     {
-      "name": "Games",
+      "name": "Gamess",
       "nameId": 7
     },
     {
-      "name": "Other",
+      "name": "Otherr",
       "nameId": 8
     }
   ],

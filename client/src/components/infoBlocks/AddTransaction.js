@@ -7,7 +7,10 @@ import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 
 const AddTransaction = (props) => {
 
-    const {accounts} = useContext(AppContext);
+    const {
+        accounts,
+        getNameFromNameId
+    } = useContext(AppContext);
     const {addTransaction, addTransferTransaction, addIncomeTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);
@@ -40,7 +43,7 @@ const AddTransaction = (props) => {
         setIsTransactionInProcess(false);
     };
 
-    const renderAccounts = () => accounts.map((acc, i) => <p key={i}>{acc.name}: {acc.balance}</p>);
+    const renderAccounts = () => accounts.map((acc, i) => <p key={i}>{getNameFromNameId(acc.nameId)}: {acc.balance}</p>);
 
     const renderBalanceBlock = function () {
         return (
@@ -60,9 +63,9 @@ const AddTransaction = (props) => {
                     {renderBalanceBlock()}
                 </div>
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
-                               selectedCategoryName={props.selectedCategoryName}
-                               selectedAccountName={props.selectedAccountName}
-                               selectedIncomeCategoryName={props.selectedIncomeCategoryName}
+                               selectedCategoryNameId={props.selectedCategoryNameId}
+                               selectedAccountNameId={props.selectedAccountName}
+                               selectedIncomeCategoryNameId={props.selectedIncomeCategoryName}
                                onAccountChanged={props.onAccountChanged}
                                onSaveClickedCallBack={onSaveClicked}
 
