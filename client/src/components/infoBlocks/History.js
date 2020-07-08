@@ -72,10 +72,10 @@ const History = (props) => {
 
             const getTransactionDestination = function () {
                 if (transaction.type === TRANSFER_TYPE) {
-                    return transaction.toAccount;
+                    return transaction.toAccountNameId;
                 }
 
-                return transaction.category
+                return transaction.categoryNameId
             };
 
             return (
@@ -86,7 +86,7 @@ const History = (props) => {
                     </strong>
 
                     <div className="seven wide column" style={{textAlign: 'left', color: getTransactionColor()}}>
-                        <label>{transaction.account}</label>
+                        <label>{transaction.accountNameId}</label>
                         <label> {getTransactionDirection()} </label>
                         <label>{getTransactionDestination()}</label>
                         <div>{transaction.description}</div>

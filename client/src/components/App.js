@@ -90,7 +90,8 @@ const App = () => {
     }
 
     const getNameFromNameId = (id) => {
-        return names.filter(el => el.nameId === id)[0].name;
+        if (id)
+            return names.filter(el => el.nameId === id)[0].name;
 
     };
 
@@ -193,8 +194,8 @@ const App = () => {
 
         const postResponse = await postTransaction(transactionData);
 
-        const fromAcc = accounts.filter(acc => acc.name === transactionData.account)[0];
-        const toAcc = accounts.filter(acc => acc.name === transactionData.toAccount)[0];
+        const fromAcc = accounts.filter(acc => acc.nameId === transactionData.accountNameId)[0];
+        const toAcc = accounts.filter(acc => acc.nameId === transactionData.toAccountNameId)[0];
 
         toAcc.balance += transactionData.total;
         fromAcc.balance -= transactionData.total;
@@ -211,7 +212,6 @@ const App = () => {
 
 
     const editTransaction = async (oldData, newData) => {
-        console.log("Here ")
         if (oldData.type === TRANSFER_TYPE) {
             await editTransferTransaction(oldData, newData);
             return;
@@ -222,16 +222,16 @@ const App = () => {
             sign = -1;
         }
 
-        if (oldData.account === newData.account) {
+        if (oldData.accountNameId === newData.accountNameId) {
             const deltaAmount = oldData.total - newData.total;
-            const acc = accounts.filter(acc => acc.name === oldData.account)[0];
+            const acc = accounts.filter(acc => acc.nameId === oldData.accountNameId)[0];
             acc.balance += deltaAmount * sign;
             await patchAccounts(acc);
 
         } else {
 
-            const oldAcc = accounts.filter(acc => acc.name === oldData.account)[0];
-            const newAcc = accounts.filter(acc => acc.name === newData.account)[0];
+            const oldAcc = accounts.filter(acc => acc.nameId === oldData.accountNameId)[0];
+            const newAcc = accounts.filter(acc => acc.nameId === newData.accountNameId)[0];
 
             if (newData.total === oldData.total) {
                 oldAcc.balance += newData.total * sign;
@@ -254,11 +254,11 @@ const App = () => {
 
     const editTransferTransaction = async (oldData, newData) => {
 
-        const oldFromAcc = accounts.filter(acc => acc.name === oldData.account)[0];
-        const oldToAcc = accounts.filter(acc => acc.name === oldData.toAccount)[0];
+        const oldFromAcc = accounts.filter(acc => acc.nameId === oldData.accountNameId)[0];
+        const oldToAcc = accounts.filter(acc => acc.nameId === oldData.toAccountNameId)[0];
 
-        const newFromAcc = accounts.filter(acc => acc.name === newData.account)[0];
-        const newToAcc = accounts.filter(acc => acc.name === newData.toAccount)[0];
+        const newFromAcc = accounts.filter(acc => acc.nameId === newData.accountNameId)[0];
+        const newToAcc = accounts.filter(acc => acc.nameId === newData.toAccountNameId)[0];
 
         /*  await removeTransaction(oldData);
           await addTransferTransaction(newData);
@@ -350,7 +350,7 @@ const App = () => {
 
         await deleteTransaction(transaction.id);
 
-        const acc = accounts.filter(acc => acc.name === transaction.account)[0];
+        const acc = accounts.filter(acc => acc.nameId === transaction.accountNameId)[0];
 
         if (transaction.type === SPEND_TYPE)
             acc.balance += transaction.total;
@@ -359,7 +359,7 @@ const App = () => {
 
         if (transaction.type === TRANSFER_TYPE) {
             acc.balance += transaction.total;
-            const toAcc = accounts.filter(acc => acc.name === transaction.toAccount)[0];
+            const toAcc = accounts.filter(acc => acc.nameId === transaction.toAccountNameId)[0];
             toAcc.balance -= transaction.total;
             await patchAccounts(toAcc);
         }
@@ -407,7 +407,7 @@ const App = () => {
                     <NavigationBar
                         selectedButtonIndex={selectedInfoBlock}
                         onButtonClicked={onTabButtonClicked}/>
-                    <BalanceHeader account={selectedAccount.name}
+                    <BalanceHeader accountName={getNameFromNameId(selectedAccount.nameId)}
                                    balance={selectedAccount.balance}/>
                     {renderInfoBlock()}
 

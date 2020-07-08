@@ -79,45 +79,5 @@
       "nameId": 8
     }
   ],
-  "transactions": [
-    {
-      "total": 10,
-      "account": "Card",
-      "toAccount": "Card",
-      "category": "Food",
-      "date": "2020-06-12T05:34:23.855Z",
-      "year": 2020,
-      "month": 5,
-      "day": 12,
-      "description": "",
-      "type": "transactionType",
-      "id": 1
-    },
-    {
-      "total": 15,
-      "account": "Card",
-      "toAccount": "Card",
-      "category": "Flat",
-      "date": "2020-06-12T05:34:23.855Z",
-      "year": 2020,
-      "month": 5,
-      "day": 12,
-      "description": "",
-      "type": "transactionType",
-      "id": 2
-    },
-    {
-      "total": 15,
-      "account": "Cash",
-      "toAccount": "Card",
-      "category": "Flat",
-      "date": "2020-06-12T05:34:23.855Z",
-      "year": 2020,
-      "month": 5,
-      "day": 12,
-      "description": "",
-      "type": "transactionType",
-      "id": 3
-    }
-  ]
+  "transactions": []
 }

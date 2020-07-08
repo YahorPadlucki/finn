@@ -65,10 +65,10 @@ const InputDataForm = (props) => {
 
     useEffect(() => {
         if (accounts[0]) {
-            if (!props.selectedAccountToName)
+            if (!props.selectedAccountToNameId)
                 setSelectedAccountToNameId(accounts[0].nameId);
 
-            if (!props.selectedAccountFromName)
+            if (!props.selectedAccountFromNameId)
                 setSelectedAccountFromNameId(accounts[0].nameId);
         }
     }, [accounts]);
@@ -104,11 +104,10 @@ const InputDataForm = (props) => {
     const renderOptionsList = function (optionsArray, setStateFunction, selectedElement) {
         return (
             <select className="ui search dropdown" value={selectedElement}
-                    onChange={e => setStateFunction(e.target.value)}>
+                    onChange={e => setStateFunction(parseInt(e.target.value))}>
                 {
                     optionsArray.map((option, i) => {
-                        const name = getNameFromNameId(option);
-                        return <option key={i} value={name}>{name}</option>
+                        return <option key={i} value={option}>{getNameFromNameId(option)}</option>
                     })
                 }
             </select>
@@ -181,9 +180,9 @@ const InputDataForm = (props) => {
 
             const transactionData = {
                 "total": Number(amount),
-                "account": selectedAccountFromNameId ? selectedAccountFromNameId : props.selectedAccountFromName,
-                "toAccount": selectedAccountToNameId,
-                "category": getSelectedCategoryName(),
+                "accountNameId": selectedAccountFromNameId ? selectedAccountFromNameId : props.selectedAccountFromNameId,
+                "toAccountNameId": selectedAccountToNameId,
+                "categoryNameId": getSelectedCategoryNameId(),
                 "date": date,
                 "year": date.getFullYear(),
                 "month": date.getMonth(),
@@ -216,12 +215,12 @@ const InputDataForm = (props) => {
         }
     };
 
-    const getSelectedCategoryName = () => {
+    const getSelectedCategoryNameId = () => {
         switch (selectedTransactionFormId) {
             case 0:
-                return selectedCategoryNameId ? selectedCategoryNameId : props.selectedCategoryName;
+                return selectedCategoryNameId ? selectedCategoryNameId : props.selectedCategoryNameId;
             case 2:
-                return selectedIncomeCategoryNameId ? selectedIncomeCategoryNameId : props.selectedIncomeCategoryName;
+                return selectedIncomeCategoryNameId ? selectedIncomeCategoryNameId : props.selectedIncomeCategoryNameId;
         }
 
     };

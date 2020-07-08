@@ -13,9 +13,9 @@ const EditTransactionPopup = (props) => {
                            description={props.transactionToEdit.description}
                            amount={props.transactionToEdit.total}
                            id={props.transactionToEdit.id}
-                           selectedAccountFromName={props.transactionToEdit.account}
-                           selectedAccountToName={props.transactionToEdit.toAccount}
-                           selectedCategoryName={props.transactionToEdit.category}
+                           selectedAccountFromNameId={props.transactionToEdit.accountNameId}
+                           selectedAccountToNameId={props.transactionToEdit.toAccountNameId}
+                           selectedCategoryNameId={props.transactionToEdit.categoryNameId}
                            transactionType={props.transactionToEdit.type}
                            onSaveClickedCallBack={props.onSaveClickedCallBack}
                            onCancel={props.OnCancel}
