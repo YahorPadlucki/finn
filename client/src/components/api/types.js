@@ -1,4 +1,4 @@
-export const NAMES = 'names';
+export const NAMES = 'namesArray';
 export const ACCOUNTS = 'accounts';
 export const CATEGORIES = 'categories';
 export const INCOME_CATEGORIES = 'incomeCategories';

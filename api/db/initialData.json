@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Card",
       "nameId": 1,
-      "balance": 75
+      "balance": 100
     },
     {
       "id": 2,
       "name": "Cash",
       "nameId": 2,
-      "balance": 85
+      "balance": 100
     },
     {
       "id": 3,
@@ -45,7 +45,7 @@
       "nameId": 8
     }
   ],
-  "names": [
+  "namesArray": [
     {
       "name": "Cardd",
       "nameId": 1
