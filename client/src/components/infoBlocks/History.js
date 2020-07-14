@@ -14,7 +14,8 @@ const History = (props) => {
         isLoaded,
         loadMoreTransactions,
         isAllTransactionsLoaded,
-        fetchHistoryTransactions
+        fetchHistoryTransactions,
+        getNameFromNameId
     } = useContext(AppContext);
     const {editTransaction, removeTransaction} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
@@ -72,10 +73,10 @@ const History = (props) => {
 
             const getTransactionDestination = function () {
                 if (transaction.type === TRANSFER_TYPE) {
-                    return transaction.toAccountNameId;
+                    return getNameFromNameId(transaction.toAccountNameId);
                 }
 
-                return transaction.categoryNameId
+                return getNameFromNameId(transaction.categoryNameId)
             };
 
             return (
@@ -86,7 +87,7 @@ const History = (props) => {
                     </strong>
 
                     <div className="seven wide column" style={{textAlign: 'left', color: getTransactionColor()}}>
-                        <label>{transaction.accountNameId}</label>
+                        <label>{getNameFromNameId(transaction.accountNameId)}</label>
                         <label> {getTransactionDirection()} </label>
                         <label>{getTransactionDestination()}</label>
                         <div>{transaction.description}</div>
