@@ -47,6 +47,9 @@ const InputDataForm = (props) => {
             if (props.transactionType === SPEND_TYPE) {
                 setSelectedTransactionFormId(0)
             }
+            if (props.transactionType === TRANSFER_TYPE) {
+                setSelectedTransactionFormId(1)
+            }
             if (props.transactionType === INCOME_TYPE) {
                 setSelectedTransactionFormId(2)
             }
