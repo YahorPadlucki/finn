@@ -13,6 +13,8 @@ const AppContext = createContext({
     loadMoreTransactions: () => {
     },
     fetchHistoryTransactions: (year, month) => {
+    },
+    editName: (nameId, newName, oldName) => {
     }
 });
 

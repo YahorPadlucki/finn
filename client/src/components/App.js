@@ -377,6 +377,9 @@ const App = () => {
 
     const editName = (nameId, newName, oldName) => {
 
+        console.log(nameId)
+        console.log(newName)
+        console.log(oldName)
     };
 
 
@@ -386,8 +389,7 @@ const App = () => {
             removeTransaction: removeTransaction,
             addTransaction: addTransaction,
             addIncomeTransaction: addIncomeTransaction,
-            addTransferTransaction: addTransferTransaction,
-            editName: editName
+            addTransferTransaction: addTransferTransaction
         }}>
             <AppContext.Provider value={{
                 accounts,
@@ -399,7 +401,8 @@ const App = () => {
                 isAllTransactionsLoaded,
                 loadMoreTransactions: loadMoreTransactions,
                 fetchHistoryTransactions: fetchHistoryTransactions,
-                getNameFromNameId: getNameFromNameId
+                getNameFromNameId: getNameFromNameId,
+                editName: editName
 
             }}>
                 <div className="ui container"
