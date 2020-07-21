@@ -7,13 +7,13 @@ const Settings = () => {
     const {
         isLoaded,
         accounts,
-        categories
+        categories,
+        editName
     } = useContext(AppContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
 
     const [fieldToEdit, setFieldToEdit] = useState('');
-
 
 
     const hideEditPopup = () => setEditPopupActive(false);
@@ -26,10 +26,10 @@ const Settings = () => {
         if (isEditPopupActive) {
             return <EditFieldNamePopup
                 isLoaded={isLoaded}
-                fieldToEdit ={fieldToEdit}
+                fieldToEdit={fieldToEdit}
                 // transactionToEdit={transactionToEdit}
-                onSaveClickedCallBack={(transactionData) => {
-                    // editTransaction(transactionToEdit, transactionData);
+                onSaveClickedCallBack={(data) => {
+                    editName(data);
                     hideEditPopup();
                 }}
                 OnCancel={hideEditPopup}/>;

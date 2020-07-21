@@ -5,9 +5,7 @@ import AppContext from "../context/AppContext";
 const EditFieldNamePopup = (props) => {
 
     const [name, setName] = useState(props.fieldToEdit.name);
-    const {
-        editName
-    } = useContext(AppContext);
+
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
 
@@ -46,10 +44,7 @@ const EditFieldNamePopup = (props) => {
         if (props.fieldToEdit.name === name)
             return;
 
-        editName(props.fieldToEdit.nameId, props.fieldToEdit.name, name);
-
-
-        // props.onSaveClickedCallBack(transactionData, transactionType);
+        props.onSaveClickedCallBack({nameId: props.fieldToEdit.nameId, name: name});
 
         // clearFields();
         // const postResponse = await postTransaction();

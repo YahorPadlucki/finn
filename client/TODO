@@ -1,5 +1,8 @@
-Change name ref to name id
-    - inputData for and editing transactions
+- Settings tab - use names by ids
+- refresh on name edited
+
+
+refactor serverApi ( remove duplications)
 
 Settings tab
     - list all accounts

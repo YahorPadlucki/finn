@@ -14,7 +14,14 @@ import {
     TRANSACTIONS,
     TRANSFER_TYPE
 } from "./api/types";
-import {deleteTransaction, fetchData, patchAccounts, patchTransaction, postTransaction} from "./api/serverApi";
+import {
+    deleteTransaction,
+    fetchData,
+    patchAccounts,
+    patchName,
+    patchTransaction,
+    postTransaction
+} from "./api/serverApi";
 import AppContext from "./context/AppContext"
 import ApiContext from "./context/ApiContext"
 import './popup/Modal.css'
@@ -375,11 +382,14 @@ const App = () => {
 
     };
 
-    const editName = (nameId, newName, oldName) => {
-
-        console.log(nameId)
-        console.log(newName)
-        console.log(oldName)
+    const editName = async (data) => {
+        setIsLoaded(false);
+        const id = names.filter(name => name.nameId === data.nameId)[0].id;
+        console.log("pathc id "+id)
+        console.log("pathc name "+data.name)
+        console.log("pathc name id "+data.nameId)
+        await patchName({id: id, name: data.name, nameId: data.nameId});
+        setIsLoaded(true);
     };
 
 

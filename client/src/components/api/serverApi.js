@@ -44,6 +44,18 @@ export const patchAccounts = async (data) => {
         .catch((e) => e);
 };
 
+export const patchName = async (data) => {
+    return await fetch(`http://localhost:${port}/namesArray/${data.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
 export const deleteTransaction = async (id) => {
     return await fetch(`http://localhost:${port}/transactions/${id}`, {
         method: 'DELETE',

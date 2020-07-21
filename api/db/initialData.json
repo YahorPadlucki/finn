@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Card",
       "nameId": 1,
-      "balance": 100
+      "balance": 77
     },
     {
       "id": 2,
@@ -47,37 +47,59 @@
   ],
   "namesArray": [
     {
-      "name": "Cardd",
+      "id": 1,
+      "name": "Ca",
       "nameId": 1
     },
     {
+      "id": 2,
       "name": "Cashh",
       "nameId": 2
     },
     {
+      "id": 3,
       "name": "Bankk",
       "nameId": 3
     },
     {
+      "id": 4,
       "name": "Foodd",
       "nameId": 4
     },
     {
+      "id": 5,
       "name": "Flatt",
       "nameId": 5
     },
     {
+      "id": 6,
       "name": "Salaryy",
       "nameId": 6
     },
     {
+      "id": 7,
       "name": "Gamess",
       "nameId": 7
     },
     {
+      "id": 8,
       "name": "Otherr",
       "nameId": 8
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": 23,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 4,
+      "date": "2020-07-21T05:24:12.702Z",
+      "year": 2020,
+      "month": 6,
+      "day": 21,
+      "description": "",
+      "type": "transactionType",
+      "id": 1
+    }
+  ]
 }
