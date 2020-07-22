@@ -8,7 +8,8 @@ const Settings = () => {
         isLoaded,
         accounts,
         categories,
-        editName
+        editName,
+        getNameFromNameId
     } = useContext(AppContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
@@ -49,7 +50,7 @@ const Settings = () => {
         return elemets.map(el => {
             return (
                 <div className="item">
-                    <div>{el.name}
+                    <div>{getNameFromNameId(el.nameId)}
                         <div className="mini ui button right floated" onClick={() => {
                             setFieldToEdit(el);
                             setEditPopupActive(true)

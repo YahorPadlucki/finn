@@ -389,6 +389,8 @@ const App = () => {
         console.log("pathc name "+data.name)
         console.log("pathc name id "+data.nameId)
         await patchName({id: id, name: data.name, nameId: data.nameId});
+        const updatedNames = await fetchData(NAMES);
+        setNames(updatedNames);
         setIsLoaded(true);
     };
 

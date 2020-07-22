@@ -4,7 +4,10 @@ import AppContext from "../context/AppContext";
 
 const EditFieldNamePopup = (props) => {
 
-    const [name, setName] = useState(props.fieldToEdit.name);
+    const {
+        getNameFromNameId
+    } = useContext(AppContext);
+    const [name, setName] = useState(getNameFromNameId(props.fieldToEdit.nameId));
 
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
@@ -41,7 +44,7 @@ const EditFieldNamePopup = (props) => {
         //         setIsInputValid(true);
         //
 
-        if (props.fieldToEdit.name === name)
+        if (getNameFromNameId(props.fieldToEdit.nameId) === name)
             return;
 
         props.onSaveClickedCallBack({nameId: props.fieldToEdit.nameId, name: name});

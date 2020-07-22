@@ -1,6 +1,9 @@
-- Settings tab - use names by ids
-- refresh on name edited
+- remove .name ref from everywhere
+- expensess not working
 
+
++ Settings tab - use names by ids
++ refresh on name edited
 
 refactor serverApi ( remove duplications)
 
