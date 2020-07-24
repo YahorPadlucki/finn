@@ -1,9 +1,12 @@
-- remove .name ref from everywhere
-- expensess not working
 
+- delete account
+- delete category
+    - delete popup with proper title
+    - delete acc vs delete category api call
 
-+ Settings tab - use names by ids
-+ refresh on name edited
+- add account
+- add category
+
 
 refactor serverApi ( remove duplications)
 
@@ -16,21 +19,25 @@ Settings tab
  - check if exist - prevent to create new
  - if delete - all transaction delete? (add additional prompt)
 
-
-Expenses
-+ extract date picker component
-+ total
-+ categories
-+ selector for month/year
-+ pie chart
-
-
 expenses graphs
 
 - income Category wrong ( card < - Food )
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
 
+
+
+
++ remove .name ref from everywhere
++ expensess not working
++ Settings tab - use names by ids
++ refresh on name edited
+Expenses
++ extract date picker component
++ total
++ categories
++ selector for month/year
++ pie chart
 
 +remove transactions from expensies
 Transfer transaction

@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import EditFieldNamePopup from "./EditFieldNamePopup";
+import DeleteTransactionPopup from "./DeleteTransactionPopup";
 
 
 const Settings = () => {
@@ -41,7 +42,13 @@ const Settings = () => {
     function renderDeletePopup() {
         if (isDeletePopupActive) {
 
-            return ""; // delete popip
+            return <DeleteTransactionPopup
+                OnDelete={() => {
+                    // removeTransaction(transactionToEdit);
+                    hideDeletePopup();
+                }}
+                OnCancel={hideDeletePopup}/>;
+
         }
     }
 

@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Card",
       "nameId": 1,
-      "balance": 77
+      "balance": 100
     },
     {
       "id": 2,
@@ -63,7 +63,7 @@
     },
     {
       "id": 4,
-      "name": "Foodd",
+      "name": "Food",
       "nameId": 4
     },
     {
@@ -87,19 +87,5 @@
       "nameId": 8
     }
   ],
-  "transactions": [
-    {
-      "total": 23,
-      "accountNameId": 1,
-      "toAccountNameId": 1,
-      "categoryNameId": 4,
-      "date": "2020-07-21T05:24:12.702Z",
-      "year": 2020,
-      "month": 6,
-      "day": 21,
-      "description": "",
-      "type": "transactionType",
-      "id": 1
-    }
-  ]
+  "transactions": []
 }

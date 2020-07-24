@@ -11,6 +11,7 @@ const Expenses = () => {
         categories,
         historyTransactions,
         isLoaded,
+        getNameFromNameId,
         loadMoreTransactions,
         isAllTransactionsLoaded,
         fetchHistoryTransactions
@@ -44,7 +45,7 @@ const Expenses = () => {
     }, [historyTransactions]);
 
     const getTransactionColorCode = (transaction) => {
-        return categories.filter((category) => category.name === transaction.category)[0].color
+        return categories.filter((category) => category.nameId === transaction.categoryNameId)[0].color
     };
 
     const renderTable = () => {
@@ -98,7 +99,7 @@ const Expenses = () => {
         const colors = [];
 
         combinedCategories.forEach(transaction => {
-            labels.push(transaction.category);
+            labels.push(getNameFromNameId(transaction.categoryNameId));
             data.push(transaction.total);
             colors.push(getTransactionColorCode(transaction))
         });
