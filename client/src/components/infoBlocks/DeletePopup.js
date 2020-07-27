@@ -1,10 +1,10 @@
 import React from 'react';
 import Modal from "../popup/Modal";
 
-const DeleteTransactionPopup = (props) => {
+const DeletePopup = (props) => {
 
     const renderContent = () => {
-        return 'Are you sure you want to delete this transaction?'
+        return `Are you sure you want to delete this ${props.itemName}?`
 
     };
 
@@ -32,7 +32,7 @@ const DeleteTransactionPopup = (props) => {
 
     return (
         <Modal
-            title="Delete transaction"
+            title={`Delete ${props.itemName}`}
             content={renderContent()}
             actions={renderActions()}
             onDismiss={onCancel}
@@ -41,4 +41,4 @@ const DeleteTransactionPopup = (props) => {
 
 };
 
-export default DeleteTransactionPopup;
+export default DeletePopup;

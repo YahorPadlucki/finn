@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import EditTransactionPopup from "./EditTransactionPopup";
 import ApiContext from "../context/ApiContext";
-import DeleteTransactionPopup from "./DeleteTransactionPopup";
+import DeletePopup from "./DeletePopup";
 import AppContext from "../context/AppContext";
 import DateSelector from "../utils/DateSelector";
 import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
@@ -131,7 +131,8 @@ const History = (props) => {
     function renderDeletePopup() {
         if (isDeletePopupActive) {
 
-            return <DeleteTransactionPopup
+            return <DeletePopup
+                itemName = "transaction"
                 OnDelete={() => {
                     removeTransaction(transactionToEdit);
                     hideDeletePopup();

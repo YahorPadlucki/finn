@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Card",
       "nameId": 1,
-      "balance": 100
+      "balance": 99
     },
     {
       "id": 2,
@@ -87,5 +87,19 @@
       "nameId": 8
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 4,
+      "date": "2020-07-27T05:36:13.564Z",
+      "year": 2020,
+      "month": 6,
+      "day": 27,
+      "description": "",
+      "type": "transactionType",
+      "id": 1
+    }
+  ]
 }
