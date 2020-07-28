@@ -64,4 +64,12 @@ export const deleteTransaction = async (id) => {
         .catch((e) => e);
 };
 
+export const deleteAccount = async (id) => {
+    return await fetch(`http://localhost:${port}/accounts/${id}`, {
+        method: 'DELETE',
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
 // export const patchName = async

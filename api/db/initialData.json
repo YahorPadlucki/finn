@@ -48,7 +48,7 @@
   "namesArray": [
     {
       "id": 1,
-      "name": "Carrr",
+      "name": "Card",
       "nameId": 1
     },
     {
@@ -87,19 +87,5 @@
       "nameId": 8
     }
   ],
-  "transactions": [
-    {
-      "total": 1,
-      "accountNameId": 1,
-      "toAccountNameId": 1,
-      "categoryNameId": 4,
-      "date": "2020-07-27T05:36:13.564Z",
-      "year": 2020,
-      "month": 6,
-      "day": 27,
-      "description": "",
-      "type": "transactionType",
-      "id": 1
-    }
-  ]
+  "transactions": []
 }

@@ -1,7 +1,10 @@
 
 - delete account
+    - issue with edit transaction - wrong acc in drop down ( disable edititng?)
+    - issue with deleting
+
 - delete category
-    - delete popup with proper title
+
     - delete acc vs delete category api call
 
 - add account

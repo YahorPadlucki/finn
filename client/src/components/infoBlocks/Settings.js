@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import AppContext from "../context/AppContext";
 import EditFieldNamePopup from "./EditFieldNamePopup";
 import DeletePopup from "./DeletePopup";
+import ApiContext from "../context/ApiContext";
 
 
 const Settings = () => {
@@ -12,6 +13,7 @@ const Settings = () => {
         editName,
         getNameFromNameId
     } = useContext(AppContext);
+    const {removeAccount} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
     const [isDeletePopupActive, setDeletePopupActive] = useState(false);
 
@@ -44,7 +46,7 @@ const Settings = () => {
         if (isDeletePopupActive) {
 
             return <DeletePopup
-                itemName = {fieldToEditTypeName}
+                itemName={fieldToEditTypeName}
                 OnDelete={() => {
                     // removeTransaction(transactionToEdit);
                     hideDeletePopup();
@@ -55,7 +57,7 @@ const Settings = () => {
     }
 
 
-    function renderElements(elemets,typeName) {
+    function renderElements(elemets, typeName, deleteFunction) {
         return elemets.map(el => {
             return (
                 <div className="item">
@@ -69,6 +71,7 @@ const Settings = () => {
                             setFieldToEdit(el);
                             setDeletePopupActive(true)
                             setFieldToEditTypeName(typeName)
+                            deleteFunction(el.id);
                         }}>X
                         </div>
                     </div>
@@ -88,11 +91,11 @@ const Settings = () => {
             <h4 style={{textAlign: 'center'}}>Settings</h4>
             <h3>Accounts</h3>
             <div className="ui middle aligned divided list">
-                {renderElements(accounts,"account")}
+                {renderElements(accounts, "account",removeAccount)}
             </div>
             <h3>Categories</h3>
             <div className="ui middle aligned divided list">
-                {renderElements(categories,"category")}
+                {renderElements(categories, "category")}
             </div>
 
             {renderEditPopup()}

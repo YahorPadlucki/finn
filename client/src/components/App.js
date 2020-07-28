@@ -15,6 +15,7 @@ import {
     TRANSFER_TYPE
 } from "./api/types";
 import {
+    deleteAccount,
     deleteTransaction,
     fetchData,
     patchAccounts,
@@ -382,12 +383,20 @@ const App = () => {
 
     };
 
+    const removeAccount = async (accountId) => {
+        setIsLoaded(false);
+        await deleteAccount(accountId);
+        await fetchInitData();
+        setIsLoaded(true);
+
+    };
+
     const editName = async (data) => {
         setIsLoaded(false);
         const id = names.filter(name => name.nameId === data.nameId)[0].id;
-        console.log("pathc id "+id)
-        console.log("pathc name "+data.name)
-        console.log("pathc name id "+data.nameId)
+        console.log("pathc id " + id)
+        console.log("pathc name " + data.name)
+        console.log("pathc name id " + data.nameId)
         await patchName({id: id, name: data.name, nameId: data.nameId});
         const updatedNames = await fetchData(NAMES);
         setNames(updatedNames);
@@ -401,7 +410,8 @@ const App = () => {
             removeTransaction: removeTransaction,
             addTransaction: addTransaction,
             addIncomeTransaction: addIncomeTransaction,
-            addTransferTransaction: addTransferTransaction
+            addTransferTransaction: addTransferTransaction,
+            removeAccount:removeAccount
         }}>
             <AppContext.Provider value={{
                 accounts,

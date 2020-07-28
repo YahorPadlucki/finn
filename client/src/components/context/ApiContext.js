@@ -12,6 +12,8 @@ const ApiContext = createContext({
     addTransferTransaction: (transactionData) => {
     },
     getNameFromNameId: (nameId) => {
+    },
+    removeAccount: (accountId) => {
     }
 
 });
