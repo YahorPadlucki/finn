@@ -1,12 +1,3 @@
-
-- delete account
-    - issue with edit transaction - wrong acc in drop down ( disable edititng?)
-    - issue with deleting
-
-- delete category
-
-    - delete acc vs delete category api call
-
 - add account
 - add category
 
@@ -27,6 +18,15 @@ expenses graphs
 - income Category wrong ( card < - Food )
 - some times history show nothing when swtich to tab after addding transaction
  (cant' reproduce so far)
+
+
+ Deleting - issues with json-server - no api to delete several items,
+ deleting one by one causes crashes
+ - delete account
+     - delete all related transactions
+     - transfer transactions?
+     - income transaction?
+ - delete category
 
 
 

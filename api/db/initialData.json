@@ -2,31 +2,26 @@
   "accounts": [
     {
       "id": 1,
-      "name": "Card",
       "nameId": 1,
-      "balance": 99
+      "balance": 98
     },
     {
       "id": 2,
-      "name": "Cash",
       "nameId": 2,
-      "balance": 100
+      "balance": 101
     },
     {
       "id": 3,
-      "name": "Bank",
       "nameId": 3,
       "balance": 100
     }
   ],
   "categories": [
     {
-      "name": "Food",
       "nameId": 4,
       "color": "rgb(255, 99, 132)"
     },
     {
-      "name": "Flat",
       "nameId": 5,
       "color": "rgb(54, 162, 235)"
     }
@@ -48,7 +43,7 @@
   "namesArray": [
     {
       "id": 1,
-      "name": "Card",
+      "name": "CardD",
       "nameId": 1
     },
     {
@@ -87,5 +82,44 @@
       "nameId": 8
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 4,
+      "date": "2020-07-30T05:08:01.711Z",
+      "year": 2020,
+      "month": 6,
+      "day": 30,
+      "description": "",
+      "type": "transactionType",
+      "id": 1
+    },
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 2,
+      "date": "2020-07-30T05:08:15.346Z",
+      "year": 2020,
+      "month": 6,
+      "day": 30,
+      "description": "",
+      "type": "transferType",
+      "id": 2
+    },
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 2,
+      "categoryNameId": 6,
+      "date": "2020-07-30T05:08:15.346Z",
+      "year": 2020,
+      "month": 6,
+      "day": 30,
+      "description": "",
+      "type": "incomeType",
+      "id": 3
+    }
+  ]
 }

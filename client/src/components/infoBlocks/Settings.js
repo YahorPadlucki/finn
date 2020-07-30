@@ -67,13 +67,13 @@ const Settings = () => {
                             setEditPopupActive(true)
                         }}>/
                         </div>
-                        <div className="mini ui button red right floated" onClick={() => {
-                            setFieldToEdit(el);
-                            setDeletePopupActive(true)
-                            setFieldToEditTypeName(typeName)
-                            deleteFunction(el.id);
-                        }}>X
-                        </div>
+                        {/*<div className="mini ui button red right floated" onClick={() => {*/}
+                            {/*setFieldToEdit(el);*/}
+                            {/*setDeletePopupActive(true)*/}
+                            {/*setFieldToEditTypeName(typeName)*/}
+                            {/*deleteFunction(el.id);*/}
+                        {/*}}>X*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             );

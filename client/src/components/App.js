@@ -386,6 +386,7 @@ const App = () => {
     const removeAccount = async (accountId) => {
         setIsLoaded(false);
         await deleteAccount(accountId);
+
         await fetchInitData();
         setIsLoaded(true);
 
@@ -411,7 +412,7 @@ const App = () => {
             addTransaction: addTransaction,
             addIncomeTransaction: addIncomeTransaction,
             addTransferTransaction: addTransferTransaction,
-            removeAccount:removeAccount
+            removeAccount: removeAccount
         }}>
             <AppContext.Provider value={{
                 accounts,
