@@ -15,6 +15,9 @@ const AppContext = createContext({
     fetchHistoryTransactions: (year, month) => {
     },
     editName: (nameId, newName, oldName) => {
+    },
+    addAccount:(name)=>{
+
     }
 });
 

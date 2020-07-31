@@ -63,7 +63,7 @@ const EditFieldNamePopup = (props) => {
 
     return (
         <Modal
-            title="Edit name"
+            title= {props.title}
             content={renderContent()}
             onDismiss={() => props.OnCancel()}
         />

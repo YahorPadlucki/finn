@@ -41,7 +41,7 @@ const App = () => {
     const [selectedCategoryNameId, setSelectedCategoryNameId] = useState('');
     const [selectedIncomeCategoryNameId, setSelectedIncomeCategoryNameId] = useState('');
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(2);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(4);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
@@ -392,6 +392,13 @@ const App = () => {
 
     };
 
+    const addAccount = async (accountName) => {
+
+        //TODO: account name -> to new nameId
+        console.log(" add acc "+ accountName)
+
+    };
+
     const editName = async (data) => {
         setIsLoaded(false);
         const id = names.filter(name => name.nameId === data.nameId)[0].id;
@@ -425,7 +432,8 @@ const App = () => {
                 loadMoreTransactions: loadMoreTransactions,
                 fetchHistoryTransactions: fetchHistoryTransactions,
                 getNameFromNameId: getNameFromNameId,
-                editName: editName
+                editName: editName,
+                addAccount: addAccount
 
             }}>
                 <div className="ui container"
