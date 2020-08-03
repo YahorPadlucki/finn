@@ -72,4 +72,28 @@ export const deleteAccount = async (id) => {
         .catch((e) => e);
 };
 
+export const addNewName = async (data) => {
+    return await fetch(`http://localhost:${port}/namesArray`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
+export const addNewAccount = async (data) => {
+    return await fetch(`http://localhost:${port}/accounts`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
 // export const patchName = async
