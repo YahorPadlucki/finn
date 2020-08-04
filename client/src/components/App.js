@@ -15,7 +15,7 @@ import {
     TRANSFER_TYPE
 } from "./api/types";
 import {
-    addNewAccount,
+    addNewAccount, addNewCategory,
     addNewName,
     deleteAccount,
     deleteTransaction,
@@ -405,16 +405,9 @@ const App = () => {
 
     const addAccount = async (accountName) => {
 
-        //TODO: account name -> to new nameId
-        console.log(" add acc " + accountName)
-        const newNameId = names.sort((a, b) => (a.nameId > b.nameId) ? 1 : ((b.nameId > a.nameId) ? -1 : 0))[names.length - 1].nameId + 1;
-        const newNameData = {
-            name: accountName,
-            nameId: newNameId
-        };
-        setIsLoaded(false);
+        const newNameId = await saveNewName(accountName);
 
-        await addNewName(newNameData);
+        setIsLoaded(false);
         await fetchNames();
 
         const newAccData = {
@@ -426,6 +419,35 @@ const App = () => {
         await fetchAccounts();
         setIsLoaded(true);
 
+    };
+
+    const addCategory = async (categoryName) => {
+
+        const newNameId = await saveNewName(categoryName);
+        setIsLoaded(false);
+
+        await fetchNames();
+
+        const newCategoryData = {
+            nameId: newNameId,
+            color: 0 //TODO - generate color?
+        };
+
+        await addNewCategory(newCategoryData);
+        await fetchAccounts();
+        setIsLoaded(true);
+
+    };
+
+    const saveNewName = async function (newName) {
+        const newNameId = names.sort((a, b) => (a.nameId > b.nameId) ? 1 : ((b.nameId > a.nameId) ? -1 : 0))[names.length - 1].nameId + 1;
+        const newNameData = {
+            name: newName,
+            nameId: newNameId
+        };
+
+        await addNewName(newNameData);
+        return newNameId;
     };
 
     const editName = async (data) => {

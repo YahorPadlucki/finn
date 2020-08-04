@@ -96,4 +96,16 @@ export const addNewAccount = async (data) => {
         .catch((e) => e);
 };
 
+export const addNewCategory = async (data) => {
+    return await fetch(`http://localhost:${port}/categories`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
 // export const patchName = async
