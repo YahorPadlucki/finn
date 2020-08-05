@@ -18,6 +18,9 @@ const AppContext = createContext({
     },
     addAccount:(name)=>{
 
+    },
+    addCategory:(name)=>{
+
     }
 });
 

@@ -71,8 +71,6 @@ const App = () => {
     }, [loadTransactionsLimit]);
 
 
-
-
     async function fetchInitData() {
         await fetchNames();
         await fetchAccounts();
@@ -439,6 +437,9 @@ const App = () => {
 
     };
 
+    const generateNewColor = () => {
+    };
+
     const saveNewName = async function (newName) {
         const newNameId = names.sort((a, b) => (a.nameId > b.nameId) ? 1 : ((b.nameId > a.nameId) ? -1 : 0))[names.length - 1].nameId + 1;
         const newNameData = {
@@ -484,7 +485,8 @@ const App = () => {
                 fetchHistoryTransactions: fetchHistoryTransactions,
                 getNameFromNameId: getNameFromNameId,
                 editName: editName,
-                addAccount: addAccount
+                addAccount: addAccount,
+                addCategory: addCategory
 
             }}>
                 <div className="ui container"

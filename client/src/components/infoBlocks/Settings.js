@@ -16,7 +16,8 @@ const Settings = () => {
         categories,
         editName,
         getNameFromNameId,
-        addAccount
+        addAccount,
+        addCategory
     } = useContext(AppContext);
     const {removeAccount} = useContext(ApiContext);
     const [isEditPopupActive, setEditPopupActive] = useState(false);
@@ -53,6 +54,7 @@ const Settings = () => {
                             addAccount(data.name);
                             break;
                         case ADD_CATEGORY:
+                            addCategory(data.name);
                             break;
                     }
 
@@ -127,7 +129,12 @@ const Settings = () => {
 
 
             <h3>Categories
-                <div className="mini ui button blue right floated">+</div>
+                <div className="mini ui button blue right floated" onClick={() => {
+                    setNamePopupTitle("Add new Category");
+                    setFieldToEdit('');
+                    setEditPopupActive(true);
+                    setPopupType(ADD_CATEGORY);
+                }}>+</div>
 
             </h3>
             <div className="ui middle aligned divided list">
