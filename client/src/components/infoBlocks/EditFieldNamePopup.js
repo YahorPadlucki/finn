@@ -1,6 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Modal from "../popup/Modal";
 import AppContext from "../context/AppContext";
+import {CompactPicker} from 'react-color';
+
 
 const EditFieldNamePopup = (props) => {
 
@@ -8,6 +10,7 @@ const EditFieldNamePopup = (props) => {
         getNameFromNameId
     } = useContext(AppContext);
     const [name, setName] = useState(getNameFromNameId(props.fieldToEdit.nameId));
+    const [color, setColor] = useState('#fff');
 
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
@@ -22,6 +25,7 @@ const EditFieldNamePopup = (props) => {
                            onKeyPress={onKeyPress}
                     />
                 </div>
+                {renderColorPicker()}
                 <div style={{textAlign: 'right'}}>
                     <button className="big ui primary button "
                             onClick={onSaveClicked}>
@@ -33,7 +37,30 @@ const EditFieldNamePopup = (props) => {
                     </button>
                 </div>
             </form>
+
+
         )
+    };
+
+    const renderColorPicker = function () {
+        return <div className="ui grid">
+            <div className="row">
+                <div className="six wide column ">
+                    <div className="field">
+                        <input type="text"
+                               value="#asssd">
+                        </input>
+                    </div>
+                    <CompactPicker
+                        color={color}
+                        onChangeComplete={handleChangeComplete}/>
+                </div>
+            </div>
+        </div>;
+    };
+
+    const handleChangeComplete = (color) => {
+        setColor(color.hex);
     };
 
     const onSaveClicked = async () => {
@@ -63,7 +90,7 @@ const EditFieldNamePopup = (props) => {
 
     return (
         <Modal
-            title= {props.title}
+            title={props.title}
             content={renderContent()}
             onDismiss={() => props.OnCancel()}
         />
