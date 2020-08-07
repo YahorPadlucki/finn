@@ -10,7 +10,7 @@ const EditFieldNamePopup = (props) => {
         getNameFromNameId
     } = useContext(AppContext);
     const [name, setName] = useState(getNameFromNameId(props.fieldToEdit.nameId));
-    const [color, setColor] = useState('#fff');
+    const [color, setColor] = useState(props.color);
 
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
 
@@ -43,20 +43,20 @@ const EditFieldNamePopup = (props) => {
     };
 
     const renderColorPicker = function () {
-        return <div className="ui grid">
-            <div className="row">
-                <div className="six wide column ">
-                    <div className="field">
-                        <input type="text"
-                               value="#asssd">
-                        </input>
+        if (color) {
+            return <div className="ui grid">
+                <div className="row">
+                    <div className="six wide column ">
+                        <label>Select Color</label>
+                        <CompactPicker
+                            color={color}
+                            onChangeComplete={handleChangeComplete}/>
                     </div>
-                    <CompactPicker
-                        color={color}
-                        onChangeComplete={handleChangeComplete}/>
                 </div>
-            </div>
-        </div>;
+            </div>;
+        }
+        return <div/>;
+
     };
 
     const handleChangeComplete = (color) => {

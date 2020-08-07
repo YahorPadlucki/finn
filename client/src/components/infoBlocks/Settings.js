@@ -43,6 +43,7 @@ const Settings = () => {
                 isLoaded={isLoaded}
                 title={namePopupTitle}
                 fieldToEdit={fieldToEdit}
+                color = {fieldToEdit.color}
                 // transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(data) => {
 

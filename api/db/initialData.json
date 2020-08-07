@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nameId": 1,
-      "balance": 98
+      "balance": 94
     },
     {
       "id": 2,
@@ -130,6 +130,32 @@
       "description": "",
       "type": "incomeType",
       "id": 3
+    },
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 4,
+      "date": "2020-08-07T05:41:36.085Z",
+      "year": 2020,
+      "month": 7,
+      "day": 7,
+      "description": "",
+      "type": "transactionType",
+      "id": 4
+    },
+    {
+      "total": 1,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 5,
+      "date": "2020-08-07T05:41:42.838Z",
+      "year": 2020,
+      "month": 7,
+      "day": 7,
+      "description": "",
+      "type": "transactionType",
+      "id": 5
     }
   ]
 }
