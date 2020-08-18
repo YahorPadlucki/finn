@@ -62,7 +62,7 @@ const Expenses = () => {
                     combinedCategories.push({...transaction});
                 } else {
 
-                    const cobinedCategorie = combinedCategories.filter(tr => tr.category === transaction.category)[0];
+                    const cobinedCategorie = combinedCategories.filter(tr => tr.categoryNameId === transaction.categoryNameId)[0];
                     if (!cobinedCategorie)
                         combinedCategories.push({...transaction});
                     else
@@ -80,7 +80,7 @@ const Expenses = () => {
                 <tr>
 
                     <td style={{'background-color': getTransactionColorCode(transaction)}}/>
-                    <td>{transaction.category}</td>
+                    <td>{getNameFromNameId(transaction.categoryNameId)}</td>
                     <td>{((transaction.total / total) * 100).toFixed(1) + "%"}</td>
                     <td>{transaction.total}</td>
                 </tr>

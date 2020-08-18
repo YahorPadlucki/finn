@@ -43,7 +43,7 @@ const App = () => {
     const [selectedCategoryNameId, setSelectedCategoryNameId] = useState('');
     const [selectedIncomeCategoryNameId, setSelectedIncomeCategoryNameId] = useState('');
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(4);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(1);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
