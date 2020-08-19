@@ -1,9 +1,14 @@
+
+- edit category
+    - edit color
+
+- add new category
+    - color picker
+
+- fix warning in input field
+
 - add account
     - delete income transaction to new acc issue? not reproduced
-- add category
-    - edit color
-    - color picker
-- fix warning in input field
 
 
 refactor serverApi ( remove duplications)

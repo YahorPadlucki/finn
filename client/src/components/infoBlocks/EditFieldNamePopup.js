@@ -71,10 +71,15 @@ const EditFieldNamePopup = (props) => {
         //         setIsInputValid(true);
         //
 
-        if (getNameFromNameId(props.fieldToEdit.nameId) === name)
-            return;
 
-        props.onSaveClickedCallBack({nameId: props.fieldToEdit.nameId, name: name});
+        if (getNameFromNameId(props.fieldToEdit.nameId) !== name || color !== props.color) {
+
+            console.log("=== old color "+props.color)
+            console.log("=== saving color "+color)
+            // props.onSaveClickedCallBack({nameId: props.fieldToEdit.nameId, name: name});
+
+        }
+
 
         // clearFields();
         // const postResponse = await postTransaction();

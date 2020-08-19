@@ -43,7 +43,7 @@ const App = () => {
     const [selectedCategoryNameId, setSelectedCategoryNameId] = useState('');
     const [selectedIncomeCategoryNameId, setSelectedIncomeCategoryNameId] = useState('');
 
-    const [selectedInfoBlock, setSelectedInfoBlock] = useState(1);
+    const [selectedInfoBlock, setSelectedInfoBlock] = useState(4);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loadTransactionsLimit, setLoadTransactionsLimit] = useState(10);
@@ -457,6 +457,7 @@ const App = () => {
         console.log("pathc id " + id)
         console.log("pathc name " + data.name)
         console.log("pathc name id " + data.nameId)
+        console.log("pathc name id " + data.color)
         await patchName({id: id, name: data.name, nameId: data.nameId});
         const updatedNames = await fetchData(NAMES);
         setNames(updatedNames);
