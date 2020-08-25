@@ -71,14 +71,19 @@ const EditFieldNamePopup = (props) => {
         //         setIsInputValid(true);
         //
 
+        const data = {nameId: props.fieldToEdit.nameId}
 
-        if (getNameFromNameId(props.fieldToEdit.nameId) !== name || color !== props.color) {
-
-            console.log("=== old color "+props.color)
-            console.log("=== saving color "+color)
-            // props.onSaveClickedCallBack({nameId: props.fieldToEdit.nameId, name: name});
-
+        if (getNameFromNameId(props.fieldToEdit.nameId) !== name) {
+            data.name = name;
         }
+        if (color !== props.color) {
+            console.log("=== old color " + props.color)
+            console.log("=== saving color " + color)
+            data.color = color;
+        }
+
+        if (data.color || data.name)
+            props.onSaveClickedCallBack(data);
 
 
         // clearFields();

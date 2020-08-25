@@ -437,9 +437,6 @@ const App = () => {
 
     };
 
-    const generateNewColor = () => {
-    };
-
     const saveNewName = async function (newName) {
         const newNameId = names.sort((a, b) => (a.nameId > b.nameId) ? 1 : ((b.nameId > a.nameId) ? -1 : 0))[names.length - 1].nameId + 1;
         const newNameData = {
@@ -453,14 +450,22 @@ const App = () => {
 
     const editName = async (data) => {
         setIsLoaded(false);
-        const id = names.filter(name => name.nameId === data.nameId)[0].id;
-        console.log("pathc id " + id)
-        console.log("pathc name " + data.name)
-        console.log("pathc name id " + data.nameId)
-        console.log("pathc name id " + data.color)
-        await patchName({id: id, name: data.name, nameId: data.nameId});
-        const updatedNames = await fetchData(NAMES);
-        setNames(updatedNames);
+
+        if(data.name){
+            const id = names.filter(name => name.nameId === data.nameId)[0].id;
+            console.log("pathc id " + id)
+            console.log("pathc name " + data.name)
+            console.log("pathc name id " + data.nameId)
+
+            await patchName({id: id, name: data.name, nameId: data.nameId});
+            const updatedNames = await fetchData(NAMES);
+            setNames(updatedNames);
+        }
+        if(data.color){
+            console.log("pathc " + data.color)
+
+        }
+
         setIsLoaded(true);
     };
 
