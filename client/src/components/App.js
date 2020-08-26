@@ -20,7 +20,7 @@ import {
     deleteAccount,
     deleteTransaction,
     fetchData,
-    patchAccounts,
+    patchAccounts, patchColor,
     patchName,
     patchTransaction,
     postTransaction
@@ -74,6 +74,8 @@ const App = () => {
     async function fetchInitData() {
         await fetchNames();
         await fetchAccounts();
+
+        console.log('=== fetch init data')
 
         const categories = await fetchData(CATEGORIES);
         if (categories) {
@@ -448,10 +450,10 @@ const App = () => {
         return newNameId;
     };
 
-    const editName = async (data) => {
+    const edit = async (data) => {
         setIsLoaded(false);
 
-        if(data.name){
+        if (data.name) {
             const id = names.filter(name => name.nameId === data.nameId)[0].id;
             console.log("pathc id " + id)
             console.log("pathc name " + data.name)
@@ -461,8 +463,17 @@ const App = () => {
             const updatedNames = await fetchData(NAMES);
             setNames(updatedNames);
         }
-        if(data.color){
+        if (data.color) {
+            console.log(categories)
+            const id = categories.filter(category => category.nameId === data.nameId)[0].id;
             console.log("pathc " + data.color)
+            console.log("data.nameId " + data.nameId)
+
+
+            await patchColor({id: id, color: data.color})
+
+            const categories = await fetchData(CATEGORIES);
+            setCategories(categories);
 
         }
 
@@ -490,7 +501,7 @@ const App = () => {
                 loadMoreTransactions: loadMoreTransactions,
                 fetchHistoryTransactions: fetchHistoryTransactions,
                 getNameFromNameId: getNameFromNameId,
-                editName: editName,
+                edit: edit,
                 addAccount: addAccount,
                 addCategory: addCategory
 

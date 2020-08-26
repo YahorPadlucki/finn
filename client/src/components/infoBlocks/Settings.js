@@ -14,7 +14,7 @@ const Settings = () => {
         isLoaded,
         accounts,
         categories,
-        editName,
+        edit,
         getNameFromNameId,
         addAccount,
         addCategory
@@ -43,13 +43,13 @@ const Settings = () => {
                 isLoaded={isLoaded}
                 title={namePopupTitle}
                 fieldToEdit={fieldToEdit}
-                color = {fieldToEdit.color}
+                color={fieldToEdit.color}
                 // transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(data) => {
 
                     switch (popupType) {
                         case EDIT:
-                            editName(data);
+                            edit(data);
                             break;
                         case ADD_ACCOUNT:
                             addAccount(data.name);
