@@ -1,8 +1,10 @@
 
 - edit category
-    - edit color
+    - edit color - issues with categroies unddefined in edit method
+
 
 - add new category
+    = add id
     - add color picker
 
 - fix warning in input field
