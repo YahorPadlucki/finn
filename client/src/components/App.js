@@ -472,8 +472,7 @@ const App = () => {
 
             await patchColor({id: id, color: data.color})
 
-            const categories = await fetchData(CATEGORIES);
-            setCategories(categories);
+            setCategories(await fetchData(CATEGORIES));
 
         }
 

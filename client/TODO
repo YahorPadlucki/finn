@@ -1,10 +1,6 @@
 
-- edit category
-    - edit color - issues with categroies unddefined in edit method
-
-
 - add new category
-    = add id
+    - add id
     - add color picker
 
 - fix warning in input field
@@ -12,6 +8,9 @@
 - add account
     - delete income transaction to new acc issue? not reproduced
 
+
++ edit category
+    + edit color - issues with categroies unddefined in edit method (App.js)
 
 refactor serverApi ( remove duplications)
 
