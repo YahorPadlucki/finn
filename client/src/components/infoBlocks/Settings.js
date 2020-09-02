@@ -37,13 +37,18 @@ const Settings = () => {
     const dimmerStyle = `ui ${isLoaded ? '' : "active"} inverted dimmer`;
 
 
+    function setColorForEditPopup(fieldToEdit, popupType) {
+        if (fieldToEdit.color) return fieldToEdit.color;
+        if (popupType === ADD_CATEGORY) return "#ffffff"
+    }
+
     function renderEditPopup() {
         if (isEditPopupActive) {
             return <EditFieldNamePopup
                 isLoaded={isLoaded}
                 title={namePopupTitle}
                 fieldToEdit={fieldToEdit}
-                color={fieldToEdit.color}
+                color={setColorForEditPopup(fieldToEdit, popupType)}
                 // transactionToEdit={transactionToEdit}
                 onSaveClickedCallBack={(data) => {
 
@@ -55,7 +60,7 @@ const Settings = () => {
                             addAccount(data.name);
                             break;
                         case ADD_CATEGORY:
-                            addCategory(data.name);
+                            addCategory(data.name,data.color);
                             break;
                     }
 

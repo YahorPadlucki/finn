@@ -74,14 +74,10 @@ const App = () => {
     async function fetchInitData() {
         await fetchNames();
         await fetchAccounts();
+        await fetchCategories();
 
         console.log('=== fetch init data')
 
-        const categories = await fetchData(CATEGORIES);
-        if (categories) {
-            setCategories(categories);
-            setSelectedCategoryNameId(categories[0].nameId);
-        }
 
         const incomeCategories = await fetchData(INCOME_CATEGORIES);
         if (incomeCategories) {
@@ -105,6 +101,14 @@ const App = () => {
         if (accounts) {
             setAccounts(accounts);
             setSelectedAccount(accounts[0]);
+        }
+    };
+
+    const fetchCategories = async function () {
+        const categories = await fetchData(CATEGORIES);
+        if (categories) {
+            setCategories(categories);
+            setSelectedCategoryNameId(categories[0].nameId);
         }
     };
 
@@ -421,7 +425,7 @@ const App = () => {
 
     };
 
-    const addCategory = async (categoryName) => {
+    const addCategory = async (categoryName, color) => {
 
         const newNameId = await saveNewName(categoryName);
         setIsLoaded(false);
@@ -430,11 +434,11 @@ const App = () => {
 
         const newCategoryData = {
             nameId: newNameId,
-            color: 0 //TODO - generate color?
+            color: color
         };
 
         await addNewCategory(newCategoryData);
-        await fetchAccounts();
+        await fetchCategories();
         setIsLoaded(true);
 
     };

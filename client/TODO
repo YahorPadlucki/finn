@@ -3,7 +3,8 @@
     - add id
     - add color picker
 
-- fix warning in input field
+- fix warning in input field and errors in console
+- refactor clear
 
 - add account
     - delete income transaction to new acc issue? not reproduced
