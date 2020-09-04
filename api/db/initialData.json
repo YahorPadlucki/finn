@@ -163,6 +163,32 @@
       "description": "",
       "type": "transactionType",
       "id": 5
+    },
+    {
+      "total": 12,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 4,
+      "date": "2020-09-04T05:33:09.004Z",
+      "year": 2020,
+      "month": 8,
+      "day": 4,
+      "description": "",
+      "type": "transactionType",
+      "id": 6
+    },
+    {
+      "total": 3,
+      "accountNameId": 1,
+      "toAccountNameId": 1,
+      "categoryNameId": 5,
+      "date": "2020-09-04T05:33:09.004Z",
+      "year": 2020,
+      "month": 8,
+      "day": 4,
+      "description": "",
+      "type": "transactionType",
+      "id": 7
     }
   ]
 }

@@ -1,7 +1,6 @@
 
-- add new category
-    - add id
-    - add color picker
+- add balance section
+    - extract balance block
 
 - fix warning in input field and errors in console
 - refactor clear
@@ -40,7 +39,9 @@ expenses graphs
  - delete category
 
 
-
++ add new category
+    + add id
+    + add color picker
 
 + remove .name ref from everywhere
 + expensess not working
