@@ -4,6 +4,7 @@ import InputDataForm from "./InputDataForm";
 import AppContext from "../context/AppContext";
 import ApiContext from "../context/ApiContext";
 import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
+import BalanceBlock from "./BalanceBlock";
 
 const AddTransaction = (props) => {
 
@@ -43,16 +44,7 @@ const AddTransaction = (props) => {
         setIsTransactionInProcess(false);
     };
 
-    const renderAccounts = () => accounts.map((acc, i) => <p key={i}>{getNameFromNameId(acc.nameId)}: {acc.balance}</p>);
 
-    const renderBalanceBlock = function () {
-        return (
-            <div className="ui segment">
-                <h3 className="header">Balance</h3>
-                {renderAccounts()}
-            </div>
-        );
-    };
     return (
 
         <div className="ui container"
@@ -60,7 +52,7 @@ const AddTransaction = (props) => {
 
             <div className="ui centered grid" style={{padding: '10px'}}>
                 <div className="four wide column">
-                    {renderBalanceBlock()}
+                    <BalanceBlock/>
                 </div>
                 <InputDataForm isLoaded={props.isLoaded && !isTransactionInProcess}
                                selectedCategoryNameId={props.selectedCategoryNameId}

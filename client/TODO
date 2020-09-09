@@ -1,12 +1,5 @@
-
-- add balance section
-    - extract balance block
-
 - fix warning in input field and errors in console
 - refactor clear
-
-- add account
-    - delete income transaction to new acc issue? not reproduced
 
 
 + edit category
@@ -38,6 +31,9 @@ expenses graphs
      - income transaction?
  - delete category
 
+
++ add balance section
+    + extract balance block
 
 + add new category
     + add id
