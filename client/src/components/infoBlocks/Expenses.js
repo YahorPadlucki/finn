@@ -10,14 +10,11 @@ const Expenses = () => {
     const {
         categories,
         historyTransactions,
-        isLoaded,
         getNameFromNameId,
-        loadMoreTransactions,
-        isAllTransactionsLoaded,
         fetchHistoryTransactions
     } = useContext(AppContext);
 
-    const [selectedDate, setSelectedDate] = useState({month: 1, year: 2020});
+    const [selectedDate] = useState({month: 1, year: 2020});
     const [total, setTotal] = useState(0);
 
     const canvasRef = useRef(null);

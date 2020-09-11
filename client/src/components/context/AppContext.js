@@ -16,10 +16,10 @@ const AppContext = createContext({
     },
     edit: (nameId, newName, oldName) => {
     },
-    addAccount:(name)=>{
+    addAccount: (name) => {
 
     },
-    addCategory:(name)=>{
+    addCategory: (name) => {
 
     }
 });

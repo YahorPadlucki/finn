@@ -1,17 +1,12 @@
 import React, {useContext, useState} from 'react';
 import History from "./History";
 import InputDataForm from "./InputDataForm";
-import AppContext from "../context/AppContext";
 import ApiContext from "../context/ApiContext";
 import {INCOME_TYPE, SPEND_TYPE, TRANSFER_TYPE} from "../api/types";
 import BalanceBlock from "./BalanceBlock";
 
 const AddTransaction = (props) => {
 
-    const {
-        accounts,
-        getNameFromNameId
-    } = useContext(AppContext);
     const {addTransaction, addTransferTransaction, addIncomeTransaction} = useContext(ApiContext);
 
     const [isTransactionInProcess, setIsTransactionInProcess] = useState(false);

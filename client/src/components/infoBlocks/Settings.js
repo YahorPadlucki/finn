@@ -88,9 +88,9 @@ const Settings = () => {
 
 
     function renderElements(elemets, typeName, deleteFunction) {
-        return elemets.map(el => {
+        return elemets.map((el,i) => {
             return (
-                <div className="item">
+                <div className="item" key={i}>
                     <div>{getNameFromNameId(el.nameId)}
                         <div className="mini ui button right floated" onClick={() => {
                             setFieldToEdit(el);

@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import AppContext from "../context/AppContext";
-import Balance from "./Balance";
 
 const BalanceBlock = () => {
     const {
