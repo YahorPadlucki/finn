@@ -9,10 +9,11 @@ const EditFieldNamePopup = (props) => {
     const {
         getNameFromNameId
     } = useContext(AppContext);
-    const [name, setName] = useState(getNameFromNameId(props.fieldToEdit.nameId));
+    const [name, setName] = useState(props.fieldToEdit?getNameFromNameId(props.fieldToEdit.nameId):'');
     const [color, setColor] = useState(props.color);
 
     const formStateClassName = `ui form ${!props.isLoaded ? 'loading' : ''}`;
+
 
 
     const renderContent = () => {

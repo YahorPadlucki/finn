@@ -1,11 +1,11 @@
-- fix warning in input field and errors in console
 - refactor clear
+- refactor serverApi ( remove duplications)
 
 
++ fix warning in input field and errors in console
 + edit category
     + edit color - issues with categroies unddefined in edit method (App.js)
 
-refactor serverApi ( remove duplications)
 
 - publish to github.io
 
