@@ -9,96 +9,23 @@ export const fetchData = async (dataUrl) => {
 };
 
 export const postTransaction = async (data) => {
-    return await fetch(`http://localhost:${port}/transactions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-export const patchTransaction = async (data) => {
-    return await fetch(`http://localhost:${port}/transactions/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-export const patchAccounts = async (data) => {
-    return await fetch(`http://localhost:${port}/accounts/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-export const patchName = async (data) => {
-    return await fetch(`http://localhost:${port}/namesArray/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-export const patchColor = async (data) => {
-    return await fetch(`http://localhost:${port}/categories/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-
-export const deleteTransaction = async (id) => {
-    return await fetch(`http://localhost:${port}/transactions/${id}`, {
-        method: 'DELETE',
-    })
-        .then(() => true)
-        .catch((e) => e);
-};
-
-export const deleteAccount = async (id) => {
-    return await fetch(`http://localhost:${port}/accounts/${id}`, {
-        method: 'DELETE',
-    })
-        .then(() => true)
-        .catch((e) => e);
+    return await postRequest(`http://localhost:${port}/transactions`, data);
 };
 
 export const addNewName = async (data) => {
-    return await fetch(`http://localhost:${port}/namesArray`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(() => true)
-        .catch((e) => e);
+    return await postRequest(`http://localhost:${port}/namesArray`, data);
 };
 
 export const addNewAccount = async (data) => {
-    return await fetch(`http://localhost:${port}/accounts`, {
+    return await postRequest(`http://localhost:${port}/accounts`, data);
+};
+
+export const addNewCategory = async (data) => {
+    return await postRequest(`http://localhost:${port}/categories`, data);
+};
+
+const postRequest = (url, data) => {
+    return fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -109,9 +36,27 @@ export const addNewAccount = async (data) => {
         .catch((e) => e);
 };
 
-export const addNewCategory = async (data) => {
-    return await fetch(`http://localhost:${port}/categories`, {
-        method: 'POST',
+
+export const patchTransaction = async (data) => {
+    return await patchRequest(`http://localhost:${port}/transactions/${data.id}`, data);
+};
+
+
+export const patchAccounts = async (data) => {
+    return await patchRequest(`http://localhost:${port}/accounts/${data.id}`, data);
+};
+
+export const patchName = async (data) => {
+    return await patchRequest(`http://localhost:${port}/namesArray/${data.id}`, data);
+};
+
+export const patchColor = async (data) => {
+    return await patchRequest(`http://localhost:${port}/categories/${data.id}`, data);
+};
+
+const patchRequest = (url, data) => {
+    return fetch(url, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -119,6 +64,24 @@ export const addNewCategory = async (data) => {
     })
         .then(() => true)
         .catch((e) => e);
+
 };
+
+export const deleteTransaction = async (id) => {
+    return await deleteRequest(`http://localhost:${port}/transactions/${id}`);
+};
+
+export const deleteAccount = async (id) => {
+    return await deleteRequest(`http://localhost:${port}/accounts/${id}`);
+};
+
+const deleteRequest = (url) => {
+    return fetch(url, {
+        method: 'DELETE',
+    })
+        .then(() => true)
+        .catch((e) => e);
+};
+
 
 // export const patchName = async
