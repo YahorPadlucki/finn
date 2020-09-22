@@ -1,5 +1,4 @@
 - refactor clear
-- refactor serverApi ( remove duplications)
 
 
 + fix warning in input field and errors in console
@@ -8,6 +7,10 @@
 
 
 - publish to github.io
+Basically create a db.json file in your repository
+just like you do in the local system.
+ you can access your api with https://my-json-server.typicode.com// as your your root URL.
+ https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 
 Settings tab
     - list all accounts

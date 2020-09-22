@@ -41,7 +41,6 @@ export const patchTransaction = async (data) => {
     return await patchRequest(`http://localhost:${port}/transactions/${data.id}`, data);
 };
 
-
 export const patchAccounts = async (data) => {
     return await patchRequest(`http://localhost:${port}/accounts/${data.id}`, data);
 };
