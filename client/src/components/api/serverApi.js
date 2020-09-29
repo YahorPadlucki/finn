@@ -1,7 +1,8 @@
 const port = 3002;
+const url = 'https://my-json-server.typicode.com';
 
 export const fetchData = async (dataUrl) => {
-    const response = await fetch(`http://localhost:${port}/${dataUrl}`)
+    const response = await fetch(`${url}:${port}/${dataUrl}`)
         .catch(() => false);
     if (!response)
         return false;
@@ -9,19 +10,19 @@ export const fetchData = async (dataUrl) => {
 };
 
 export const postTransaction = async (data) => {
-    return await postRequest(`http://localhost:${port}/transactions`, data);
+    return await postRequest(`${url}:${port}/transactions`, data);
 };
 
 export const addNewName = async (data) => {
-    return await postRequest(`http://localhost:${port}/namesArray`, data);
+    return await postRequest(`${url}:${port}/namesArray`, data);
 };
 
 export const addNewAccount = async (data) => {
-    return await postRequest(`http://localhost:${port}/accounts`, data);
+    return await postRequest(`${url}:${port}/accounts`, data);
 };
 
 export const addNewCategory = async (data) => {
-    return await postRequest(`http://localhost:${port}/categories`, data);
+    return await postRequest(`${url}:${port}/categories`, data);
 };
 
 const postRequest = (url, data) => {
@@ -38,19 +39,19 @@ const postRequest = (url, data) => {
 
 
 export const patchTransaction = async (data) => {
-    return await patchRequest(`http://localhost:${port}/transactions/${data.id}`, data);
+    return await patchRequest(`${url}:${port}/transactions/${data.id}`, data);
 };
 
 export const patchAccounts = async (data) => {
-    return await patchRequest(`http://localhost:${port}/accounts/${data.id}`, data);
+    return await patchRequest(`${url}:${port}/accounts/${data.id}`, data);
 };
 
 export const patchName = async (data) => {
-    return await patchRequest(`http://localhost:${port}/namesArray/${data.id}`, data);
+    return await patchRequest(`${url}:${port}/namesArray/${data.id}`, data);
 };
 
 export const patchColor = async (data) => {
-    return await patchRequest(`http://localhost:${port}/categories/${data.id}`, data);
+    return await patchRequest(`${url}:${port}/categories/${data.id}`, data);
 };
 
 const patchRequest = (url, data) => {
@@ -67,11 +68,11 @@ const patchRequest = (url, data) => {
 };
 
 export const deleteTransaction = async (id) => {
-    return await deleteRequest(`http://localhost:${port}/transactions/${id}`);
+    return await deleteRequest(`${url}:${port}/transactions/${id}`);
 };
 
 export const deleteAccount = async (id) => {
-    return await deleteRequest(`http://localhost:${port}/accounts/${id}`);
+    return await deleteRequest(`${url}:${port}/accounts/${id}`);
 };
 
 const deleteRequest = (url) => {
