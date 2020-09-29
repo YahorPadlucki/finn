@@ -12,6 +12,7 @@ Basically create a db.json file in your repository
 just like you do in the local system.
  you can access your api with https://my-json-server.typicode.com// as your your root URL.
  https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
+ npm run deploy
 
 Settings tab
     - list all accounts
