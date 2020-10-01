@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "536e5ebc4728058df858e43d0e9c3661",
+    "revision": "fcfb0caee24fbf6d44256efa965ddd94",
     "url": "/finn/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/finn/static/css/2.ecffae5e.chunk.css"
   },
   {
-    "revision": "edfcb8b9933d039a21a5",
+    "revision": "fa28594048191589d62e",
     "url": "/finn/static/css/main.347dd47e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/finn/static/js/2.2e64153c.chunk.js.LICENSE"
   },
   {
-    "revision": "edfcb8b9933d039a21a5",
-    "url": "/finn/static/js/main.7355a2b0.chunk.js"
+    "revision": "fa28594048191589d62e",
+    "url": "/finn/static/js/main.5f5d04a5.chunk.js"
   },
   {
     "revision": "3d46f4ec7fdf6e1ef994",

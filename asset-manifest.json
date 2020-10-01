@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/finn/static/css/main.347dd47e.chunk.css",
-    "main.js": "/finn/static/js/main.7355a2b0.chunk.js",
-    "main.js.map": "/finn/static/js/main.7355a2b0.chunk.js.map",
+    "main.js": "/finn/static/js/main.5f5d04a5.chunk.js",
+    "main.js.map": "/finn/static/js/main.5f5d04a5.chunk.js.map",
     "runtime-main.js": "/finn/static/js/runtime-main.2ae2219e.js",
     "runtime-main.js.map": "/finn/static/js/runtime-main.2ae2219e.js.map",
     "static/css/2.ecffae5e.chunk.css": "/finn/static/css/2.ecffae5e.chunk.css",
     "static/js/2.2e64153c.chunk.js": "/finn/static/js/2.2e64153c.chunk.js",
     "static/js/2.2e64153c.chunk.js.map": "/finn/static/js/2.2e64153c.chunk.js.map",
     "index.html": "/finn/index.html",
-    "precache-manifest.e5dffc08408562013f626cf4ced6a74f.js": "/finn/precache-manifest.e5dffc08408562013f626cf4ced6a74f.js",
+    "precache-manifest.71921cc1b36094b78573148c76478cd0.js": "/finn/precache-manifest.71921cc1b36094b78573148c76478cd0.js",
     "service-worker.js": "/finn/service-worker.js",
     "static/css/2.ecffae5e.chunk.css.map": "/finn/static/css/2.ecffae5e.chunk.css.map",
     "static/css/main.347dd47e.chunk.css.map": "/finn/static/css/main.347dd47e.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.ecffae5e.chunk.css",
     "static/js/2.2e64153c.chunk.js",
     "static/css/main.347dd47e.chunk.css",
-    "static/js/main.7355a2b0.chunk.js"
+    "static/js/main.5f5d04a5.chunk.js"
   ]
 }
