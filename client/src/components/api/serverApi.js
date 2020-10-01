@@ -1,5 +1,5 @@
 const port = 3002;
-const url = 'https://my-json-server.typicode.com';
+const url = 'https://my-json-server.typicode.com/YahorPadlucki/finn';
 
 export const fetchData = async (dataUrl) => {
     const response = await fetch(`${url}/${dataUrl}`)
